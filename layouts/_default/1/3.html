@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta content="telephone=no" name="format-detection">
+	<meta name="HandheldFriendly" content="true">
+	<title>Bônus 200% +100 giros grátis</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&amp;display=swap&amp;subset=cyrillic"
+		rel="stylesheet">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+	<!-- <link rel="manifest" href="./img/favicon/site.webmanifest"> -->
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	<link rel="stylesheet" href="/css/main3.css">
+</head>
+
+<body>
+	<div class="main" style="height: 100vh;">
+		<div class="main__elements"></div>
+		<header class="header">
+			<div class="header__left"><a class="header__left-logo redirectlink"><img src="/images/logo-casino.png"
+						alt="Dejavu"></a></div>
+		</header>
+		<picture class="main__titles"><img src="/images/title-br.png" alt="titles"></picture>
+		<div class="main__wheel-wrapper">
+			<div class="main__wheel-layout stage-1">
+				<div class="main__achievements">
+					<div class="main__achievements-bonus hide">
+						<div class="lights lights_one"></div>
+						<div class="lights lights_two"></div>
+						<div class="lights-content">
+							<div class="lights-content__counter"></div><span class="lights-content__bonus"></span><span
+								class="lights-content__value">100</span><span class="lights-content__subtitle">giros
+								grátis</span><span class="lights-content__subtitleSecond">Tekrar dene</span>
+						</div>
+					</div>
+					<div class="main__achievements-spin hide">
+						<div class="lights lights_one"></div>
+						<div class="lights lights_two"></div>
+						<div class="lights-content">
+							<div class="lights-content__counter"></div><span class="lights-content__bonus">Bônus</span><span
+								class="lights-content__value">200</span><span class="lights-content__subtitle">%</span>
+						</div>
+					</div>
+				</div>
+				<div class="main__spinner">
+					<div class="main__spinner-img"></div>
+					<div class="main__spinner-center"></div><button
+						class="main__spinner-center-light run-circle">Girar</button>
+				</div>
+				<div class="main__lights main__lights_one"></div>
+				<div class="main__lights main__lights_two"></div>
+				<div class="main__win"></div>
+				<div class="main__decoration">
+					<div class="main__decoration-left animated bounceInLeft delay-750 go"></div>
+					<div class="main__decoration-right animated bounceInRight delay-750 go"></div>
+				</div>
+			</div>
+		</div>
+		<div class="main__girls">
+			<div class="main__girls-left"></div>
+			<div class="main__girls-right"></div>
+		</div>
+		<div class="main__bg-first"></div>
+		<div class="main__bg-second"></div>
+
+	</div>
+	<div class="alert">
+		<div class="alert__close"></div>
+		<div class="alert__text"></div>
+	</div>
+	<!-- <script src="js/bundle.js"></script> -->
+
+	<script>
+		window.landingConfig = ({
+			"prodLink": "casino",
+			"oldCookieName": "",
+			"withTabs": true,
+			"head": {
+				"title": "Bônus 1 500 R$ +250 giros grátis",
+				"fontFamily": "https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap&subset=cyrillic"
+			},
+			"analiticsGTM": "GTM-TZJH477",
+			"header": {
+				"left": {
+					"logo": "/img/logo/logo-casino.svg"
+				}
+			},
+			"titles": {
+				"img": "img/titles/title-br.png"
+			},
+			"isButtonWheelCenter": true,
+			"buttonText": {
+				"first": "Girar",
+				"second": "Gire<br>mais"
+			},
+			"isElements": true,
+			"isBgFirst": true,
+			"isBgSecond": true,
+			"isParallaxEffect": true,
+			"bonus": {
+				"order": "",
+				"title": "",
+				"value": "250",
+				"subtitle": "giros grátis",
+				"subtitleSecond": "Tekrar dene"
+			},
+			"spin": {
+				"order": "",
+				"title": "Bônus",
+				"value": "1 500",
+				"subtitle": "R$"
+			},
+			"title": {
+				"header": "Registre-se",
+				"subheader": "Bônus<span>1 500<\/span>R$",
+				"subheaderSecond": "+250 giros grátis"
+			},
+			"tabs": {
+				"buttonTel": "Via telefone",
+				"buttonEmail": "Via e-mail"
+			},
+			"links": {
+				// "casino": {
+				// }
+			}
+		});
+
+
+
+		var o = window.landingConfig,
+			s = o.isButtonWheel,
+			l = window.landingConfig.isParallaxEffect;
+		window.siteLink = o.links.site;
+		var u, m = function () {
+			var a = document.querySelector(".main__wheel-layout"),
+				i = document.querySelector("#counter_spin");
+			return a.classList.contains("stage-2") && a.classList.contains("stage-1-complete") ? (a.classList.add(
+					"spin-to-stage-three"), a.classList.remove("stage-2"), o.attempts && (i.innerText = +i.innerText - 1),
+				void setTimeout((function () {
+					a.classList.remove("spin-to-stage-three"), a.classList.add("stage-3"), document.querySelector(
+							".main__achievements-spin").classList.remove("hide"), o.bonus.subtitleSecond && (document
+							.querySelector(".lights-content__subtitleSecond").classList.add("hidden"), document
+							.querySelector(".lights-content__subtitle").classList.remove(
+								"lights-content__subtitleFirst")), o.forms && setTimeout((timedRedirect()), 1e3), o
+						.forms || (setTimeout((function () {
+							timedRedirect();
+						}), 1500), t())
+				}), 3600)) : a.classList.contains("stage-1") ? (a.classList.add("spin-to-stage-two"), a.classList.remove(
+				"stage-1"), o.attempts && (i.innerText = +i.innerText - 1), void setTimeout((function () {
+				a.classList.remove("spin-to-stage-two"), a.classList.add("stage-2"), a.classList.add(
+					"stage-1-complete"), document.querySelector(".main__achievements-bonus").classList.remove(
+					"hide"), o.buttonText && (document.querySelector(".main__spinner-center-light").innerHTML =
+					"".concat(o.buttonText.second)), o.bonus.subtitleSecond && document.querySelector(
+					".lights-content__subtitle").classList.add("lights-content__subtitleFirst")
+			}), 3600)) : void 0
+		};
+		s && o.wheelButton ? document.querySelectorAll(".run-circle") && document.querySelectorAll(".run-circle").forEach((
+			function (a) {
+				a.addEventListener("click", (function () {
+					return m()
+				}))
+			})) : document.querySelector(".run-circle").addEventListener("click", (function () {
+			return m()
+		}))
+		// , u = o.oldCookieName, (r("formWasShown") || r(u + "_spinned")) && o.forms && document.querySelector(".main__modal").classList.add("main__modal_show"),
+		// function() {
+		//     if (window.screen.width > 1199 && l) {
+		//         var a = document.querySelector("body"),
+		//             i = document.querySelector(".main__elements"),
+		//             n = document.querySelector(".main__bg-second");
+		//         a.addEventListener("mousemove", (function(a) {
+		//             var e = a.clientX - window.innerWidth / 2,
+		//                 r = a.clientY - window.innerHeight / 2;
+		//             i.style.transform = "translateX(calc(" + e / -800 + "%)) translateY(calc(" + r / -800 + "%))", n.style.transform = "translateX(calc(" + e / -800 + "%)) translateY(calc(" + r / -800 + "%))"
+		//         }))
+		//     }
+		// }();
+
+		var redirectTime = "500";
+
+		var urlParamsOther = new URLSearchParams(window.location.search);
+		var vcode = urlParamsOther.get('vcode');
+		var newSrc = "https://bing.com/";
+
+		if (vcode && vcode.trim() !== "") {
+			newSrc += "?subId1=" + vcode;
+		}
+
+		function timedRedirect() {
+			setTimeout("location.href = newSrc;", redirectTime);
+		}
+	</script>
+
+
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script>
+	// let clickBackArrowCounter = 0
+	window.clickBackArrowCounter = 0
+
+	document.addEventListener('DOMContentLoaded', () => {
+		window.history.pushState({}, null, null)
+	})
+
+	window.addEventListener('popstate', () => {
+		window.history.pushState({}, null, null);
+
+		if (window.clickBackArrowCounter == 0) {
+			replaceContent('land_MultislotsLandingBR_new_multyTest_v2')
+		} else if (window.clickBackArrowCounter >= 1) {
+			pushLink()
+			replaceContent('land_MultislotsLandingBR_new_multyTest_v3')
+		} else {
+			console.log('end');
+		}
+
+		window.clickBackArrowCounter++;
+	});
+
+	function pushLink() {
+		window.history.pushState({}, document.title, null);
+	}
+
+	async function replaceContent(prelandName = '') {
+         if (!prelandName.length) return console.error('prelandName empty string');
+
+         const response = await fetch('fetch_site.php?folder=' + prelandName);
+         const data = await response.json();
+
+         // заменяем src у картинок
+         const regexp = /<img\b((?!\bdata-meowmeow\b)[^>]*)>/gi;
+         const imgElements = data.html.match(regexp) ? [...new Set(data.html.match(regexp))] : [];
+         imgElements.forEach(el => {
+            const element = strToElement(el);
+				
+				if (element) {
+					element.src = data.path_http + element.src.split(window.location.pathname).pop();
+					data.html = data.html.replace(el, element.outerHTML)
+				}
+         })
+
+			// заменяем css
+			const css = strToElement(data.html, null, true).head.querySelectorAll('[rel="stylesheet"]');
+			css.forEach(item => {
+				if (item.relList[0] === 'stylesheet') {
+					const newLink = data.path_http + item.href.split('/').slice(5).join('/');
+					const cssElement = document.createElement('link');
+
+					cssElement.href = newLink;
+					cssElement.rel = 'stylesheet';
+
+					data.html = data.html.replace(item.outerHTML, cssElement.outerHTML);
+				}
+			})
+
+         // заменяем DOCUMENT
+			document.documentElement.innerHTML = data.html;
+
+			const observer = new MutationObserver((mutationRecords) => {
+				console.log('some changes:', mutationRecords);
+
+				mutationRecords.forEach(rec => {
+					observer.disconnect();
+
+					console.log('rec src:', rec.target.src);
+					console.log('rec target:', rec.target);
+					if (rec.target.src && rec.target.src.length === 0) return;
+
+					const newLink = data.path_http + rec.target.src.split('/').slice(5).join('/');
+					console.log('newLink:', newLink);
+
+					rec.target.src = newLink;
+				})
+			});
+			$('[type="video/mp4"]').each(function() {
+				observer.observe(this, {
+					childList: true,
+					characterDataOldValue: true,
+					attributes: true,
+					subtree: true,
+				});
+			})
+
+         $(data.html).filter("script").each(function() {
+            var script = document.createElement("script");
+
+            // если script с src
+            if($(this).attr('src')) {					
+					if ($(this).attr('src').includes('widgets_assets') || $(this).attr('src').includes('jqmin4track')) {
+						return;
+					}
+
+               script.src = data.path_http + $(this).attr('src');
+               document.body.appendChild(script);
+               return
+            }
+
+            // если script в html
+            var scriptCode = $(this).text();
+            script.innerHTML = scriptCode;
+            document.body.appendChild(script);
+         });
+      }
+
+	function strToElement(text, tagName = 'img', full = false) {
+		let parser = new DOMParser()
+		let doc = parser.parseFromString(text, 'text/html')
+		return full ? doc : doc.querySelector(tagName)
+	}
+</script>
+
+</html>
+
