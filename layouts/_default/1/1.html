@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta content="telephone=no" name="format-detection">
 	<meta name="HandheldFriendly" content="true">
-	<title>Duas tentativas</title>
+	<title>{{T "Duas"}}</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&amp;display=swap&amp;subset=cyrillic"
 		rel="stylesheet">
 	<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
@@ -17,7 +17,7 @@
 	<!-- <link rel="manifest" href="./img/favicon/site.webmanifest"> -->
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
-	<link rel="stylesheet" href="/css/main1.css">
+	<link rel="stylesheet" href='/css/main1{{T "Css"}}'>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 			<div class="header__left"><a class="header__left-logo redirectlink"><img src="/images/logo-casino.png"
 						alt="Dejavu"></a></div>
 		</header>
-		<picture class="main__titles"><img src="/images/title-br.png" alt="titles"></picture>
+		<picture class="main__titles"><img src='{{T "Tit"}}'  alt="titles"></picture>
 		<div class="main__wheel-wrapper">
 			<div class="main__wheel-layout stage-1">
 				<div class="main__achievements">
@@ -36,15 +36,14 @@
 						<div class="lights lights_two"></div>
 						<div class="lights-content">
 							<div class="lights-content__counter"></div><span class="lights-content__bonus"></span><span
-								class="lights-content__value">225</span><span class="lights-content__subtitle">giros
-								grátis</span><span class="lights-content__subtitleSecond">Tente novamente</span>
+								class="lights-content__value">225</span><span class="lights-content__subtitle">{{T "Gratis"}}</span><span class="lights-content__subtitleSecond">{{T "Tente"}}</span>
 						</div>
 					</div>
 					<div class="main__achievements-spin hide">
 						<div class="lights lights_one"></div>
 						<div class="lights lights_two"></div>
 						<div class="lights-content">
-							<div class="lights-content__counter"></div><span class="lights-content__bonus">Bônus</span><span
+							<div class="lights-content__counter"></div><span class="lights-content__bonus">{{T "Bonus"}}</span><span
 								class="lights-content__value">200 %</span><span class="lights-content__subtitle"></span>
 						</div>
 					</div>
@@ -52,7 +51,7 @@
 				<div class="main__spinner">
 					<div class="main__spinner-img"></div>
 					<div class="main__spinner-center"></div><button
-						class="main__spinner-center-light run-circle">Girar</button>
+						class="main__spinner-center-light run-circle">{{ T "Girar"}}</button>
 				</div>
 				<div class="main__lights main__lights_one"></div>
 				<div class="main__lights main__lights_two"></div>
@@ -93,12 +92,12 @@
 				}
 			},
 			"titles": {
-				"img": "img/titles/title-br.png"
+				"img": '{{T "Tit"}}'
 			},
 			"isButtonWheelCenter": true,
 			"buttonText": {
-				"first": "Girar",
-				"second": "Gire<br>mais"
+				"first": '{{ T "Girar"}}',
+				"second": '{{ T "Mais"}}'
 			},
 			"isElements": true,
 			"isBgFirst": true,
@@ -107,20 +106,20 @@
 			"bonus": {
 				"order": "",
 				"title": "",
-				"value": "250",
-				"subtitle": "giros grátis",
-				"subtitleSecond": "Tekrar dene"
+				"value": "225",
+				"subtitle": '{{T "Gratis"}}',
+				"subtitleSecond": '{{T "Tente"}}'
 			},
 			"spin": {
 				"order": "",
-				"title": "Bônus",
-				"value": "1 500",
-				"subtitle": "R$"
+				"title": '{{T "Bonus"}}',
+				"value": "200",
+				"subtitle": "%"
 			},
 			"title": {
 				"header": "Registre-se",
-				"subheader": "Bônus<span>1 500<\/span>R$",
-				"subheaderSecond": "+250 giros grátis"
+				"subheader": '{{T "Bonus"}}<span>200<\/span>%',
+				"subheaderSecond": '+225 {{T "Gratis"}}'
 			},
 			"tabs": {
 				"buttonTel": "Via telefone",

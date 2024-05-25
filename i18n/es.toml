@@ -25,17 +25,19 @@ other = "Lots of hot girls are waiting to open a chat room with just you.  Ready
 [Msg]
 other = "NEW MESSAGE!"
 [Mais]
-other = "Gire<br>Mais"
+other = "girar<br>más"
 
 [Duas]
-other = "Duas tentativas"
+other = "Dos intentos"
 [Girar]
 other = "Girar"
 [Tente]
-other = "Tente novamente"
+other = "Vuelva a intentarlo"
 [Gratis]
-other = "giros grátis"
+other = "giros gratis"
 [Bonus]
-other = "Bônus"
+other = "Bono"
 [Tit]
-other = "/images/title-br.png"
+other = "/images/title-es.png"
+[Css]
+other = "-es.css"

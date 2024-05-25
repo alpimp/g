@@ -1,15 +1,14 @@
-baseURL = 'http://example.org/'
+baseURL = '/'
 languageCode = 'en-us'
-# title = 'My New Hugo Site'
 theme = "etch"
 [languages]
   [languages.en]
     title = ""
     languageName = "en"
     weight = 1
-  [languages.gr]
+  [languages.es]
     title = ""
-    languageName = "gr"
+    languageName = "es"
     weight = 2
 
 
