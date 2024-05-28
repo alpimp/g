@@ -39,3 +39,5 @@ other = "giros grátis"
 other = "Bônus"
 [Tit]
 other = "/images/title-br.png"
+[Css]
+other = ".css"
