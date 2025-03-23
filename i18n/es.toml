@@ -1,11 +1,11 @@
 [home]
 other = "Home"
 [18]
-other = "ARE YOU 18+ ?"
+other = "¿Tienes más de 18 años?"
 [Wanna_meet]
 other = "Let's hang out!"
 [Yes]
-other = "YES"
+other = "SÍ"
 [No]
 other = "NO"
 [Click]
@@ -15,15 +15,20 @@ other = "Confirm age 18+"
 [Warning]
 other = "NUDITY WARNING"
 [Nude_photos]
-other = "Nude photos to be expected beyond this point. Viewer discretion is advised."
+other = "Fotos de desnudos a esperar más allá de este punto. Se recomienda discreción al espectador."
 [Next]
-other = "NEXT"
+other = "SIGUIENTE"
 [Start]
 other = "START"
 [Chat]
-other = "Lots of hot girls are waiting to open a chat room with just you.  Ready to start chatting?"
+other = "Muchas chicas calientes están esperando para abrir una sala de chat contigo.  ¿Listo para empezar a chatear?"
 [Msg]
-other = "NEW MESSAGE!"
+other = "NUEVO MENSAJE!"
+[nip]
+other = "¿De qué color son mis pezones?"
+[pick]
+other = "Elija"
+
 [Mais]
 other = "girar<br>más"
 

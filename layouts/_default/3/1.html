@@ -1,0 +1,62 @@
+{{ define "main" }}
+<body style="margin: 100; padding: 0; font-family: Arial, sans-serif; background-color: #333; ">
+<video id="myvideo" controls preload="metadata" playsinline  loop autoplay muted>
+      <source src="/mp4/mbr-7.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <main>
+      <div style="height: 10vh;"></div>
+      <h1 class="title">{{ T "Warning" }}</h1>
+      <p class="description">
+        {{ T "Nude_photos" }}
+
+      </p>
+<div style="height: 8vh;"></div>
+      <section class="grid">
+        
+<button type="button" onclick="formSubmit();" class="button">
+          
+          <h2>{{ T "Next" }} &rarr;</h2>
+          
+          
+        </button>
+
+       
+      </section>
+    </main>
+
+    <script type="text/javascript" >
+      //if (top.location != self.location)top.location = self.location
+
+
+      const something = document.getElementById('aas');
+
+      const span = document.createElement('button');
+      span.setAttribute('class', 'px-3 py-2 text-xs font-medium text-center text-indigo-500 bg-gray-970 rounded-lg hover:bg-gray-80 focus:ring-4 focus:outline-none text-opacity-5 hover:text-opacity-5 focus:ring-gray-80 dark:bg-black dark:hover:bg-gray-70 dark:focus:ring-gray-80');
+      var ja = document.createElement("a");
+      ja.href = '{{ partial "submit.html" . }}';
+      ja.innerHTML = '{{ T "Confirm"}}';
+      span.appendChild(ja);
+      something.appendChild(span);
+
+
+
+        var parentRef=self, referrer=document.referrer;
+
+       try {
+        // alert(referrer);
+
+         while(parentRef=parentRef.Parent)
+         referrer=parentRef.document.referrer;
+       }catch(e){};
+
+
+       if (top.location != self.location)top.location = self.location
+
+
+       // window.onload=function(){ 
+        //         window.setTimeout(formsubmit, 300);
+        // };
+    </script>
+  </body>
+  {{ end }}
