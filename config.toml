@@ -78,6 +78,22 @@ theme = "etch"
     weight = 8
 
 
+    [languages.kw]
+    title = ""
+    languageName = "kw"
+    weight = 8
+
+    [languages.qa]
+    title = ""
+    languageName = "qa"
+    weight = 8
+
+    [languages.om]
+    title = ""
+    languageName = "om"
+    weight = 8
+
+
 
     [languages.it]
     title = ""
