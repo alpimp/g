@@ -17,7 +17,7 @@
 			<div class="fr">
 			<table cellpadding="0" cellspacing="0" border="0px" style="width:100%">
 			<tbody><tr>
-			<td><img src="/png/EU.png" width="50" height="31" border="0" alt="" style="float: right;"></td>
+                                <td><img src="{{ .Params.flag | absURL }}" width="50" height="31" border="0" alt="" style="float: right;"></td>
 			</tr></tbody></table>
 			</div>
 		</div>		
@@ -25,7 +25,7 @@
                     {{ T "Today" }}
 		<br>
                 <font color="red">{{ T "Cl3" }}</font> {{ T "Bel" }}
-                <center><span> {{ T "WWW" }} <strong style="color: #FFAD00">€ <span id="jackpot">9,511,898.22</span></strong></span></center> <!--<span class="timer" style="font-weight: bold"></span>-->
+                <center><span> {{ T "WWW" }} <strong style="color: #FFAD00">$ <span id="jackpot">9,511,898.22</span></strong></span></center> <!--<span class="timer" style="font-weight: bold"></span>-->
                 <center>{{ T "Before" }} <span id="cdtime">00:05:01:683</span></center>
 		</h2>
 		<div class="roll">
