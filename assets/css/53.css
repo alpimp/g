@@ -1,0 +1,103 @@
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F0F0;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .popunder-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(20, 20, 20, 0.8); /* Slightly different overlay */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            z-index: 9999;
+        }
+        .popunder-content {
+            /* Using a different background - perhaps a bit more 'techy' or 'sleek' */
+            background: #1A1A2E; /* Dark, slightly purplish blue */
+            color: white;
+            padding: 2rem 1.5rem; /* Adjusted padding */
+            border-radius: 12px;
+            text-align: center;
+            max-width: 360px;
+            width: 90%;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            position: relative;
+            border: 1px solid #4A00E0; /* Neon-like border */
+            animation: slideInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Different animation */
+        }
+        .popunder-headline-1 {
+            font-size: 1.8rem; /* Slightly larger */
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: #8EFFC1; /* Bright mint green */
+            text-shadow: 0 0 5px rgba(142, 255, 193, 0.5);
+        }
+        .popunder-headline-2 {
+            font-size: 1rem; /* 16px */
+            font-weight: 600;
+            margin-bottom: 1.25rem; /* 20px */
+            color: #AEAEFF; /* Lavender */
+            font-style: italic;
+        }
+        .popunder-description {
+            font-size: 0.9rem; /* 14.4px */
+            margin-bottom: 1.5rem; /* 24px */
+            line-height: 1.5;
+            color: #D0D0FF; /* Light lavender */
+        }
+        .popunder-cta {
+            background: linear-gradient(45deg, #8E2DE2, #4A00E0); /* Purple gradient */
+            color: white;
+            font-weight: 700;
+            font-size: 1.05rem; /* 17px */
+            padding: 0.8rem 1.5rem; /* 13px 24px */
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            display: block; /* Make it block to take full width easily */
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(74, 0, 224, 0.5);
+        }
+        .popunder-cta:hover {
+            background: linear-gradient(45deg, #4A00E0, #8E2DE2); /* Reverse gradient */
+            transform: scale(1.03); /* Slight zoom effect */
+            box-shadow: 0 6px 15px rgba(74, 0, 224, 0.7);
+        }
+        .popunder-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 1.5rem; /* 24px */
+            color: #777;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .popunder-close:hover {
+            color: #FFF;
+        }
+
+        /* Icon (e.g., brain or lightbulb) */
+        .icon-smart {
+            font-size: 2.2rem; /* 35px */
+            margin-bottom: 0.75rem; /* 12px */
+            color: #8EFFC1;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }

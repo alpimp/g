@@ -1,0 +1,111 @@
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #DDDDDD;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .popunder-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            z-index: 9999;
+        }
+        .popunder-content {
+            background: #ffffff; /* Clean white background */
+            color: #333333; /* Dark gray text */
+            padding: 2.5rem 2rem; /* More vertical padding */
+            border-radius: 20px; /* Softer, larger radius */
+            text-align: center;
+            max-width: 400px; /* Slightly wider */
+            width: 90%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            position: relative;
+            /* Adding a subtle border */
+            border: 3px solid #FFD700; /* Gold border */
+            animation: bounceIn 0.7s ease; /* Bouncy animation */
+        }
+        .popunder-headline-1 {
+            font-size: 1.9rem; /* 30px */
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: #27AE60; /* Green for 'money' feel */
+        }
+        .popunder-headline-2 {
+            font-size: 1.05rem; /* 17px */
+            font-weight: 600;
+            margin-bottom: 1.25rem; /* 20px */
+            color: #555555; /* Medium gray */
+            font-style: italic;
+        }
+        .popunder-description {
+            font-size: 1rem; /* 16px */
+            margin-bottom: 2rem; /* 32px */
+            line-height: 1.6;
+            color: #4F4F4F; /* Slightly lighter gray */
+        }
+        .popunder-cta {
+            background: #2ECC71; /* Vibrant Green */
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem; /* 19px - larger CTA text */
+            padding: 1rem 1.75rem; /* 16px 28px */
+            border: none;
+            border-radius: 50px; /* Pill-shaped button */
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            width: 90%; /* Not full, but substantial */
+            max-width: 300px; /* Max width for the button itself */
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+        .popunder-cta:hover {
+            background: #27AE60; /* Darker green */
+            transform: scale(1.05) translateY(-1px); /* Scale and lift */
+            box-shadow: 0 7px 20px rgba(46, 204, 113, 0.6);
+        }
+        .popunder-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.6rem; /* 26px */
+            color: #AAAAAA;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .popunder-close:hover {
+            color: #333333;
+        }
+
+        /* Icon for 'easy money' */
+        .icon-money {
+            font-size: 2.8rem; /* 45px */
+            margin-bottom: 0.75rem; /* 12px */
+            color: #FFD700; /* Gold color */
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(-50px);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05) translateY(10px);
+            }
+            70% {
+                transform: scale(0.95) translateY(-5px);
+            }
+            100% {
+                transform: scale(1) translateY(0);
+            }
+        }
+
