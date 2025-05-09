@@ -43,6 +43,7 @@ try {
   await handleFormSubmit(ref, ip, dt, tz, asn, country_code, accel, touch, display, ua, env);
 
   let destinationURL = env.TRACKER;
+//
 //  let destinationURL ='https://18dbne.mcgo2.com/click';
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // uncomment if search params have to be appended to the destination url 
