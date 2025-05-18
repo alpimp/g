@@ -1,0 +1,235 @@
+[v-cloak] {
+    display: none!important
+}
+
+.download-instructions {
+    max-width: 450px;
+    margin: 0 auto
+}
+
+.download-instructions h1 {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 24px
+}
+
+.download-instructions h2 {
+    color: #4285f4;
+    font-size: 16px
+}
+
+.download-instructions__cta {
+    margin-bottom: 10px;
+    padding: 6px;
+    color: #fff;
+    background: #4285f4
+}
+
+.download-instructions__list {
+    padding: 0;
+    list-style: none
+}
+
+.download-instructions__buttons {
+    margin-top: 10px
+}
+
+.download-instructions__countdown {
+    margin-top: 10px;
+    color: red
+}
+
+.download-instructions__footer {
+    margin-top: 0;
+    color: #999
+}
+
+.google-play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column
+}
+
+.google-play__button {
+    margin: 1rem 0 0;
+    display: inline-block;
+    max-width: 150px
+}
+
+.google-play__subline {
+    text-align: center;
+    font-size: 11px;
+    opacity: .6;
+    margin: 0 0 .5rem
+}
+
+body,html {
+    margin: 0;
+    padding: 0
+}
+
+* {
+    box-sizing: border-box
+}
+
+h2 {
+    color: #333
+}
+
+.container {
+    min-height: 100vh;
+    background: #f8f9fa;
+    padding: 20px;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,sans-serif
+}
+
+.content {
+    max-width: 1200px;
+    margin: 40px auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px #0000001a
+}
+
+.buttons>*+* {
+    margin-left: 2rem
+}
+
+.left-side {
+    flex: 1
+}
+
+.iphone-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto
+}
+
+.right-side {
+    flex: 1;
+    text-align: center
+}
+
+.header h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 10px
+}
+
+.header h2 {
+    font-size: 2em;
+    margin: 10px 0 5px
+}
+
+.prize-text {
+    color: #007aff
+}
+
+.message {
+    color: #666;
+    margin: 20px 0;
+    line-height: 1.6;
+    font-size: 1.1em
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0 15px
+}
+
+.time-block {
+    background: #ff4b4b;
+    color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 2.5em;
+    font-weight: 700
+}
+
+.separator {
+    color: #ff4b4b;
+    font-size: 2.5em;
+    font-weight: 700
+}
+
+.hurry-up {
+    color: #007aff;
+    background: #e8f2ff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 1rem
+}
+
+.continue-btn {
+    background: #007aff;
+    color: #fff;
+    border: none;
+    padding: 15px 60px;
+    border-radius: 25px;
+    font-size: 1.5em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform .2s;
+    display: block;
+    margin: 20px auto 0;
+    text-decoration: none;
+}
+
+.continue-btn:hover {
+    transform: scale(1.1);
+    animation: none
+}
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction:column;
+        padding: 20px;
+        margin: 0 auto;
+        gap: 0;
+        font-size: .75em
+    }
+
+    .prize-image {
+        max-width: 150px
+    }
+
+    .header h1 {
+        font-size: 2em
+    }
+
+    .header h2 {
+        font-size: 1.5em
+    }
+
+    .time-block {
+        padding: 15px 20px;
+        font-size: 2em
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1)
+    }
+
+    50% {
+        transform: scale(1.1)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}

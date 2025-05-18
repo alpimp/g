@@ -14,13 +14,41 @@
 
 
 <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/ua-parser-js/dist/ua-parser.min.js"></script>
+
+
+{{ $modals := slice  }}
+
+<!-- Check for the base 'modal' parameter -->
+{{ if .Params.js  }}
+  {{ $modals = $modals | append .Params.js  }}
+  {{ end  }}
+
+  <!-- Check for numbered modal parameters up to 'modal10' -->
+  {{ range seq 1 10  }}
+    {{ $key := printf "js%d" .  }}
+      {{ if index $.Params $key  }}
+          {{ $modals = $modals | append (index $.Params $key)  }}
+            {{ end  }}
+            {{ end  }}
+
+            <!-- Process and output each modal file -->
+            {{ range $modals  }}
+              {{ $js := resources.Get . | js.Build | fingerprint  }}
+                <script src="{{ $js.RelPermalink  }}"></script>
+                {{ end  }}
+
+<!--
 {{ if .Params.js }}
 {{ $scriptapp := resources.Get .Params.js | resources.ExecuteAsTemplate .Params.js . | js.Build  | fingerprint }}
-<!-- Use this for external scripts -->
-<!-- <script src="{{ $scriptapp.RelPermalink }}"></script> -->
-<!-- Use this for inline scripts -->
+-- Use this for external scripts 
+<script src="{{ $scriptapp.RelPermalink }}"></script>
+Use this for inline scripts
+
 <script> {{ $scriptapp.Content | safeJS }} </script>
 {{ end }}
+-->
+
+
 {{ with .Params.css }}
 {{ with resources.Get . | resources.Minify | resources.Fingerprint }} <style>{{ .Content | safeCSS  }}</style> {{ end  }}
 {{ end }}
@@ -35,3 +63,4 @@
     {{ end }}
   {{- partial "footer-end.html"  }}
 </html>
+

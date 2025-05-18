@@ -109,14 +109,14 @@
 				</div>
 			</div>
 			<!--<p class="offerxpires">This offer expires in: <span id="timer"></span></p>-->
-                        <button class="cta clearfix" href="/click" onclick="formSubmit();return false;alert({{ T "Pop1" }});PreventExitPop = false">
+                        <button class="cta clearfix"  onclick="formSubmit();return false;alert({{ T "Pop1" }});PreventExitPop = false">
 				<div class="txt">
                                     <p>{{ T "16free" }}</p>
                                     <p class="red"><span class="aval"></span>{{ T "Avail" }}</p>
 				</div>
 				
 			</button>
-                        <button href="/click" class="claim" onclick="formSubmit();return false;alert({{ T "Pop1" }});PreventExitPop = false"><div class="button3">
+                        <button  class="claim" onclick="formSubmit();return false;alert({{ T "Pop1" }});PreventExitPop = false"><div class="button3">
 			<img src="/png/red-arrow-left.png" style="
 				float: left;
 				width: 35px;
@@ -346,7 +346,7 @@ function countdown(time) {
 <!--    $(document).ready(function() {
 //		var i = getURLParameter('i');
 //      if (i != "1") {
-//            $("#myform").submit();
+//           formSubmit();
 //        }
 //    });
 -->
@@ -410,6 +410,11 @@ function countdown(time) {
    }); 
 </script>
 
+<!-- 
+    ----------------------------------------------------------------------------------------
+    Forces users to redirect to /click when they attempt to go back.
+    -------------------------------------------------------------------------------------------
+
 <script type="text/javascript">
 ! function () {
 var t;
@@ -421,6 +426,7 @@ t.state && location.replace("/click")
 } catch (o) {}
 }();
 </script>
+-->
 
  <script>
     (function(){
