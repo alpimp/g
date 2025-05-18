@@ -3,7 +3,7 @@ languageCode = 'en-us'
 theme = "etch"
 
 
-ignoreFiles = ["/1/*", "/2/*", "3/*"]
+ignoreFiles = ["content/1/*", "content/2/*", "content/3/*"]
 
 [languages]
     [languages.en]
