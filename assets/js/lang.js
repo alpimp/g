@@ -2,7 +2,7 @@ $.i18n().load({
     en: {
         congratulations: 'Congratulations! 🎉',
         win: 'You have a chance to win.',
-        message: `You have been selected for a chance to win an Apple iPhone 16 Pro.
+        message: `You have been selected for a chance to win Samsung Galaxy A55 5G.
 Register before the timer runs out.
 <strong>The sooner you register, the better your chances of winning!</strong>`,
         hurryUp: `Hurry 🔥 before it's over!`,
