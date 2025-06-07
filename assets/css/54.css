@@ -1,111 +1,331 @@
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #DDDDDD;
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .popunder-overlay {
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.65);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            z-index: 9999;
-        }
-        .popunder-content {
-            background: #ffffff; /* Clean white background */
-            color: #333333; /* Dark gray text */
-            padding: 2.5rem 2rem; /* More vertical padding */
-            border-radius: 20px; /* Softer, larger radius */
-            text-align: center;
-            max-width: 400px; /* Slightly wider */
-            width: 90%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            position: relative;
-            /* Adding a subtle border */
-            border: 3px solid #FFD700; /* Gold border */
-            animation: bounceIn 0.7s ease; /* Bouncy animation */
-        }
-        .popunder-headline-1 {
-            font-size: 1.9rem; /* 30px */
-            font-weight: 900;
-            margin-bottom: 0.5rem;
-            color: #27AE60; /* Green for 'money' feel */
-        }
-        .popunder-headline-2 {
-            font-size: 1.05rem; /* 17px */
-            font-weight: 600;
-            margin-bottom: 1.25rem; /* 20px */
-            color: #555555; /* Medium gray */
-            font-style: italic;
-        }
-        .popunder-description {
-            font-size: 1rem; /* 16px */
-            margin-bottom: 2rem; /* 32px */
-            line-height: 1.6;
-            color: #4F4F4F; /* Slightly lighter gray */
-        }
-        .popunder-cta {
-            background: #2ECC71; /* Vibrant Green */
-            color: white;
-            font-weight: 700;
-            font-size: 1.2rem; /* 19px - larger CTA text */
-            padding: 1rem 1.75rem; /* 16px 28px */
-            border: none;
-            border-radius: 50px; /* Pill-shaped button */
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            display: inline-block;
-            width: 90%; /* Not full, but substantial */
-            max-width: 300px; /* Max width for the button itself */
-            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
-        }
-        .popunder-cta:hover {
-            background: #27AE60; /* Darker green */
-            transform: scale(1.05) translateY(-1px); /* Scale and lift */
-            box-shadow: 0 7px 20px rgba(46, 204, 113, 0.6);
-        }
-        .popunder-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.6rem; /* 26px */
-            color: #AAAAAA;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-        .popunder-close:hover {
-            color: #333333;
-        }
+/* --- Global Variables & Body Styling --- */
+:root {
+--primary-color: #007BFF; /* A nice, trustworthy blue */
+--primary-hover: #0056b3;
+--dark-text: #2d3748;      /* A dark gray for text, not pure black */
+--light-text: #4a5568;
+--background-color: #f7fafc;
+--container-bg: #ffffff;
+--border-color: #e2e8f0;
+--fancy-font: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+--code-bg: #edf2f7;
 
-        /* Icon for 'easy money' */
-        .icon-money {
-            font-size: 2.8rem; /* 45px */
-            margin-bottom: 0.75rem; /* 12px */
-            color: #FFD700; /* Gold color */
-        }
+}
 
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) translateY(-50px);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05) translateY(10px);
-            }
-            70% {
-                transform: scale(0.95) translateY(-5px);
-            }
-            100% {
-                transform: scale(1) translateY(0);
-            }
-        }
+body {
+font-family: var(--fancy-font);
+background-color: var(--background-color);
+color: var(--dark-text);
+line-height: 1.7;
+margin: 0;
+padding: 0;
+
+}
+
+
+/* --- Responsive Container & Layout --- */
+.container {
+background-color: var(--container-bg);
+max-width: 960px; /* Max width for desktops */
+margin: 2rem auto; /* Centers the container with space top/bottom */
+padding: 2rem;
+width: 90%; /* Responsive width for smaller screens */
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+border-radius: 12px;
+border: 1px solid var(--border-color);
+
+}
+
+
+/* --- Typography & Content Styling --- */
+.container h1, h2, h3 {
+font-weight: 700;
+line-height: 1.3;
+color: var(--dark-text);
+margin-top: 2rem;
+margin-bottom: 1rem;
+
+}
+
+ .container h1 {
+font-size: 2.5rem;
+border-bottom: 2px solid var(--primary-color);
+padding-bottom: 0.5rem;
+
+}
+
+  .container h2 {
+font-size: 2rem;
+
+}
+
+  .container h3 {
+font-size: 1.5rem;
+color: var(--light-text);
+
+}
+
+  .container p {
+margin-bottom: 1rem;
+color: var(--light-text);
+
+}
+
+  .container a {
+color: var(--primary-color);
+text-decoration: none;
+transition: color 0.2s ease;
+
+}
+
+  .container a:hover {
+color: var(--primary-hover);
+text-decoration: underline;
+
+}
+
+/* Specific styling for the final CTA link */
+  .container p a[href*="your-affiliate-link.com"] {
+display: block;
+background-color: #28a745; /* A 'go' green color */
+color: white;
+font-weight: bold;
+text-align: center;
+padding: 1rem;
+border-radius: 8px;
+margin: 2rem auto;
+box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+transition: all 0.3s ease;
+text-decoration: none; /* remove underline from button-like link */
+
+}
+
+  .container p a[href*="your-affiliate-link.com"]:hover {
+background-color: #218838;
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+color: white; /* keep text color white on hover */
+
+}
+
+
+/* --- Fancy List Styling --- */
+ul, ol {
+padding-left: 25px;
+margin-bottom: 1.5rem;
+
+}
+
+ul li {
+padding-left: 15px;
+margin-bottom: 0.75rem;
+list-style: none; /* Remove default bullet */
+position: relative;
+
+}
+
+ul li::before {
+content: '✓'; /* Checkmark symbol */
+position: absolute;
+left: -25px;
+color: var(--primary-color);
+font-weight: bold;
+font-size: 1.2rem;
+
+}
+
+ol {
+counter-reset: step-counter; /* Initialize our custom counter */
+
+}
+
+ol li {
+list-style: none; /* Remove default numbers */
+margin-bottom: 1rem;
+position: relative;
+
+}
+
+ol li::before {
+counter-increment: step-counter; /* Increment the counter */
+content: counter(step-counter); /* Display the counter */
+position: absolute;
+left: -35px;
+top: -2px;
+background-color: var(--primary-color);
+color: white;
+width: 28px;
+height: 28px;
+border-radius: 50%;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+font-size: 0.9rem;
+
+}
+
+
+/* --- Images and Other Elements --- */
+img {
+max-width: 100%;
+height: auto;
+border-radius: 8px;
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+margin: 1.5rem 0;
+display: block; /* Center images if they have auto margins */
+
+}
+
+blockquote {
+border-left: 5px solid var(--primary-color);
+background-color: var(--code-bg);
+margin: 1.5rem 0;
+padding: 1rem 1.5rem;
+font-style: italic;
+color: var(--light-text);
+border-radius: 0 8px 8px 0;
+
+}
+
+blockquote p {
+margin: 0;
+
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 768px) {
+  .container h1 {
+font-size: 2rem;
+
+}
+  .container h2 {
+font-size: 1.75rem;
+
+}
+.container {
+width: 100%;
+margin: 0;
+padding: 1.5rem;
+border-radius: 0;
+border: none;
+box-shadow: none;
+
+}
+
+ol li::before {
+left: -30px;
+width: 24px;
+height: 24px;
+font-size: 0.8rem;
+
+}
+
+}
+
+
+.popunder-overlay {
+position: fixed;
+inset: 0;
+background-color: rgba(0, 0, 0, 0.65);
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 1rem;
+z-index: 9999;
+}
+.popunder-content {
+background: #ffffff; /* Clean white background */
+color: #333333; /* Dark gray text */
+padding: 2.5rem 2rem; /* More vertical padding */
+border-radius: 20px; /* Softer, larger radius */
+text-align: center;
+max-width: 400px; /* Slightly wider */
+width: 90%;
+box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+position: relative;
+/* Adding a subtle border */
+border: 3px solid #FFD700; /* Gold border */
+animation: bounceIn 0.7s ease; /* Bouncy animation */
+}
+.popunder-headline-1 {
+font-size: 1.9rem; /* 30px */
+font-weight: 900;
+margin-bottom: 0.5rem;
+color: #27AE60; /* Green for 'money' feel */
+}
+
+
+.popunder-headline-2 {
+font-size: 1.05rem; /* 17px */
+font-weight: 600;
+margin-bottom: 1.25rem; /* 20px */
+color: #555555; /* Medium gray */
+font-style: italic;
+}
+.popunder-description {
+font-size: 1rem; /* 16px */
+margin-bottom: 2rem; /* 32px */
+line-height: 1.6;
+color: #4F4F4F; /* Slightly lighter gray */
+}
+.popunder-cta {
+background: #2ECC71; /* Vibrant Green */
+color: white;
+font-weight: 700;
+font-size: 1.2rem; /* 19px - larger CTA text */
+padding: 1rem 1.75rem; /* 16px 28px */
+border: none;
+border-radius: 50px; /* Pill-shaped button */
+cursor: pointer;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+transition: all 0.3s ease;
+display: inline-block;
+width: 90%; /* Not full, but substantial */
+max-width: 300px; /* Max width for the button itself */
+box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+}
+.popunder-cta:hover {
+background: #27AE60; /* Darker green */
+transform: scale(1.05) translateY(-1px); /* Scale and lift */
+box-shadow: 0 7px 20px rgba(46, 204, 113, 0.6);
+}
+.popunder-close {
+position: absolute;
+top: 15px;
+right: 20px;
+font-size: 1.6rem; /* 26px */
+color: #AAAAAA;
+text-decoration: none;
+transition: color 0.2s ease;
+}
+.popunder-close:hover {
+color: #333333;
+}
+
+/* Icon for 'easy money' */
+.icon-money {
+font-size: 2.8rem; /* 45px */
+margin-bottom: 0.75rem; /* 12px */
+color: #FFD700; /* Gold color */
+}
+
+@keyframes bounceIn {
+0% {
+opacity: 0;
+transform: scale(0.3) translateY(-50px);
+}
+50% {
+opacity: 1;
+transform: scale(1.05) translateY(10px);
+}
+70% {
+transform: scale(0.95) translateY(-5px);
+}
+100% {
+transform: scale(1) translateY(0);
+}
+}
 
