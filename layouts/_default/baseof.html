@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang={{ .Language.Lang }}>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"  lang={{ .Language.Lang }}>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
+   <meta name="apple-mobile-web-app-capable" content="yes" />
+   <meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="MobileOptimized" content="width" />
+	<meta name="HandheldFriendly" content="true" />
+	<meta name="format-detection" content="telephone=no" />
 <link href='https://fonts.googleapis.com/css?family=Rammetto One' rel='stylesheet'>
 
 
@@ -11,31 +16,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
-
+    <head>
+          <!-- Existing scripts -->
+            <script src="/livereload.js?..." data-no-instant defer></script>
+              <script src="https://cdn.tailwindcss.com"></script> 
+                <script src="https://cdn.jsdelivr.net/npm/ua-parser-js/dist/ua-parser.min.js"></script> 
+                  <!-- ✅ Add jQuery here -->
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    </head>
 
 <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/ua-parser-js/dist/ua-parser.min.js"></script>
 
+{{ $externalJS := slice  }}
+{{ $inlineJS := slice  }}
 
-{{ $modals := slice  }}
-
-<!-- Check for the base 'modal' parameter -->
+<!-- Handle external JS files -->
 {{ if .Params.js  }}
-  {{ $modals = $modals | append .Params.js  }}
+  {{ $externalJS = $externalJS | append .Params.js  }}
   {{ end  }}
 
-  <!-- Check for numbered modal parameters up to 'modal10' -->
   {{ range seq 1 10  }}
     {{ $key := printf "js%d" .  }}
       {{ if index $.Params $key  }}
-          {{ $modals = $modals | append (index $.Params $key)  }}
+          {{ $externalJS = $externalJS | append (index $.Params $key)  }}
             {{ end  }}
             {{ end  }}
 
-            <!-- Process and output each modal file -->
-            {{ range $modals  }}
-              {{ $js := resources.Get . | js.Build | fingerprint  }}
-                <script src="{{ $js.RelPermalink  }}"></script>
-                {{ end  }}
+            <!-- Handle inline JS files -->
+            {{ if .Params.inlinejs  }}
+              {{ $inlineJS = $inlineJS | append .Params.inlinejs  }}
+              {{ end  }}
+
+              {{ range seq 1 10  }}
+                {{ $key := printf "inlinejs%d" .  }}
+                  {{ if index $.Params $key  }}
+                      {{ $inlineJS = $inlineJS | append (index $.Params $key)  }}
+                        {{ end  }}
+                        {{ end  }}
+
+                        <!-- Process external JS files -->
+                        {{ range $externalJS  }}
+                          {{ $js := resources.Get . | js.Build | fingerprint  }}
+                            <script src="{{ $js.RelPermalink  }}" integrity="{{ $js.Data.Integrity  }}" defer></script>
+                            {{ end  }}
+
+                            <!-- Process inline JS files -->
+                            {{ range $inlineJS  }}
+                              {{ $content := resources.Get . | minify  }}
+                                <script>
+                                        {{ $content.Content | safeJS  }}
+                                      </script>
+                                      {{ end  }}
 
 <!--
 {{ if .Params.js }}
@@ -48,14 +79,42 @@ Use this for inline scripts
 {{ end }}
 -->
 
+{{ $styles := slice  }}
 
-{{ with .Params.css }}
-{{ with resources.Get . | resources.Minify | resources.Fingerprint }} <style>{{ .Content | safeCSS  }}</style> {{ end  }}
-{{ end }}
-    
+<!-- Check for base 'css' parameter -->
+{{ if .Params.css  }}
+  {{ $styles = $styles | append .Params.css  }}
+  {{ end  }}
+
+  <!-- Check for numbered css parameters up to 'css10' -->
+  {{ range seq 1 10  }}
+    {{ $key := printf "css%d" .  }}
+      {{ if index $.Params $key  }}
+          {{ $styles = $styles | append (index $.Params $key)  }}
+            {{ end  }}
+            {{ end  }}
+
+            <!-- Process and output each CSS file -->
+            {{ range $styles  }}
+              {{ $file := .  }}
+                {{ $css := resources.Get $file  }}
+                  {{ if not $css  }}
+                      {{ errorf "CSS file not found: %s" $file  }}
+                        {{ else  }}
+                            {{ if eq $css.ResourceType "sass"  }}
+                                  {{ $css = $css | toCSS  }}
+                                      {{ end  }}
+                                          {{ $css = $css | fingerprint  }}
+                                              <link rel="stylesheet" href="{{ $css.RelPermalink  }}" integrity="{{ $css.Data.Integrity  }}">
+                                                {{ end  }}
+                                                {{ end  }}
 
     <title>{{ block "title" . }}
+                {{- if .IsHome -}}
       {{ T "Title" }}
+                          {{- else -}}
+                                {{ .Title  }} 
+                                    {{- end -}}
     {{ end }}</title>
   </head>
     {{ block "main" . }}

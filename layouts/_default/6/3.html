@@ -1,0 +1,43 @@
+{{ define "main" }}
+<body>
+   <div class="container">
+      <div class="header">
+         <div>
+            <div class="logo">
+               <div class="header-text" data-by="RedLight">Video</div>
+            </div>
+         </div>
+         <div class="age">18+</div>
+      </div>
+      <div class="wrapper">
+         <div class="btn-container">
+            <a class="btn" href="/click"><span>Mirar</span></a>
+         </div>
+      </div>
+      <div class="bottom">
+         <img class="player" src="/img/player-bar.jpg" alt="">
+         <div class="related">
+            <div class="rel hr"><img src="/img/star.png" alt="" />
+               <img src="/img/star.png" alt="" />
+               <img src="/img/star.png" alt="" />
+               <img src="/img/star_grey.png" alt="" />
+               <img src="/img/star_grey.png" alt="" />
+               <span><img src="/img/heart.png" alt="" /><img src="/img/user.png" alt="" /></span>
+            </div>
+         </div>
+      </div>
+      <div class="footer">
+         <p>Mirar 1 día de prueba gratis, el próximo R7/día<br><a href="/click"
+               target="_blank">Términos &
+               Condiciones</a></p>
+      </div>
+   </div>
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+</body>
+{{ end }}
