@@ -1,0 +1,153 @@
+{{- $optionalparam := default "" .optionalparam -}}
+{{- $discount := default "" .discount -}}
+{{- $opt := $optionalparam | safeHTML -}}
+<div id="door__wrapper" class="hx-mt-6"></div>
+                <div  class="door__wrapper">
+{{ partial "fortuna.html" ( dict "optionalparam" $opt ) }}
+<div class="hx-mt-6"></div>
+ <div class="wrap">
+        <div class="content">
+            <div class="post ">
+                <div class="toform"></div>
+                <div class="productform" id="orderblock">
+                    <div class="prod-wrap toform">
+                        <div id="fff" class="spin-wrapper">
+                            <div class="wide-p">
+                            </div>
+                            <div class="form-wrapper"></div>
+                            <div class="wheel-wrarpper">
+                                <div class="wheel">
+                                    <img alt="" class="wheel-img" src="/png/prizewheel.png"><div class="wheel-cursor" style="color: black">
+                                        <img alt="" src="/png/wheel-cursor.png"><span class="cursor-text lt48" onclick="spin();">
+                                            Aylanmoq
+                                            <style>
+                                            .cursor-text {
+                                                height: 50%;
+                                            }
+                                            </style></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <!-- Order block start -->
+<center>
+                    <div class="lead-form-box order_block default_order-block">
+                        <div class="order_block" id="form-block">
+                            <div class="order_pre_form">
+                                <div class="order_offer"><img  src="/png/prod.png"></div>
+                                <h3 class="order_header " style="color: black">{{ T "typeYourNR" }}</h3>
+                            </div>
+<form class="x_order_form form" id="order_form" name="signup"  action="/submit"  method="POST">
+    <span class="price">{{ T "onlyToday" }}<br><span class="datee date-0" data-format="dd monthFull">
+
+                                        <script>
+                                        var today = new Date();
+                                        var dd = today.getDate();
+                                        var mm = today.getMonth() + 1;
+                                        var yyyy = today.getFullYear();
+                                        if (dd < 10) {
+                                            dd = '0' + dd
+                                        }
+                                        if (mm < 10) {
+                                            mm = '0' + mm
+                                        }
+                                        today = dd + '.' + mm + '.' + yyyy;
+                                        document.write(today);
+                                        </script></span></span>
+                                <div class="fields">
+                                    <center>
+                                        <text style="color: red; font-size: 21px; margin-bottom: 15px; display: block;"><span class="new_price"> <span class="price_land_s1">{{ $discount }}{{ T "100sale" }}</span></span>
+                                        </text>
+</center>
+
+                                    <select name="offer" class="form-control country_chang" style="display: none;"><option data-country-code="" selected value="">
+                                        Узбекистан </option></select><input type="text" class="fields__input" name="name" placeholder="{{ T "enterName" }}" autocomplete="name" required><input id="phone" type="tel" inputmode="tel" class="val3 fields__input phone-black" name="phone" placeholder="{{ T "enterPhone" }}" autocomplete="tel" required>
+          <input type="hidden" name="demo_val" value="hello" id="demo_val"/>
+          <input type="hidden" name="get_ua" value="none" id="get_ua"/>
+          <input type="hidden" name="alpha_val" value="hello" id="alpha_val"/>
+          <input type="hidden" name="display" value="hello" id="display"/>
+           <input type="hidden" name="touch" value="none" id="touch"/>
+            <input type="hidden" name="lang" value="hello" id="lang"/>
+
+
+
+           <button type="submit" class="sub3 fields__btn" id="feedbackBtn" >{{ T "accept" }} <span class="new_price"></span>
+                                    </button>
+                                    <center><span>
+                                            <br></span></center>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </center>
+
+                       <!-- Order block end -->
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>                   
+                </div>
+<!-- End doors -->
+
+    <script>
+    $(document).ready(function() {
+    $('.close-popup, .pop-up-button, .hhh').click(function(e){
+        
+        $('.spin-result-wrapper').fadeOut();
+        $('.spin-result-wrapper').fadeOut();
+    
+    });        
+
+    $('#spinWheel').click(function(){
+        spin()
+    });
+        $("a").click(function(e) {
+            e.preventDefault();
+            $("html, body").animate({
+                scrollTop: $(".toform").offset().top
+            }, 1500);
+        })
+    });
+
+let time = 600;
+let intr;
+function start_timer() {
+    intr = setInterval(tick, 1000);
+}
+function tick() {
+    time = time-1;
+    let mins = Math.floor(time/60);
+    let secs = time - mins*60;
+    if( mins == 0 && secs == 0 ) {
+        clearInterval(intr);
+    }
+    secs = secs >= 10 ? secs : "0"+secs;
+    $("#min").html("0"+mins);
+    $("#sec").html(secs);
+}
+      
+function spin() {
+
+       let wheel = document.querySelector('.wheel-img');
+    if (!wheel.classList.contains('rotated')) {
+        wheel.classList.add('super-rotation');
+        setTimeout(function() {
+            $('.spin-result-wrapper').show();
+        }, 8000);
+        setTimeout(function() {
+            $("#productOne").slideUp();
+            $('.spin-wrapper').slideUp();
+             $('.order_block').slideDown();
+             start_timer();
+        }, 10000);
+        wheel.classList.add('rotated');
+    }
+}
+
+    </script>
+
+<!-- End landwheel -->
+                
+

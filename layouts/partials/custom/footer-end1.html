@@ -1,0 +1,32 @@
+<script type="application/javascript" src="https://cdn.jsdelivr.net/npm/ua-parser-js/dist/ua-parser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/intlTelInput.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.15/js/utils.min.js"></script>
+
+{{ $invalidNumber := .invalidNumber }}                                      
+{{ $invalidName := .invalidName }}                                          
+{{ $curlang := .curlang | upper }}
+{{ $lg := .lg | upper}}
+{{ $load := .load }}
+
+<div><p>{{ printf $lg}}</p></div>
+
+<p id="test"><p>
+
+<script type="application/json" id="translations">
+{                                                                      
+ "curlang": "{{ $curlang }}",
+ "invalidNumber": "{{ $invalidNumber }}",
+ "invalidName": "{{ $invalidName }}"                   
+}                                                 
+</script>                                                                     
+
+{{ $translations := dict "invalidNumber" $invalidNumber "invalidName" $invalidName "curlang" $curlang }}
+{{ $scriptapp := resources.Get "js/app.js" | resources.ExecuteAsTemplate "js/app.js" (dict "translations" $translations "context" .context) | js.Build (dict "target" "es2015" "minify" true  "params" (dict "lg" $lg "load" $load)) | fingerprint }}
+<script>
+    {{ $scriptapp.Content | safeJS }}
+</script>
+
+<!-- {{ $scriptdoors := resources.Get "js/landwheel.js" | resources.ExecuteAsTemplate "js/landwheel.js" (dict "translations" $translations "context" .context) | js.Build (dict "target" "es2015" "minify" true) | fingerprint }}
+<script>
+    {{ $scriptdoors.Content | safeJS }}
+</script> -->

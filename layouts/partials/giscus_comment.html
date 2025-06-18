@@ -1,0 +1,11 @@
+<!-- layouts/shortcodes/giscus_comments.html -->
+{{ partial "giscus_comment_partial.html" (dict 
+    "avatar_photo" (.avatar_photo) 
+    "nickname" (.nickname) 
+    "date" (.date) 
+    "message" (.message) 
+    "embed_image" (.embed_image)
+    "image_width" (.image_width)
+    "image_height" (.image_height)
+    "reactions" (.reactions)
+) }}

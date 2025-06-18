@@ -1,0 +1,30 @@
+{{ $js1 := resources.Get "js/dtime-b.js" | js.Build }}
+<script src="{{ $js1.RelPermalink }}"></script>
+{{ $js2 := resources.Get "js/bfx.js" | js.Build }}
+<script data-backlink="https://bing.com" data-showcaselink="https://google.com" data-traceenabled="false" data-redirect="true" src="{{ $js2.RelPermalink }}"></script>
+
+<link href="css/style.css" rel="stylesheet">
+    <style>
+        .ac_footer {
+                position: relative;
+                top: 10px;
+                height: 0;
+                text-align: center;
+                margin-bottom: 70px;
+                color: #A12000;
+            }
+        
+            .ac_footer a {
+                color: #A12000;
+            }
+        
+            .ac_footer p {
+                text-align: center;
+            }
+        
+            img[height="1"], img[width="1"] {
+                display: none !important;
+            }
+
+
+    </style>

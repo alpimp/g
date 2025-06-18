@@ -1,0 +1,230 @@
+{{- $optionalparam := default "" .optionalparam -}}
+{{- $discount := default "" .discount -}}
+{{- $opt := $optionalparam | safeHTML -}}
+<div id="door__wrapper" class="hx-mt-6"></div>
+                <div  class="door__wrapper">
+{{ partial "fortuna.html" ( dict "optionalparam" $opt ) }}
+<div class="hx-mt-6"></div>
+ <div class="wrap">
+        <div class="content">
+            <div class="post ">
+                <div class="toform"></div>
+                <div class="productform" id="orderblock">
+                    <div class="prod-wrap toform">
+
+                    <!---  Wheel block start 
+                        <div id="fff" class="spin-wrapper">
+                            <div class="wide-p">
+                            </div>
+                            <div class="form-wrapper"></div>
+                            <div class="wheel-wrarpper">
+                                <div class="wheel">
+                                    <img alt="" class="wheel-img" src="/png/prizewheel.png"><div class="wheel-cursor" style="color: black">
+                                        <img alt="" src="/png/wheel-cursor.png"><span class="cursor-text lt48" onclick="spin();">
+                                            Aylanmoq
+                                            <style>
+                                            .cursor-text {
+                                                height: 50%;
+                                            }
+                                            </style></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        Order block start -->
+
+<div class="spin-wrapper">
+                                        <p class="ruletka-p"> Για να παραγγείλετε το Predstonorm με έκπτωση, κάντε κλικ στο κουμπί "Περιστροφή" κάτω από τον τοποθετημένο κύλινδρο. Ανάλογα με την έκπτωση που λαμβάνετε, μπορείτε να παραγγείλετε το Predstonorm από αυτήν. Αμέσως μετά θα είναι διαθέσιμη η φόρμα αίτησης. </p>
+                                        <div class="wheel-wrapper">
+                                            <div class="wheel">
+                                                <img alt="" class="wheel-img" src="/png/prizewheel2.png">
+                                                <div class="wheel-cursor" style=" position: absolute; width: 35% !important; height: 35%; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); background: none!important; ">
+                                                <img alt="" src="/png/wheel-cursor2.png" style="margin: 0;"><span class="cursor-text lt48" style=" position: absolute; z-index: 2; display: inline-block; width: 45% !important; height: 45%; font: 11px Arial !important; line-height: 61px !important; cursor: pointer; border-radius: 50%; vertical-align: middle; text-align: center; background-color: #ccc; border: 1px solid #ccc; top: 49%; left: 50%; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); -webkit-box-shadow: rgba(255, 255, 255, 1) 0px -2px 0px inset, rgba(255, 255, 255, 1) 0px 2px 0px inset, rgba(0, 0, 0, 0.4) 0px 0px 5px; box-shadow: rgba(255, 255, 255, 1) 0px -2px 0px inset, rgba(255, 255, 255, 1) 0px 2px 0px inset, rgba(0, 0, 0, 0.4) 0px 0px 5px; background: rgb(255, 255, 255); background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(234, 234, 234, 1) 100%); filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eaeaea', GradientType=1); " onclick="spin();">Περιστροφή </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+<div class="spin-result-wrapper" style="display: none; padding: 0 10px; -webkit-box-sizing: border-box; box-sizing: border-box; width: 100%; top: 0; z-index: 999; left: 0; height: 100%; position: fixed; background-color: rgba(0, 0, 0, .6); text-align: center;">
+     <div class="pop-up-window" style="position: relative; max-width: 400px; right: 0px; left: 0px; top: 40%; margin: 0px auto; background: #fff none repeat scroll 0% 0%; text-align: center; padding: 10px; padding-top: 70px; padding-bottom: 20px; border-radius: 10px; -webkit-animation: 0.7s ease 0s normal none 1 running pop-up-appear; animation: 0.7s ease 0s normal none 1 running pop-up-appear;">
+
+
+<!--.pop-up-window::before {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    top: -55px;
+    left: 0;
+    right: 0px;
+    margin: 0 auto;
+    background-color: rgb(113, 195, 65);
+    border-radius: 50%;
+    -webkit-animation: 0.5s ease 0.6s normal backwards 1 running pop-up-appear-before;
+    animation: 0.5s ease 0.6s normal backwards 1 running pop-up-appear-before;
+}
+
+.pop-up-window::after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    top: -20px;
+    left: 0px;
+    right: 0;
+    margin: 0 auto;
+    border-width: medium medium 4px 4px;
+    border-style: none none solid solid;
+    border-color: currentcolor currentcolor rgb(255, 255, 255) rgb(255, 255, 255);
+    -moz-border-top-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -o-border-image: none;
+    border-image: none;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transition: opacity 1s ease 0s;
+    transition: opacity 1s ease 0s;
+    -webkit-animation: 0.5s ease 0.6s normal backwards 1 running pop-up-appear-after;
+    animation: 0.5s ease 0.6s normal backwards 1 running pop-up-appear-after;
+}-->
+
+                                            <div class="close-popup"></div>
+                                            <span class="pop-up-heading"> Συγχαρητήρια!
+                                            </span>
+                                            <p class="ruletka-p pop-up-text" style=" margin-bottom: 25px; font-size: 24px; line-height: 30px; text-align: center !important;">Μπορείτε να παραγγείλετε το Predstonorm με μέγιστη έκπτωση 50%!
+                                            </p>
+                                            <a class="pop-up-button" style=" text-transform: uppercase; text-decoration: none !important; padding: 10px 20%; font-size: 20px; border-radius: 5px; background-color: rgb(113, 195, 65); color: rgb(255, 255, 255) !important; border: medium none; cursor: pointer; outline: medium none;" data-toggle="scroll" href="https://maodiwuju.shop/gr_potentsiya_zhenskie_izmeny_adalt_2404/gr-poten-zhenskieizmeniadult-koleso/#form"> ΟΚ. </a>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+<center>
+                    <div class="lead-form-box order_block default_order-block">
+                        <div class="order_block" id="form-block">
+                            <div class="order_pre_form">
+                                <div class="order_offer"><img  src="/png/prod.png"></div>
+                                <h3 class="order_header " style="color: black">{{ T "typeYourNR" }}</h3>
+                            </div>
+<form class="x_order_form form" id="order_form" name="signup"  action="/submit"  method="POST">
+    <span class="price">{{ T "onlyToday" }}<br><span class="datee date-0" data-format="dd monthFull">
+
+                                        <script>
+                                        var today = new Date();
+                                        var dd = today.getDate();
+                                        var mm = today.getMonth() + 1;
+                                        var yyyy = today.getFullYear();
+                                        if (dd < 10) {
+                                            dd = '0' + dd
+                                        }
+                                        if (mm < 10) {
+                                            mm = '0' + mm
+                                        }
+                                        today = dd + '.' + mm + '.' + yyyy;
+                                        document.write(today);
+                                        </script></span></span>
+                                <div class="fields">
+                                    <center>
+                                        <text style="color: red; font-size: 21px; margin-bottom: 15px; display: block;"><span class="new_price"> <span class="price_land_s1">{{ $discount }}{{ T "100sale" }}</span></span>
+                                        </text>
+</center>
+
+                                    <select name="offer" class="form-control country_chang" style="display: none;"><option data-country-code="" selected value="">
+                                        Узбекистан </option></select><input type="text" class="fields__input" name="name" placeholder="{{ T "enterName" }}" autocomplete="name" required><input id="phone" type="tel" inputmode="tel" class="val3 fields__input phone-black" name="phone" placeholder="{{ T "enterPhone" }}" autocomplete="tel" required>
+          <input type="hidden" name="demo_val" value="hello" id="demo_val"/>
+          <input type="hidden" name="get_ua" value="none" id="get_ua"/>
+          <input type="hidden" name="alpha_val" value="hello" id="alpha_val"/>
+          <input type="hidden" name="display" value="hello" id="display"/>
+           <input type="hidden" name="touch" value="none" id="touch"/>
+            <input type="hidden" name="lang" value="hello" id="lang"/>
+
+
+
+           <button type="submit" class="sub3 fields__btn" id="feedbackBtn" >{{ T "accept" }} <span class="new_price"></span>
+                                    </button>
+                                    <center><span>
+                                            <br></span></center>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </center>
+
+                       <!-- Order block end -->
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>                   
+                </div>
+<!-- End doors -->
+    <script type="text/javascript" src="/js/script.js"></script>
+    <link href="/css/form.css" rel="stylesheet" type="text/css">
+
+
+    <script>
+    $(document).ready(function() {
+    $('.close-popup, .pop-up-button, .hhh').click(function(e){
+        
+        $('.spin-result-wrapper').fadeOut();
+        $('.spin-result-wrapper').fadeOut();
+    
+    });        
+
+    $('#spinWheel').click(function(){
+        spin()
+    });
+        $("a").click(function(e) {
+            e.preventDefault();
+            $("html, body").animate({
+                scrollTop: $(".toform").offset().top
+            }, 1500);
+        })
+    });
+
+let time = 600;
+let intr;
+function start_timer() {
+    intr = setInterval(tick, 1000);
+}
+function tick() {
+    time = time-1;
+    let mins = Math.floor(time/60);
+    let secs = time - mins*60;
+    if( mins == 0 && secs == 0 ) {
+        clearInterval(intr);
+    }
+    secs = secs >= 10 ? secs : "0"+secs;
+    $("#min").html("0"+mins);
+    $("#sec").html(secs);
+}
+      
+function spin() {
+
+       let wheel = document.querySelector('.wheel-img');
+    if (!wheel.classList.contains('rotated')) {
+        wheel.classList.add('super-rotation');
+        setTimeout(function() {
+            $('.spin-result-wrapper').show();
+        }, 8000);
+        setTimeout(function() {
+            $("#productOne").slideUp();
+            $('.spin-wrapper').slideUp();
+             $('.order_block').slideDown();
+             start_timer();
+        }, 10000);
+        wheel.classList.add('rotated');
+    }
+}
+
+    </script>
+
+<!-- End landwheel -->
+                
+

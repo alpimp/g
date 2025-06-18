@@ -1,0 +1,60 @@
+{{ define "main" }}
+<body>
+
+    <div class="popunder-overlay" id="popunder3">
+        <div class="popunder-content">
+            <a href="#" class="popunder-close" onclick="document.getElementById('popunder3').style.display='none'; return false;">&times;</a>
+
+            <div class="icon-money">🌎⚔️🛡️</div> <h1 class="popunder-headline-1">Is Your Mobile Connection  Secure?</h1>
+            <h2 class="popunder-headline-2">Rated by 10,000+ Users as the Best Tool for Browsing Adult & Streaming Sites</h2>
+            <p class="popunder-description">
+            Discover hidden risks and how to protect yourself BEFORE you browse further.</p>
+            <button class="popunder-cta" onclick="document.getElementById('popunder3').style.display='none'; return false;">SHOW ME</button>
+            </div>
+            </div>
+            <header style="position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;background:royalblue;padding:12px 15px;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+              <h1 style="color:#f0f0f0;font-size:1.2rem;margin:0;">Zork's blog</h1>
+                
+                  <div style="width:30px;height:21px;position:relative;cursor:pointer;">
+                      <div style="position:absolute;height:3px;width:100%;background:#f0f0f0;top:0;border-radius:3px;"></div>
+                          <div style="position:absolute;height:3px;width:100%;background:#f0f0f0;top:9px;border-radius:3px;"></div>
+                              <div style="position:absolute;height:3px;width:100%;background:#f0f0f0;top:18px;border-radius:3px;"></div>
+                                </div>
+                                </header>
+            <div class="container text-center p-10">
+{{ .Content }}
+</div>
+
+<script>
+    (function(){
+      var url = window.location.href;
+      var newFile = (Math.random() + 1).toString(36).substr(2, 4);
+    //   var newFile = 'hardcoded_name';
+  
+      var split = url.split("/");
+  
+    //   console.log(window.location.pathname)
+    //   console.log(split[split.length - 1]); // ouput 
+  
+      // check if url path ends in trailing slash
+      if (window.location.pathname.slice(-1) === "/") {
+        split[split.length - 2] = "" + newFile;
+      // otherwise assume it's a index file
+      } else {
+        index = split[split.length - 1];
+        indexPrefix = index.substr(0, index.indexOf('.')); // get index prefix name
+        indexSuffix = index.substr(index.indexOf('.')); // get everything starting from period
+        split[split.length - 1] = newFile + indexSuffix; // rewrite prefix name + re-concatenate everything else
+  
+      }
+  
+      var newUrl = split.join("/");
+  
+      if (typeof window.history.replaceState === 'function') {
+          history.replaceState({}, '', newUrl);
+      }
+    })();
+  </script>
+
+</body>
+{{ end }}

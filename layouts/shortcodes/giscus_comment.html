@@ -1,0 +1,12 @@
+<!-- layouts/shortcodes/giscus_comments.html -->
+{{ partial "giscus_comment_partial.html" (dict 
+    "avatar_photo" (.Get "avatar_photo") 
+    "nickname" (.Get "nickname") 
+    "date" (.Get "date") 
+    "message" (.Get "message") 
+    "replies" (.Get "replies") 
+    "embed_image" (.Get "embed_image")
+    "image_width" (.Get "image_width")
+    "image_height" (.Get "image_height")
+    "reactions" (.Get "reactions")
+) }}

@@ -1,0 +1,33 @@
+<div class="giscus-comment">
+    <div class="giscus-comment-header" >
+        <a href="#"><img src="{{ .avatar_photo }}" alt="Avatar" class="giscus-avatar"></a>
+        <div class="giscus-user-info">
+            <span class="giscus-nickname">{{ .nickname }}</span>
+            <span class="giscus-date">{{ .date }}</span>
+        </div>
+    </div>
+    <div class="giscus-comment-body" >
+        <p>{{ .message }}</p>
+        {{ if .embed_image }}
+        <a href="#" ><img src="{{ .embed_image }}" alt="Embedded Image" class="giscus-embed-image" style="width: {{ .image_width }}; height: {{ .image_height }};"></a>
+        {{ end }}
+    </div>
+    <div class="giscus-comment-footer">
+        {{ $num := "" }}
+
+   {{ $reactions := split .reactions "," }}
+            {{ range $reactions }}
+                {{ $reaction := split . ":" }}
+                {{ $num := index $reaction 0 }}
+         <span class="giscus-badge giscus-reaction">
+             {{ if eq $num "Replies" }}
+                  {{ index $reaction 1 }} {{ index $reaction 0 }} 
+                  {{ else }}
+                    {{ index $reaction 0 }} {{ index $reaction 1 }}
+                    {{ end }}
+                </span>
+            {{ end }}
+        
+
+    </div>
+</div>

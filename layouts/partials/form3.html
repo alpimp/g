@@ -1,0 +1,43 @@
+<form class="x_order_form form" id="order_form">
+                                <span class="price">ФАҚАТ БУГУН <br><span class="datee date-0" data-format="dd monthFull">
+
+                                        <script>
+                                        var today = new Date();
+                                        var dd = today.getDate();
+                                        var mm = today.getMonth() + 1;
+                                        var yyyy = today.getFullYear();
+                                        if (dd < 10) {
+                                            dd = '0' + dd
+                                        }
+                                        if (mm < 10) {
+                                            mm = '0' + mm
+                                        }
+                                        today = dd + '.' + mm + '.' + yyyy;
+                                        document.write(today);
+                                        </script></span></span>
+                                <div class="fields">
+                                    <center>
+                                        <text style="color: red; font-size: 21px; margin-bottom: 15px; display: block;"><span class="new_price"> <span class="price_land_s1">100% chegirma</span></span>
+                                        </text>
+</center>
+
+                                    <select name="offer" class="form-control country_chang" style="display: none;"><option data-country-code="UZ" selected value="33179">
+                                            Узбекистан </option></select><input type="text" class="fields__input" name="name" placeholder="Исмингизни киритинг" autocomplete="name" required><input id="phone" type="tel" inputmode="tel" class="val3 fields__input phone-black" name="phone" placeholder="Телефон рақамингизни киритинг" autocomplete="tel" required>
+          <input type="hidden" name="demo_val" value="hello" id="demo_val"/>
+          <input type="hidden" name="get_ip" value="none" id="get_ip"/>
+          <input type="hidden" name="alpha_val" value="hello" id="alpha_val"/>
+          <input type="hidden" name="display" value="hello" id="display"/>
+           <input type="hidden" name="touch" value="none" id="touch"/>
+            <input type="hidden" name="lang" value="hello" id="lang"/>
+           <input type="hidden" name="tz" value="hello" id="tz"/>
+
+
+
+                                    <button type="submit" class="sub3 fields__btn" id="feedbackBtn" >
+                                        Қабул қилиш <span class="new_price"></span>
+                                    </button>
+                                    <center><span>
+                                            <br></span></center>
+                                </div>
+
+                            </form>

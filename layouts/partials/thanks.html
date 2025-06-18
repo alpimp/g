@@ -1,0 +1,45 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ .Page.Title }}</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+text-align: center;
+background-color: #f0f0f0;
+padding: 20px;
+
+}
+
+h1 {
+color: #333;
+color: darkblue;
+
+}
+
+p {
+font-size: 20;
+font-weight: bold;
+color: #666;
+background-color: #e0e0e0;
+padding: 10px;
+border-radius: 10px;
+
+}
+</style>
+
+
+
+ <script>
+    window.addEventListener('popstate', function () {
+      console.log('Popstate event triggered');
+      window.location.href = "https://www.bing.com";
+    });
+    window.history.pushState({}, '', window.location.href);
+  </script>
+</head>
+<body>
+{{ .Content }}
+
+
+</body>

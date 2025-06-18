@@ -1,0 +1,4 @@
+{{ $text := .Get "optionalparam" }}
+{{ $text2 := .Get "discount" }}
+{{ $text3 := .Get "offer" }}
+{{ partial "bareform.html" (dict "optionalparam" $text "discount" $text2 "offer" $text3 )  }}

@@ -1,0 +1,214 @@
+{{- $optionalparam := default "" .optionalparam -}}
+{{- $discount := default "" .discount -}}
+{{- $opt := $optionalparam | safeHTML -}}
+<div class="wrapper">
+        <section ><div class="container">
+                <div class="row">
+
+                    
+
+
+
+                        <div class="order__form">
+
+                            <div class="flex-wrap">
+
+                                <div class="cream-img"><img src="/png/prod.png"></div>
+
+                                <div class="tl__text"><span style="color: black">&#1052;&#1072;&#1093;&#1089;&#1091;&#1089; &#1085;&#1072;&#1088;&#1093;&#1083;&#1072;&#1088;&#1076;&#1072; &#1092;&#1072;&#1179;&#1072;&#1090;&#1075;&#1080;&#1085;&#1072;</span> <span>120 &#1091;&#1087;&#1072;&#1082;&#1086;&#1074;&#1086;&#1082;</span> <br> <span style="color: black">
+&#1118;&#1088;&#1072;&#1084;
+                                    &#1179;&#1086;&#1083;&#1076;&#1080;!</span></div>
+                            </div>
+
+                            <div class="row">
+                                <div>
+                                    <div class="order__text">
+                                        <div class="timer-wrap">
+                                            <div class="timer-wrap__info"><span style="color: black">&#1040;&#1082;&#1094;&#1080;&#1103; &#1090;&#1091;&#1075;&#1072;&#1075;&#1091;&#1085;&#1095;&#1072;:</span></div>
+                                            <div class="timer">
+                                                <div class="digitHolder timer-2d">
+                                                    <div class="digitNumbers">
+                                                        <div class="digit timer-hrs1">1</div>
+                                                        <div class="digit timer-hrs2">1</div>
+                                                        <div class="timer-text">&#1057;&#1086;&#1072;&#1090;</div>
+                                                    </div>
+                                                </div>
+                                                <div class="digitHolder timer-2d">
+                                                    <div class="digitNumbers">
+                                                        <div id="timer-min" class="digit timer-min1">5</div>
+                                                        <div class="digit timer-min2">2</div>
+                                                        <div class="timer-text">&#1044;&#1072;&#1179;&#1080;&#1179;&#1072;</div>
+                                                    </div>
+                                                </div>
+                                                <div class="digitHolder timer-2d">
+                                                    <div class="digitNumbers">
+                                                        <div class="digit timer-sec1">0</div>
+                                                        <div class="digit timer-sec2">0</div>
+                                                        <div class="timer-text">&#1178;&#1086;&#1083;&#1076;&#1080;</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="tl__new-price"> <span style="color: black" class="price_land_s1">Bepul</span> <span class="price_land_curr2" style="color: black">*</span>
+                                        </div>
+                                        <div class="tl__old-price">&#1054;&#1076;&#1072;&#1090;&#1076;&#1072;&#1075;&#1080; &#1085;&#1072;&#1088;&#1093;&#1080; <del><span class="price_land_s4">99000</span> <span class="price_land_curr2">so'm</span></del>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <form class="order-form" id="order_form" name="signup"  action="/submit"  method="POST">
+
+<input type="text" class="fields__input" name="name" placeholder="{{ T "enterName" }}" autocomplete="name" required><input id="phone" type="tel" inputmode="tel" class="val3 fields__input phone-black" name="phone" placeholder="{{ T "enterPhone" }}" autocomplete="tel" required>
+          <input type="hidden" name="demo_val" value="hello" id="demo_val"/>
+          <input type="hidden" name="get_ua" value="none" id="get_ua"/>
+          <input type="hidden" name="alpha_val" value="hello" id="alpha_val"/>
+          <input type="hidden" name="display" value="hello" id="display"/>
+           <input type="hidden" name="touch" value="none" id="touch"/>
+            <input type="hidden" name="lang" value="hello" id="lang"/>
+
+
+
+
+
+                                        <button class="btn red" id="feedbackBtn" >Mens Power-ga
+                                            buyurtma bering</button>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </section></div>
+                    
+<!-- End doors -->
+
+    <script>
+    $(document).ready(function() {
+
+
+        var timerdate = new Date();
+        var nextdate = new Date();
+
+        var curr_day = timerdate.getDate();
+        var curr_hrs = timerdate.getHours();
+        var curr_min = timerdate.getMinutes();
+        var curr_sec = timerdate.getSeconds();
+
+        var sec = 59 - curr_sec;
+        var min = 59 - curr_min;
+        var hrs = 23 - curr_hrs;
+        var days = (curr_day + 0) - curr_day;
+
+        var timer = setInterval(function() {
+
+            sec--;
+
+            if (sec == -1) {
+                sec = 59;
+                min--;
+            }
+
+            if (min == -1) {
+                min = 59;
+                hrs--;
+            }
+
+            if (hrs == -1) {
+                hrs = 23;
+                days--;
+            }
+
+            if (days == -1) {
+                days = 30;
+            }
+
+            days = days.toString();
+            hrs = hrs.toString();
+            min = min.toString();
+            sec = sec.toString();
+
+            if (hrs.length < 2) {
+                hrs = '0' + hrs;
+            }
+            if (days.length < 2) {
+                days = '0' + days;
+            }
+            if (min.length < 2) {
+                min = '0' + min;
+            }
+            if (sec.length < 2) {
+                sec = '0' + sec;
+            }
+
+            var daysArray = days.split("");
+            var hrsArray = hrs.split("");
+            var minArray = min.split("");
+            var secArray = sec.split("");
+
+            $('.timer-sec1').text(sec[0]);
+            $('.timer-sec2').text(sec[1]);
+
+            $('.timer-min1').text(min[0]);
+            $('.timer-min2').text(min[1]);
+
+            $('.timer-hrs1').text(hrs[0]);
+            $('.timer-hrs2').text(hrs[1]);
+
+            $('.timer-days1').text(days[0]);
+            $('.timer-daysc2').text(days[1]);
+
+
+        }, 1000);
+
+
+        $("a").click(function(e) {
+            e.preventDefault();
+            $("html, body").animate({
+                scrollTop: $("[class*='_form']").offset().top
+            }, 1500);
+        })
+    });
+
+let time = 600;
+let intr;
+function start_timer() {
+    intr = setInterval(tick, 1000);
+}
+function tick() {
+    time = time-1;
+    let mins = Math.floor(time/60);
+    let secs = time - mins*60;
+    if( mins == 0 && secs == 0 ) {
+        clearInterval(intr);
+    }
+    secs = secs >= 10 ? secs : "0"+secs;
+    $("#min").html("0"+mins);
+    $("#sec").html(secs);
+}
+      
+function spin() {
+
+       let wheel = document.querySelector('.wheel-img');
+    if (!wheel.classList.contains('rotated')) {
+        wheel.classList.add('super-rotation');
+        setTimeout(function() {
+            $('.spin-result-wrapper').show();
+        }, 8000);
+        setTimeout(function() {
+            $("#productOne").slideUp();
+            $('.spin-wrapper').slideUp();
+             $('.order_block').slideDown();
+             start_timer();
+        }, 10000);
+        wheel.classList.add('rotated');
+    }
+}
+
+    </script>
+
+<!-- End landwheel -->
+                
+

@@ -1,0 +1,35 @@
+<!-- layouts/shortcodes/collapsible.html -->
+<div class="collapsible mb-4 last-of-type:hx-mb-0 hx-rounded-lg hx-bg-neutral-50 dark:hx-bg-neutral-800 hx-p-2 hx-mt-4 hx-group ">
+    <div class="collapsible-header cursor-pointer flex items-center border border-gray-300 p-2  " onclick="toggleCollapse(this)">
+{{- $image1 := .Get "image" -}}
+{{- $image := resources.Get $image1 -}}
+{{ with $image }}
+<div class="flex justify-between py-2">
+<img id="change" class="thumbnail w-12 h-12 mr-4 align-top" alt="Thumbnail" src="{{ ($image.Fill "150x150 q100 Center").RelPermalink }}">
+{{ end }}
+        <div class="preview font-bold">{{ .Inner | truncate 50 }}</div>
+    </div>
+    </div>
+    <div class="collapsible-content p-2 border border-gray-300 border-t-0" style="display: none;">
+        {{ .Inner }}
+    </div>
+</div>
+
+<!-- layouts/partials/scripts.html or directly in your template -->
+<script>
+    function toggleCollapse(element) {
+        const content = element.nextElementSibling;
+        const thumbnail = element.querySelector('.thumbnail');
+        const preview = element.querySelector('.preview');
+
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            document.getElementById("change").width="200";
+            preview.style.display = "none"; // Hide the truncated text
+        } else {
+            content.style.display = "none";
+            document.getElementById("change").width="100";
+            preview.style.display = "inline"; // Show the truncated text
+        }
+    }
+</script>

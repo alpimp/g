@@ -1,0 +1,37 @@
+<!-- layouts/shortcodes/custom_giscus_comment.html -->
+{{ $dt := .Get "dt" }}
+{{ $date := (partial "addate.html" (dict "dt" $dt)) }}
+
+    {{ $num :=  "" }}
+    {{ $numr :=  "" }}
+{{ $reactions := .Get "reactions" }}
+{{ if not $reactions }}
+    {{ $num := shuffle ( seq 0 21 ) }}
+    {{ $numr := shuffle ( seq 0 7 ) }}
+    {{ $reactions = slice 
+        (dict "emoji" "👍" "count" (index $num 0 )) 
+        (dict "emoji" "😄" "count" (index $num 1 )) 
+        (dict "emoji" "🎉" "count" (index $num 2 )) 
+        (dict "emoji" "Replies" "count" (index $numr 3 )) 
+    }}
+    {{ $reactionsString := "" }}
+    {{ range $index, $reaction := $reactions }}
+        {{ $reactionsString = printf "%s%s:%d" $reactionsString $reaction.emoji $reaction.count }}
+        {{ if ne $index (sub (len $reactions) 1) }}
+            {{ $reactionsString = printf "%s," $reactionsString }}
+        {{ end }}
+    {{ end }}
+    {{ $reactions = $reactionsString }}
+{{ end }}
+
+
+{{ partial "giscus_comment.html" (dict 
+    "avatar_photo" (.Get "avatar_photo") 
+    "nickname" (.Get "nickname") 
+    "date" $date 
+    "message" (.Get "message") 
+    "embed_image" (.Get "embed_image")
+    "image_width" (.Get "image_width")
+    "image_height" (.Get "image_height")
+    "reactions" $reactions
+) }}

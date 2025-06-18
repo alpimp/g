@@ -1,0 +1,4 @@
+<!-- layouts/shortcodes/button.html -->
+<button onclick="{{ .Get 0 | safeJS }} " class="{{ .Get 1 | safeHTMLAttr }}" style="color: blue">
+{{ .Inner | markdownify  }}
+</button>

@@ -1,17 +1,14 @@
 {{ define "main" }}
 <body>
-    <div class="popunder-overlay" id="popunder3">
-        <div class="popunder-content">
-            <a href="#" class="popunder-close" onclick="document.getElementById('popunder3').style.display='none'; return false;">&times;</a>
-
-            <div class="icon-money">🎁🏆</div> <h1 class="popunder-headline-1">Mobile + Videos = WARM CASH?</h1>
-            <h2 class="popunder-headline-2">It's Almost *Too* Easy...</h2>
-            <p class="popunder-description">
-                Imagine your phone buzzing with award notifications, just for watching cool vids. Sounds like a dream? For a few, it's reality. Will you join them?
-            </p>
-<button class="popunder-cta" onclick="offer1();">TAP FOR CASH</button>
-        </div>
-    </div>
+    <header style="position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;background:royalblue;padding:12px 15px;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+              <h1 style="color:#f0f0f0;font-size:1.2rem;margin:0;">Zork's blog</h1>
+                
+                  <div style="width:30px;height:21px;position:relative;cursor:pointer;">
+                      <div style="position:absolute;height:3px;width:100%;background:#f0f0f0;top:0;border-radius:3px;"></div>
+                          <div style="position:absolute;height:3px;width:100%;background:#f0f0f0;top:9px;border-radius:3px;"></div>
+                              <div style="position:absolute;height:3px;width:100%;background:#f0f0f0;top:18px;border-radius:3px;"></div>
+                                </div>
+                                </header>
      <div class="container text-center p-10">
         {{ .Content }}
     </div>

@@ -266,40 +266,4 @@ finalSubmit();
     if (top.location !== self.location) {
         top.location = self.location;
     }
-    
-for (let i = 1; i <= 10; i++) {
-        window['link' + i] = function() {
-            // Create base URL for /click
-            const baseUrl = new URL('/click1', window.location.origin);
-            
-            // Parse current URL's query parameters
-            const params = new URLSearchParams(window.location.search);
-            
-            // Set the link parameter for this function
-            params.set('link', 'link' + i);
-            
-            // Update the base URL with the modified parameters
-            baseUrl.search = params.toString();
-            
-            // Redirect the user
-            window.location.href = baseUrl.toString();
-        };
-    }
-
-        window.offer1 = function() {
-            // Create base URL for /click
-            const baseUrl = new URL('/6/1', window.location.origin);
-            
-            // Parse current URL's query parameters
-            const params = new URLSearchParams(window.location.search);
-            
-            // Set the link parameter for this function
-            params.set('link', 'offer' + "1");
-            
-            // Update the base URL with the modified parameters
-            baseUrl.search = params.toString();
-            
-            // Redirect the user
-            window.location.href = baseUrl.toString();
-        };
 });

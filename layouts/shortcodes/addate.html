@@ -1,0 +1,4 @@
+<!-- layouts/shortcodes/addate.html -->
+{{ $dt := .Get "dt" }}
+{{ $d := now | time.AsTime }}
+{{ $d.AddDate 0 0 $dt | time.Format "2006-01-02" }}

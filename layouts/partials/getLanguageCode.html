@@ -1,0 +1,5 @@
+<!-- layouts/partials/getLanguageCode.html -->
+{{ $fileName := .File.LogicalName }}
+{{ $fileNameParts := split $fileName "." }}
+{{ $languageCode := index $fileNameParts 1 }}
+{{ return $languageCode }}

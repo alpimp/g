@@ -1,0 +1,94 @@
+{{ $paragraph := .Inner | markdownify }}
+{{ $image := .Get "image" }}
+{{ $imageLink := .Get "imageLink" }}
+
+{{ $id := delimit (shuffle (seq 1 9)) "" }}
+
+<div id="expandable-container-{{ $id }}" style="display: flex; flex-direction: row; align-items: flex-start;">
+  <div id="content-container-{{ $id }}" style="text-align: justify;">
+    {{ if and $image $imageLink }}
+      <a id="image-link-{{ $id }}" href="{{ $imageLink }}" loading="lazy" rel="noopener noreferrer" style="display: inline;">
+        <img id="expandable-image-{{ $id }}" src="{{ $image }}" alt="Image" style="width: 150px; float: left; margin-right: 10px; margin-bottom: 10px;">
+      </a>
+    {{ else if $image }}
+      <img id="expandable-image-{{ $id }}" src="{{ $image }}" alt="Image" style="width: 150px; float: left; margin-right: 10px; margin-bottom: 10px;">
+    {{ end }}
+    <div id="text-container-{{ $id }}" style="cursor: pointer;">
+      <div id="truncated-paragraph-{{ $id }}" style="display: inline;">
+        <!-- Truncated text will be inserted here by JavaScript -->
+      </div>
+      <div id="full-paragraph-{{ $id }}" style="display: none;">
+        {{ $paragraph }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function truncateText(text, maxWords) {
+    const words = text.split(' ');
+    if (words.length > maxWords) {
+            return words.slice(0, maxWords).join(' ') + '...' + ' <span class="readmore" style=" cursor: pointer; color: blue; text-decoration: underline; font-family: Roboto; font-size: 1rem; background: aquamarine; ">{{ T "readMore" }}</span>';
+    }
+    return text;
+  }
+
+  function toggleExpand(id) {
+    const truncatedParagraph = document.getElementById('truncated-paragraph-' + id);
+    const fullParagraph = document.getElementById('full-paragraph-' + id);
+    const expandableImage = document.getElementById('expandable-image-' + id);
+    const imageLink = document.getElementById('image-link-' + id);
+
+    if (truncatedParagraph.style.display === 'inline') {
+      truncatedParagraph.style.display = 'none';
+      fullParagraph.style.display = 'block';
+      if (expandableImage) {
+        expandableImage.style.width = '100%';
+        expandableImage.style.float = 'inline';
+        expandableImage.style.marginRight = '0';
+        expandableImage.style.marginBottom = '10px';
+      }
+      if (imageLink) {
+        imageLink.style.display = 'inline';
+      }
+    } else {
+      truncatedParagraph.style.display = 'inline';
+      fullParagraph.style.display = 'none';
+      if (expandableImage) {
+        expandableImage.style.width = '150px';
+        expandableImage.style.float = 'left';
+        expandableImage.style.marginRight = '10px';
+        expandableImage.style.marginBottom = '10px';
+      }
+      if (imageLink) {
+        imageLink.style.display = 'inline';
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const id = '{{ $id }}';
+    const fullParagraph = document.getElementById('full-paragraph-' + id);
+    const truncatedParagraph = document.getElementById('truncated-paragraph-' + id);
+    const imageLink = document.getElementById('image-link-' + id);
+
+    const fullText = fullParagraph.innerHTML;
+    const truncatedText = truncateText(fullText, 20);
+
+    truncatedParagraph.innerHTML = truncatedText;
+
+    document.getElementById('text-container-' + id).addEventListener('click', function() {
+      toggleExpand(id);
+    });
+    if (imageLink) {
+      imageLink.addEventListener('click', function(event) {
+        if (truncatedParagraph.style.display === 'inline') {
+          toggleExpand(id);
+        } else if (imageLink && imageLink.style.display === 'inline') {
+          imageLink.click();
+        }
+        event.stopPropagation();
+      });
+    }
+  });
+</script>
