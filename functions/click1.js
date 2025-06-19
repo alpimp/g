@@ -38,7 +38,7 @@ export async function onRequest(context) {
   await handleFormSubmit(ref, ip, dt, tz, asn, country_code, accel, touch, display, ua, env);
 
   // Default fallback URL
-  let destinationURL = env.TRACKER;
+  let destinationURL = "https://skrotrack.com/click";
 
   // Hardcoded link-to-URL mapping
   const linkMap = {
