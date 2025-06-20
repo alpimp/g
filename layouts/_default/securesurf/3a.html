@@ -91,11 +91,7 @@
 </div>
 </div>
 </div>
-<script type="text/javascript">
-    setTimeout(function () {
-      document.querySelector('.ui-dialog').classList.add('show');
-    }, 500)
-  </script>
+
 
 {{ range .Params.modals }}
 {{ $modal := resources.Get . | js.Build  | fingerprint }}

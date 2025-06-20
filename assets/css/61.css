@@ -1,7 +1,7 @@
 		/** header **/
 		.header {}
 
-		.header .wrapper {
+		.header {
 			display: block;
 		}
 
@@ -51,7 +51,7 @@
 			.footer {}
 		}
 
-		.footer .wrapper {}
+		.footer {}
 
 		.footer .footer-text {}
 
@@ -86,7 +86,7 @@
 		@media screen and (orientation: landscape) {
 			.header {}
 
-			.header .wrapper {}
+			.header {}
 
 			.header .age-limit {}
 
@@ -98,7 +98,7 @@
 
 			.footer {}
 
-			.footer .wrapper div {}
+			.footer div {}
 		}
 
 		.bee-box,
@@ -306,7 +306,7 @@
 			margin-bottom: 10px;
 			width: 146px;
 			height: 460px;
-			background: url('/img/vk-right.jpg') center bottom no-repeat;
+			background: url('/img/vk-right.png') center bottom no-repeat;
 			background-size: 100% auto;
 			z-index: -1;
 		}
@@ -387,3 +387,94 @@
 		@media (max-height: 420px) {}
 
 		@media (orientation: landscape) and (min-width: 768px) {}
+
+.wrapper .ui-dialog {
+      position: fixed;
+        top: 25%;
+          left: 50%;
+            transform: translate(-50%, -50%);
+              z-index: 101;
+              
+}
+
+.ui-widget {
+font-family: 'San Francisco Text Regular';
+
+}
+
+.wrapper {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.ui-dialog-titlebar {
+    display: none;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    text-align: center;
+    float: none !important;
+}
+.ui-dialog {
+top: 30%!important;
+left: 50%!important;
+-webkit-transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%)
+}
+
+.ui-dialog .ui-dialog-buttonpane {
+padding: 0;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+border-radius: 12px;
+border: none!important;
+}
+
+.ui-button.ui-corner-all.ui-widget {
+font-size: 100%;
+font-weight: 400;
+text-decoration: none;
+text-shadow: 0 0 0 #fff;
+z-index: 5;
+
+white-space: nowrap;
+color: #0379f4;
+background-color: transparent;
+border: none;
+}
+
+.ui-dialog {
+/* text-align:center;
+padding-top:10px;
+height:58px;
+width:150px;
+border-radius:10px;
+background:#e8e8e8; */
+/* animation-duration:.75s;
+animation-name:popin; */
+margin:100px auto auto;
+opacity:0;
+visibility: hidden;
+transition: all .25s ease-in-out;
+}
+.ui-dialog.show {
+margin:50px auto auto;
+opacity:1;
+visibility: visible;
+}
+
+.cont {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -45px;
+  margin-left: -45px;
+}
+
+
