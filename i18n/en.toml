@@ -68,7 +68,7 @@ other = "more spins"
 [Free]
 other = "YOU HAVE 3 FREE SPINS"
 [1600]
-other = "to win $1,600"
+other = "to win a prize"
 [Stop]
 other = "Stop"
 [Congrat]
@@ -87,16 +87,18 @@ other =  "Have you won anything online before?"
 other =  "Do you have a valid email address?"
 [Wait]
 other =  "Checking answers, please wait..."
+[Wait1]
+other =  "Checking, please wait..."
 [Congrat2]
 other =  "CONGRATULATIONS YOU WON!"
 [Below]
 other =  "Claim Your Prize Below:"
 [16free]
-other =  "Claim Your $1,600 free"
+other =  "Claim Your prize free"
 [Avail]
 other =  "(2) Spots Available"
 [Cl16]
-other =  ">> CLAIM MY $1,600 NOW <<"
+other =  ">> CLAIM MY PRIZE NOW <<"
 [Comments]
 other =  "View more comments"
 [Of]
@@ -104,7 +106,7 @@ other =  "50 of 80,312"
 [Last]
 other =  "Last Chance!"
 [Pop1]
-other =  "Congratulations! Your $1,600 has been reserved!\n*************************\nEnter your details on the next page to secure your claim!\n*************************\n"
+other =  "Congratulations! Your prize has been reserved!\n*************************\nEnter your details on the next page to secure your claim!\n*************************\n"
 [Pop2]
-other =  "CONGRATULATIONS!\n\nYou've been randomly selected to get (3) free spins\n\nYou can claim $1,600 FREE if you win!"
+other =  "CONGRATULATIONS!\n\nYou've been randomly selected to get (3) free spins\n\nYou can claim a prize for FREE if you win!"
 #other = "Now answer these 3 questions:"
