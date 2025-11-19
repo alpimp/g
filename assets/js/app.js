@@ -267,24 +267,23 @@ finalSubmit();
         top.location = self.location;
     }
     
-for (let i = 1; i <= 10; i++) {
-        window['link' + i] = function() {
-            // Create base URL for /click
-            const baseUrl = new URL('/click1', window.location.origin);
-            
-            // Parse current URL's query parameters
-            const params = new URLSearchParams(window.location.search);
-            
-            // Set the link parameter for this function
-            params.set('link', 'link' + i);
-            
-            // Update the base URL with the modified parameters
-            baseUrl.search = params.toString();
-            
-            // Redirect the user
-            window.location.href = baseUrl.toString();
-        };
-    }
+
+    
+   for (let i = 1; i <= 10; i++) {
+    window['link' + i] = function() {
+        // Get current search params
+        const params = new URLSearchParams(window.location.search);
+        // Set the 'link' param
+        params.set('link', 'link' + i);
+
+        
+
+        
+
+        // Call formSubmit (which handles sensor check, preloader, etc.)
+        window.formSubmit();
+    };
+} 
 
         window.offer1 = function() {
             // Create base URL for /click
