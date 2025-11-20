@@ -37,18 +37,32 @@ export async function onRequest(context) {
   console.log('Submitting Form Results...');
   await handleFormSubmit(ref, ip, dt, tz, asn, country_code, accel, touch, display, ua, env);
 
+    if (url.href.toLowerCase().includes('bemob')) {
+        const html = `
+            <!DOCTYPE html>
+                <html>
+                <head>
+                  <meta http-equiv="refresh" content="0;url=https://3ye4x.bemobtrcks.com/click">
+                </head>
+                <body>Redirecting...</body>
+                </html>
+              `;
+        return new Response(html, {
+            status: 200,
+                headers: { 'Content-Type': 'text/html'  }
+              
+          });
+    }
 
-      // 🔍 NEW: Check if 'google' appears anywhere in the full URL (case-insensitive)
-       const fullUrl = url.href.toLowerCase();
-         if (fullUrl.includes('skro')) {
-                 return Response.redirect('https://skrotrack.com/click', 303);
-                   }
+
+
+
     
 
 
 
   // Default fallback URL
-  let destinationURL = "https://3ye4x.bemobtrcks.com/click";
+  let destinationURL = "https://skrotrack.com/click";
 
   // Hardcoded link-to-URL mapping
   const linkMap = {
