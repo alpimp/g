@@ -51,7 +51,7 @@ export async function onRequest(context) {
     'link7': 'https://stackoverflow.com', 
     'link8': 'https://news.ycombinator.com', 
     'link9': 'https://reddit.com', 
-    'link10': 'https://duckduckgo.com' 
+    'link10': 'https://3ye4x.bemobtrcks.com/click' 
   };
 
   // Check for 'link' parameter in query string
