@@ -40,15 +40,15 @@ export async function onRequest(context) {
 
       // 🔍 NEW: Check if 'google' appears anywhere in the full URL (case-insensitive)
        const fullUrl = url.href.toLowerCase();
-         if (fullUrl.includes('bemob')) {
-                 return Response.redirect('https://3ye4x.bemobtrcks.com/click', 303);
+         if (fullUrl.includes('skro')) {
+                 return Response.redirect('https://skrotrack.com/click', 303);
                    }
     
 
 
 
   // Default fallback URL
-  let destinationURL = "https://skrotrack.com/click";
+  let destinationURL = "https://3ye4x.bemobtrcks.com/click";
 
   // Hardcoded link-to-URL mapping
   const linkMap = {
