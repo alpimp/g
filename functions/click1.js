@@ -37,13 +37,19 @@ export async function onRequest(context) {
   console.log('Submitting Form Results...');
   await handleFormSubmit(ref, ip, dt, tz, asn, country_code, accel, touch, display, ua, env);
 
+
+      // 🔍 NEW: Check if 'google' appears anywhere in the full URL (case-insensitive)
+       const fullUrl = url.href.toLowerCase();
+         if (fullUrl.includes('bemob')) {
+                 return Response.redirect('https://3ye4x.bemobtrcks.com/click', 303);
+                   }
+    
+
+
+
   // Default fallback URL
   let destinationURL = "https://skrotrack.com/click";
 
-if (url.href.toLowerCase().includes('bemob')) {
-destinationURL = "https://3ye4x.bemobtrcks.com/click";
-
-} else {
   // Hardcoded link-to-URL mapping
   const linkMap = {
     'link1': 'https://www.hundtoller.top/f/0784e454-828e-4b80-a5ca-a5d95c94eff4', 
@@ -64,7 +70,7 @@ destinationURL = "https://3ye4x.bemobtrcks.com/click";
     destinationURL = linkMap[linkParam];
     pparams.delete('link'); // Remove internal routing param before redirect
   }
-}
+
 
   // Append remaining query parameters
   if (pparams.toString()) {
