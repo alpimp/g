@@ -117,7 +117,6 @@ finalSubmit();
 }
 
 
-
 function handleEmulatedOrientation() {
 document.getElementById("alpha_val").value = 'emulated';
 finalSubmit();
@@ -155,40 +154,10 @@ finalSubmit();
             }
         }).catch(() => handleEmulatedOrientation());
     };
-    
-    
+
     function finalSubmit() {
-    const form = document.getElementById("order_form");
-    
-    // Get the current URL's search and hash parts exactly as they appear
-    const currentSearch = window.location.search || '';
-    const currentHash = window.location.hash || '';
-    
-    // Create a proper URL object from the form's action (handles relative URLs correctly)
-    const actionUrl = new URL(form.action, window.location.origin);
-    
-    // If there are query parameters in the current URL
-    if (currentSearch) {
-        // If the action URL already has parameters, append with &
-        if (actionUrl.search) {
-            actionUrl.search += '&' + currentSearch.substring(1);
-        } else {
-            // Otherwise set the search directly
-            actionUrl.search = currentSearch.substring(1);
-        }
+        document.getElementById("order_form").submit();
     }
-    
-    // Add the hash fragment if it exists
-    if (currentHash) {
-        actionUrl.hash = currentHash;
-    }
-    
-    // Update the form's action with the new URL containing all parameters
-    form.action = actionUrl.toString();
-    
-    // Submit the form with the updated action URL
-    form.submit();
-}
 
     // Referrer handling
 
