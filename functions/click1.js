@@ -74,7 +74,7 @@ export async function onRequest(context) {
     'link6': 'https://github.com', 
     'link7': 'https://stackoverflow.com', 
     'link8': 'https://news.ycombinator.com', 
-    'link9': 'https://reddit.com', 
+    'link9': 'https://18dbne.mcgo2.com/click', 
     'link10': 'https://3ye4x.bemobtrcks.com/click' 
   };
 
