@@ -2,7 +2,7 @@ $.i18n().load({
     en: {
         congratulations: 'Congratulations! 🎉',
         win: 'You have a chance to win.',
-        message: `You have been selected for a chance to win Samsung Galaxy A55 5G.
+        message: `You have been selected for a chance to win Apple iPhone 15 Pro.
 Register before the timer runs out.
 <strong>The sooner you register, the better your chances of winning!</strong>`,
         hurryUp: `Hurry 🔥 before it's over!`,
@@ -11,7 +11,7 @@ Register before the timer runs out.
     id: {
         congratulations: 'Selamat! 🎉',
         win: 'Anda memiliki kesempatan untuk menang.',
-        message: `Anda telah dipilih untuk mendapatkan kesempatan memenangkan Samsung Galaxy A55 5G.
+        message: `Anda telah dipilih untuk mendapatkan kesempatan memenangkan Apple iPhone 15 Pro.
 Daftar sebelum waktu habis.
 <strong>Semakin cepat Anda mendaftar, semakin besar peluang Anda untuk menang!</strong>`,
         hurryUp: `Cepat 🔥 sebelum kesempatan ini berakhir!`,

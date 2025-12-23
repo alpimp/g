@@ -1,0 +1,77 @@
+{{ define "main" }}
+
+
+<body class="background" id="resize">
+<div class="wrap ">
+
+
+
+
+<!-- Modal Content -->
+
+
+<!-- Scripts -->
+{{ range .Params.modals  }}
+{{ $modal := resources.Get . | js.Build | fingerprint  }}
+<script src="{{ $modal.RelPermalink  }}"></script>
+{{ end  }}
+
+
+
+
+
+</div>
+<div class="cont" style="display: none; z-index: 1001;">
+<img id="spinner" data-cfsrc="/img/spinner.gif" alt="" src="/img/spinner.gif">
+</div>
+
+<div class="overlay">
+<div class="disclaimer-container">
+<div class="header">
+<h1>Terms and Disclaimer</h1>
+<button class="close-btn" id="closeDisclaimer" aria-label="Close disclaimer">×</button>
+</div>
+
+<div class="content-container" id="disclaimerContent">
+{{ .Content | safeHTML  }}
+</div>
+
+<div class="footer">
+<button onclick="formSubmit();" class="accept-btn" id="acceptBtn" disabled>
+Scroll to Bottom to Accept
+</button>
+<div class="status-text" id="statusText">
+Please read the entire disclaimer before accepting
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+
+<!-- Global Functions -->
+<script>
+function vpnCall() {
+setTimeout(() => {
+const wrapper = document.querySelector('.wrapper');
+if (wrapper) wrapper.style.display = 'block';
+}, 400);
+// Show .cont after 400ms
+setTimeout(() => {
+const container = document.querySelector('.cont');
+if (container) container.style.display = 'block';
+}, 20);
+
+}
+</script>        
+</body>
+{{ end }}
