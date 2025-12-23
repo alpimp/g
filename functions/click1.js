@@ -68,27 +68,22 @@ export async function onRequest(context) {
     destinationURL = linkMap[linkParam];
     pparams.delete('link'); // Remove internal routing param before redirect
   }
-  
   // ====== CLEAN PARAMETER MAPPING SYSTEM ======
   // Define source parameter sets
   const s1_params = ['clickId', 'param1', 'param2', 'param3'];
   const s2_params = ['pId', 'custom1', 'custom2', 'custom3'];
   const s3_params = ['click_Id', 't1', 't2', 't3'];
-  
   // Define destination parameter sets
   const d1_params = ['click_id', 'sub_id1', 'sub_id2', 'sub_id3'];
   const d2_params = ['clId', 'sub1', 'sub2', 'sub3'];
   const d3_params = ['clickid', 'sub_1', 'sub_2', 'sub_3'];
-  
   // Get source and destination types from URL parameters
   const sourceType = pparams.get('src') || 's1';
   const destType = pparams.get('dst') || 'd1';
-  
   // Create mapping based on source and destination types
   const paramMapping = {};
   let sourceParams = [];
   let destParams = [];
-  
   // Select source parameter set
   switch(sourceType) {
     case 's1': sourceParams = s1_params; break;
@@ -96,7 +91,6 @@ export async function onRequest(context) {
     case 's3': sourceParams = s3_params; break;
     default: sourceParams = s1_params;
   }
-  
   // Select destination parameter set
   switch(destType) {
     case 'd1': destParams = d1_params; break;
@@ -104,28 +98,37 @@ export async function onRequest(context) {
     case 'd3': destParams = d3_params; break;
     default: destParams = d1_params;
   }
-  
   // Create mapping by position
   for(let i = 0; i < Math.min(sourceParams.length, destParams.length); i++) {
     paramMapping[sourceParams[i]] = destParams[i];
   }
-  
   // Transform parameters according to mapping
   const transformedParams = new URLSearchParams();
   for (const [key, value] of pparams.entries()) {
     // Skip internal parameters used for routing/mapping
     if (['src', 'dst', 'link'].includes(key)) continue;
-    
     // Apply mapping if defined, otherwise keep original parameter name
     const newKey = paramMapping[key] || key;
     transformedParams.append(newKey, value);
   }
   
-  // Create destination URL with transformed parameters
+  // ====== MERGE PARAMETERS WHILE PRESERVING EXISTING DESTINATION PARAMS ======
+  // Parse destination URL to access its existing parameters
   const destUrl = new URL(destinationURL);
-  destUrl.search = transformedParams.toString();
+  
+  // Get existing parameters from destination URL
+  const existingParams = new URLSearchParams(destUrl.search);
+  
+  // Merge transformed parameters with existing destination parameters
+  // (new parameters override existing ones if names collide)
+  for (const [key, value] of transformedParams.entries()) {
+    existingParams.set(key, value);
+  }
+  
+  // Reconstruct destination URL with merged parameters
+  destUrl.search = existingParams.toString();
   destinationURL = destUrl.toString();
-  // ====== END CLEAN PARAMETER MAPPING SYSTEM ======
+  // ====== END PARAMETER MERGING SYSTEM ======
   
   console.log('Redirecting to: ' + destinationURL);
   return Response.redirect(destinationURL, 303);
