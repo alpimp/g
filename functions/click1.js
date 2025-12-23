@@ -70,11 +70,11 @@ export async function onRequest(context) {
   }
   // ====== CLEAN PARAMETER MAPPING SYSTEM ======
   // Define source parameter sets
-  const s1_params = ['clickId', 'param1', 'param2', 'param3'];
+  const s1_params = ['click_id', 'source_id', 'sub_source_id', 'isp'];
   const s2_params = ['pId', 'custom1', 'custom2', 'custom3'];
   const s3_params = ['click_Id', 't1', 't2', 't3'];
   // Define destination parameter sets
-  const d1_params = ['click_id', 'sub_id1', 'sub_id2', 'sub_id3'];
+  const d1_params = ['ymid', 'var', 'sub_1', 'sub_2'];
   const d2_params = ['clId', 'sub1', 'sub2', 'sub3'];
   const d3_params = ['clickid', 'sub_1', 'sub_2', 'sub_3'];
   // Get source and destination types from URL parameters
