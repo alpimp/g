@@ -51,8 +51,8 @@ export async function onRequest(context) {
   let destinationURL = "https://skrotrack.com/click";
   // Hardcoded link-to-URL mapping
   const linkMap = {
-    'link1': 'https://ovret.com/link?z=10252578', 
-    'link2': 'https://www.hundtoller.top/f/18b11677-6d62-42f2-be1c-9696b50dc6f3', 
+    'link1': 'https://134l.com/link?z=10316249', 
+    'link2': 'https://ovret.com/link?z=10252578', 
     'link3': 'https://www.hundtoller.top/f/30225bd3-f94b-4e75-8af9-565e557fa224', 
     'link4': 'https://www.hundtoller.top/f/0cd6772a-7986-4a33-88cc-f0e22079470a', 
     'link5': 'https://www.hundtoller.top/f/5d465e4a-c885-4145-931b-ad2202163e9e', 
