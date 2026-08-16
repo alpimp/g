@@ -2,14 +2,6 @@
 <body>
 <div class="cont">
 
-{{ range .Params.modals }}
-{{ $modal := resources.Get . | js.Build  | fingerprint }}
-<!-- Use this for external scripts -->
-<script src="{{ $modal.RelPermalink }}"></script>
-<!-- Use this for inline scripts -->
-<!--<script> {{ $modal.Content | safeJS }} </script> -->
-{{ end }}
-
 <img data-cfsrc="/img/spinner.gif" alt="" src="/img/spinner.gif">
 </div>
 <div class="ytp-chrome-bottom" data-layer="8">

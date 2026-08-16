@@ -1,0 +1,17 @@
+{{ define "main" }}
+<body>
+  <main>
+   
+   
+    <a id="area1" class="area" href="javascript:formSubmit();"></a>
+  </main>
+    
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+</body>
+  {{ end }}

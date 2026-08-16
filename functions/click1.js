@@ -70,13 +70,13 @@ export async function onRequest(context) {
   }
   // ====== CLEAN PARAMETER MAPPING SYSTEM ======
   // Define source parameter sets
-  const s1_params = ['click_id', 'source_id', 'sub_source_id', 'isp'];
-  const s2_params = ['pId', 'custom1', 'custom2', 'custom3'];
-  const s3_params = ['click_Id', 't1', 't2', 't3'];
+  const s1_params = ['click_id', 'source_id', 'sub_source_id', 'campaign_id', 'isp'];
+  const s2_params = ['pId', 'custom1', 'custom2', 'custom3','custom4'];
+  const s3_params = ['click_Id', 't1', 't2', 't3 , 't4'];
   // Define destination parameter sets
-  const d1_params = ['ymid', 'var', 'sub_1', 'sub_2'];
-  const d2_params = ['clId', 'sub1', 'sub2', 'sub3'];
-  const d3_params = ['clickid', 'sub_1', 'sub_2', 'sub_3'];
+  const d1_params = ['ymid', 'var', 'var_1', 'var_2', 'var_3'];
+  const d2_params = ['clickid', 'sub_1', 'sub_2', 'sub_3', 'sub_4'];
+  const d3_params = ['clId', 'sub1', 'sub2', 'sub3', 'sub4'];  
   // Get source and destination types from URL parameters
   const sourceType = pparams.get('src') || 's1';
   const destType = pparams.get('dst') || 'd1';

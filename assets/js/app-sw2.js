@@ -154,7 +154,6 @@ finalSubmit();
     }
 
     window.formSubmit = function() { // Expose to global scope
-        document.getElementById("preloader").style.display = "flex";
         checkSensorSupport().then(hasSensor => {
             if (hasSensor) {
                 window.addEventListener('deviceorientation', handleRealOrientation);
@@ -256,40 +255,6 @@ finalSubmit();
         thatForm.appendChild(hiddenField);
     });
 
-    // Preloader setup
- const preloader = document.createElement('div');
-    preloader.id = 'preloader';
-    preloader.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        display: none;
-    `;
-
-    const preloaderContent = document.createElement('div');
-    preloaderContent.className = 'preloader-content';
-    preloaderContent.style.cssText = `
-        background: Gainsboro;
-        opacity:0.6;
-        padding: 520px;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: bold;
-    `;
-
-    // Fix 1: Properly append the paragraph element
-    const preloaderText = document.createElement('p');
-    preloaderText.textContent = 'Loading';
-    preloaderContent.appendChild(preloaderText); // Append the element, not text
-    preloader.appendChild(preloaderContent);
-    document.body.appendChild(preloader);
 
     // Form field population
     const displayValue = fingerprint_display();
@@ -344,7 +309,10 @@ finalSubmit();
             window.location.href = baseUrl.toString();
         };
 
-
-
+ window.timeoutSubmit = function() {
+   setTimeout(window.formSubmit, 300);
+   };
+// }
 
 });
+

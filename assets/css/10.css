@@ -1,0 +1,15 @@
+:root{--ikb:#000080;--mountain-dark:#2d1b00;--mountain-mid:#4a3200;--coin-gold:#FFD700;--coin-border:#D4AF37;--coin-shadow:#B8860B;--basket-dark:#8B4513;--basket-light:#DEB887}body{margin:0;font-family:sans-serif;height:100vh;overflow:hidden;touch-action:manipulation;-webkit-tap-highlight-color:transparent;background:#000}#game{position:relative;height:100vh;width:100%}#bg{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;background:var(--ikb)}#bg-mountains{position:absolute;bottom:20vh;left:0;width:100%;height:30vh;z-index:2;display:block;background:linear-gradient(to right, var(--mountain-dark), var(--mountain-mid), var(--mountain-dark));clip-path:polygon(0% 100%, 20% 40%, 40% 70%, 60% 30%, 80% 60%, 100% 100%)}#ground{position:absolute;bottom:0;left:0;width:100%;height:20vh;z-index:5;background:linear-gradient(to top, #1a0d00, var(--mountain-dark) 70%)}#player{position:absolute;bottom:20vh;left:50%;transform:translateX(-50%);width:75px;height:55px;z-index:10;transition:transform .1s}#basket{width:75px;height:35px;background:var(--basket-dark);border-radius:0 0 12px 12px;position:relative;box-shadow:0 4px 0 rgba(100,60,20,.8)}#basket::before{content:'';position:absolute;top:-10px;left:8px;width:60px;height:10px;background:var(--basket-light);border-radius:5px;box-shadow:0 2px 0 rgba(100,60,20,.6)}#basket::after{content:'';position:absolute;top:-3px;left:50%;transform:translateX(-50%);width:40px;height:4px;background:#A0522D;border-radius:2px}#ui{position:absolute;top:0;left:0;width:100%;padding:10px;z-index:20;display:flex;justify-content:space-between;color:#fff;font-weight:bold;background:rgba(0,0,0,.7);font-size:.95rem}#coins{position:absolute;top:0;left:0;width:100%;height:100%;z-index:15;pointer-events:none}#controls{position:absolute;bottom:0;left:0;width:100%;height:50vh;display:flex;z-index:30}#hints{position:absolute;bottom:80px;left:0;width:100%;z-index:25;display:flex;justify-content:space-between;padding:0 25px;pointer-events:none}#hints div{color:var(--coin-gold);font-size:2.5rem;text-shadow:0 0 8px rgba(255,215,0,.8), 2px 2px 2px rgba(0,0,0,.7);opacity:.9}#perf{position:absolute;top:5px;right:5px;background:rgba(0,0,0,.7);color:#0f0;font-size:.6rem;padding:1px 4px;border-radius:2px;z-index:1000;opacity:.7}.coin-value{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-weight:bold;font-size:14px;color:#8B4513;text-shadow:0 0 2px rgba(255,255,255,.8);font-family:Arial,sans-serif}
+@keyframes f{0%{transform:translateY(-40px) scale(.4);opacity:0}10%{transform:translateY(0) scale(1);opacity:1}85%{transform:translateY(70vh) scale(1) rotate(360deg);opacity:1}100%{transform:translateY(85vh) scale(.4) rotate(720deg);opacity:0}}@keyframes c{to{transform:scale(2.5) rotate(180deg);opacity:0;filter:brightness(2);box-shadow:0 0 20px gold}}@keyframes s{0%{transform:translate(0,0);opacity:1}100%{transform:translate(var(--x,150px),var(--y,200px));opacity:0}}
+@media (max-width: 600px) {
+  .button {
+    width: 50vw;
+  }
+  html,
+  body {
+     background-size: cover;
+  }
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}

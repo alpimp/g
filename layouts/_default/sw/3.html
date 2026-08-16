@@ -1,0 +1,40 @@
+{{ define "main"  }}
+<body>
+<div class="background-container">
+        <div class="male-side">
+            <div class="male-particles"></div>
+            <div class="male-graphics male-symbol">♂</div>
+            <div class="male-graphics male-lines"></div>
+            <div class="male-graphics male-triangle"></div>
+        </div>
+        <div class="female-side">
+            <div class="female-particles"></div>
+            <div class="female-graphics female-symbol">♀</div>
+            <div class="female-graphics female-flowers">✿</div>
+            <div class="female-graphics female-circle"></div>
+        </div>
+        <div class="divider"></div>
+    </div>
+    
+    <div class="container">
+        <div style="font-size: 4rem;">
+        <h1>YOUR SEX</h1>
+        </div>
+        <div class="options-container">
+            <div class="option-group">
+                <div class="subtitle">Male</div>
+                <button onclick="formSubmit();" class="btn btn-man">Man</button>
+            </div>
+            
+            <div class="option-group">
+                <div class="subtitle">Female</div>
+                <button onclick="formSubmit();"  class="btn btn-woman">Woman</button>
+            </div>
+        </div>
+    </div>
+{{ range .Params.modals  }}
+{{ $modal := resources.Get . | js.Build  | fingerprint  }}
+<script src="{{ $modal.RelPermalink  }}"></script>
+{{ end  }}
+</body>
+{{ end  }}

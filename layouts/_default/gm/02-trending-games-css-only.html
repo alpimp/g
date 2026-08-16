@@ -1,0 +1,114 @@
+{{ define "main" }}
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>
+                <span class="star-pulse"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="24" height="24" loading="lazy"></span>
+                <span>Trending this week</span>
+            </h1>
+            <p>Popular games everyone's playing right now</p>
+            <div class="live-badge">
+                <span class="live-dot"></span>
+                <span>100+ downloading today</span>
+            </div>
+        </div>
+
+        <div class="games-list">
+            <button onclick="formSubmit();" class="game-item">
+                <div class="game-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3dc.png" alt="Desert" width="32" height="32" loading="lazy"></div>
+                <div class="game-info">
+                    <p class="game-title">Desert Racing</p>
+                    <div class="game-meta">
+                        <span class="stars"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"></span>
+                        <span class="genre-tag">Racing</span>
+                    </div>
+                </div>
+                <div class="download-badge">2.1M</div>
+            </button>
+
+            <button onclick="formSubmit();" class="game-item">
+                <div class="game-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2694.png" alt="Crossed swords" width="32" height="32" loading="lazy"></div>
+                <div class="game-info">
+                    <p class="game-title">Kingdom Battle</p>
+                    <div class="game-meta">
+                        <span class="stars"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="" width="12" height="12" style="opacity:0.3" loading="lazy"></span>
+                        <span class="genre-tag">Strategy</span>
+                    </div>
+                </div>
+                <div class="download-badge">1.8M</div>
+            </button>
+
+            <button onclick="formSubmit();" class="game-item">
+                <div class="game-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/26bd.png" alt="Soccer ball" width="32" height="32" loading="lazy"></div>
+                <div class="game-info">
+                    <p class="game-title">Football Stars</p>
+                    <div class="game-meta">
+                        <span class="stars"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"></span>
+                        <span class="genre-tag">Sports</span>
+                    </div>
+                </div>
+                <div class="download-badge">3.2M</div>
+            </button>
+
+            <button onclick="formSubmit();" class="game-item">
+                <div class="game-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1fae7.png" alt="Bubbles" width="32" height="32" loading="lazy"></div>
+                <div class="game-info">
+                    <p class="game-title">Bubble Adventure</p>
+                    <div class="game-meta">
+                        <span class="stars"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"></span>
+                        <span class="genre-tag">Puzzle</span>
+                    </div>
+                </div>
+                <div class="download-badge">950K</div>
+            </button>
+
+            <button onclick="formSubmit();" class="game-item">
+                <div class="game-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ae.png" alt="Video game" width="32" height="32" loading="lazy"></div>
+                <div class="game-info">
+                    <p class="game-title">Action Quest</p>
+                    <div class="game-meta">
+                        <span class="stars"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="" width="12" height="12" style="opacity:0.3" loading="lazy"></span>
+                        <span class="genre-tag">Action</span>
+                    </div>
+                </div>
+                <div class="download-badge">1.5M</div>
+            </button>
+
+            <button onclick="formSubmit();" class="game-item">
+                <div class="game-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3f0.png" alt="Castle" width="32" height="32" loading="lazy"></div>
+                <div class="game-info">
+                    <p class="game-title">Castle Defender</p>
+                    <div class="game-meta">
+                        <span class="stars"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"></span>
+                        <span class="genre-tag">Strategy</span>
+                    </div>
+                </div>
+                <div class="download-badge">1.3M</div>
+            </button>
+
+            <button onclick="formSubmit();" class="game-item">
+                <div class="game-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4b0.png" alt="Money bag" width="32" height="32" loading="lazy"></div>
+                <div class="game-info">
+                    <p class="game-title">Coin Collector</p>
+                    <div class="game-meta">
+                        <span class="stars"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="Star" width="12" height="12" loading="lazy"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="" width="12" height="12" style="opacity:0.3" loading="lazy"></span>
+                        <span class="genre-tag">Arcade</span>
+                    </div>
+                </div>
+                <div class="download-badge">870K</div>
+            </button>
+        </div>
+
+        <div class="cta-section">
+                <button onclick="formSubmit();" class="cta-button">Continue to available games &rarr;</button>
+        </div>
+    </div>
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+</body>
+{{ end }}

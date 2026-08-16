@@ -1,0 +1,96 @@
+{{ define "main" }}
+<body>
+    <div class="container">
+        <!-- Genre radios (at top for CSS sibling selectors) -->
+        <input type="radio" name="genre" id="genre1" value="action">
+        <input type="radio" name="genre" id="genre2" value="racing">
+        <input type="radio" name="genre" id="genre3" value="puzzle">
+        <input type="radio" name="genre" id="genre4" value="sports">
+
+        <!-- Time radios -->
+        <input type="radio" name="time" id="time1" value="short">
+        <input type="radio" name="time" id="time2" value="medium">
+        <input type="radio" name="time" id="time3" value="long">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="header-top">
+                <span class="progress-label">Question 1 of 2</span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+            <h2>What do you enjoy?</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Question 1 -->
+            <div class="q1">
+                <label for="genre1" class="option-label">
+                    <span class="option-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ae.png" alt="" width="20" height="20" loading="lazy"></span>
+                    <span>Action & Adventure</span>
+                </label>
+                <label for="genre2" class="option-label">
+                    <span class="option-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ce.png" alt="" width="20" height="20" loading="lazy"></span>
+                    <span>Racing & Speed</span>
+                </label>
+                <label for="genre3" class="option-label">
+                    <span class="option-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9e9.png" alt="" width="20" height="20" loading="lazy"></span>
+                    <span>Puzzle & Brain Games</span>
+                </label>
+                <label for="genre4" class="option-label">
+                    <span class="option-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/26bd.png" alt="" width="20" height="20" loading="lazy"></span>
+                    <span>Sports & Competition</span>
+                </label>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="q2">
+                <label for="time1" class="option-label">
+                    <span class="option-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/23f1.png" alt="" width="20" height="20" loading="lazy"></span>
+                    <span>5-10 minutes (quick sessions)</span>
+                </label>
+                <label for="time2" class="option-label">
+                    <span class="option-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/23f0.png" alt="" width="20" height="20" loading="lazy"></span>
+                    <span>15-30 minutes (casual play)</span>
+                </label>
+                <label for="time3" class="option-label">
+                    <span class="option-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ae.png" alt="" width="20" height="20" loading="lazy"></span>
+                    <span>1 hour+ (deep sessions)</span>
+                </label>
+            </div>
+
+            <!-- Results -->
+            <div class="results">
+                <span class="result-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2728.png" alt="" width="48" height="48" loading="lazy"></span>
+                <p class="result-title">We found your games!</p>
+                <p class="result-subtitle">Based on your preferences</p>
+                <div class="result-games">
+            <button onclick="formSubmit();" class="game-item">
+                    <span class="game-chip">Game 1</span>
+            </button>
+            <button onclick="formSubmit();" class="game-item">
+                    <span class="game-chip">Game 2</span>
+            </button>
+            <button onclick="formSubmit();" class="game-item">
+                    <span class="game-chip">Game 3</span>
+            </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+                <button onclick="formSubmit();" class="cta-button">View games &rarr;</button>
+        </div>
+    </div>
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+</body>
+{{ end }}

@@ -1,0 +1,83 @@
+{{ define "main" }}
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>Choose your vibe</h1>
+            <p>What do you feel like playing?</p>
+        </div>
+
+        <div class="content">
+            <div class="genres-wrapper">
+
+                <!-- Action -->
+<button type="button"  onclick="formSubmit();" >
+                <input type="radio" name="genre" id="genre-action" value="action">
+            </button>
+                <label for="genre-action" class="genre-label">
+                    <span class="genre-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ae.png" alt="Video game" width="36" height="36" loading="lazy"></span>
+                    <span class="genre-text">Action</span>
+                </label>
+
+                <!-- Racing -->
+<button type="button"  onclick="formSubmit();" >
+                <input type="radio" name="genre" id="genre-racing" value="racing">
+            </button>
+                <label for="genre-racing" class="genre-label">
+                    <span class="genre-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ce.png" alt="Racing car" width="36" height="36" loading="lazy"></span>
+                    <span class="genre-text">Racing</span>
+                </label>
+
+                <!-- Puzzle -->
+<button type="button"  onclick="formSubmit();" >
+                <input type="radio" name="genre" id="genre-puzzle" value="puzzle">
+            </button>
+                <label for="genre-puzzle" class="genre-label">
+                    <span class="genre-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f9e9.png" alt="Puzzle piece" width="36" height="36" loading="lazy"></span>
+                    <span class="genre-text">Puzzle</span>
+                </label>
+
+                <!-- Sports -->
+<button type="button"  onclick="formSubmit();" >
+                <input type="radio" name="genre" id="genre-sports" value="sports">
+            </button>
+                <label for="genre-sports" class="genre-label">
+                    <span class="genre-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/26bd.png" alt="Soccer ball" width="36" height="36" loading="lazy"></span>
+                    <span class="genre-text">Sports</span>
+                </label>
+
+                <!-- Strategy -->
+<button type="button"  onclick="formSubmit();" >
+                <input type="radio" name="genre" id="genre-strategy" value="strategy">
+            </button>
+                <label for="genre-strategy" class="genre-label genre-center">
+                    <span class="genre-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f451.png" alt="Crown" width="36" height="36" loading="lazy"></span>
+                    <span class="genre-text">Strategy</span>
+                </label>
+
+                <div class="genres-grid">
+                    <!-- This shows initially -->
+                </div>
+
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <div class="loading-text">
+                        <strong>Finding games for you...</strong>
+                        <span>Please wait</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+                <button type="button"  onclick="formSubmit();" class="cta-button">Continue &rarr;</button>
+        </div>
+    </div>
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+</body>
+{{ end }}

@@ -98,6 +98,10 @@ disableSitemap = true
     languageName = "om"
     weight = 8
 
+    [languages.pk]
+    title = ""
+    languageName = "pk"
+    weight = 8
 
 
     [languages.it]
@@ -120,3 +124,10 @@ disableSitemap = true
   [markup.goldmark]
       [markup.goldmark.renderer]
             unsafe = true
+
+
+[build]
+  writeStats = true
+
+[server]
+    disableLiveReload = true

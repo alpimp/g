@@ -1,0 +1,19 @@
+{{ define "main" }}
+<body>
+    <div class="video-container" onclick="formSubmit()">
+        <img 
+            class="video-background"
+           loading="lazy"
+             src="/img/gostream.jpg"/> 
+    </div>
+
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+</body>
+    
+{{ end }}

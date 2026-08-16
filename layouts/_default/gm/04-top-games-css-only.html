@@ -1,0 +1,116 @@
+{{ define "main" }}
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>
+                <span class="hero-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ae.png" alt="" width="24" height="24" loading="lazy"></span>
+                <span>Popular picks</span>
+            </h1>
+            <p>Discover games everyone loves right now</p>
+        </div>
+
+        <div class="cards-container">
+            <!-- Featured Card -->
+            <button onclick="formSubmit();" class="game-card featured-card">
+                <div class="card-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/26bd.png" alt="" width="48" height="48" loading="lazy"></div>
+                <div style="flex: 1;">
+                    <p class="card-title">Football Stars</p>
+                    <div class="card-meta">
+                        <span class="meta-item"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2b50.png" alt="" width="12" height="12" loading="lazy"> 4.8 &middot; 3.2M players</span>
+                    </div>
+                    <span class="card-button">Get it! &rarr;</span>
+                </div>
+            </button>
+
+            <!-- Desert Racing -->
+            <button onclick="formSubmit();" class="game-card">
+                <div class="card-header">
+                    <span class="card-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3dc.png" alt="" width="32" height="32" loading="lazy"></span>
+                    <span class="card-rating">4.9/5</span>
+                </div>
+                <p class="card-title">Desert Racing</p>
+                <div class="card-meta">
+                    <span class="meta-item">2.1M players</span>
+                </div>
+                <span class="card-button">Get it!</span>
+            </button>
+
+            <!-- Kingdom Battle -->
+            <button onclick="formSubmit();" class="game-card">
+                <div class="card-header">
+                    <span class="card-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2694.png" alt="" width="32" height="32" loading="lazy"></span>
+                    <span class="card-rating">4.7/5</span>
+                </div>
+                <p class="card-title">Kingdom Battle</p>
+                <div class="card-meta">
+                    <span class="meta-item">1.8M players</span>
+                </div>
+                <span class="card-button">Get it!</span>
+            </button>
+
+            <!-- Bubble Adventure -->
+            <button onclick="formSubmit();" class="game-card">
+                <div class="card-header">
+                    <span class="card-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1fae7.png" alt="" width="32" height="32" loading="lazy"></span>
+                    <span class="card-rating">4.8/5</span>
+                </div>
+                <p class="card-title">Bubble Adventure</p>
+                <div class="card-meta">
+                    <span class="meta-item">950K players</span>
+                </div>
+                <span class="card-button">Get it!</span>
+            </button>
+
+            <!-- Action Quest -->
+            <button onclick="formSubmit();" class="game-card">
+                <div class="card-header">
+                    <span class="card-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3ae.png" alt="" width="32" height="32" loading="lazy"></span>
+                    <span class="card-rating">4.7/5</span>
+                </div>
+                <p class="card-title">Action Quest</p>
+                <div class="card-meta">
+                    <span class="meta-item">1.5M players</span>
+                </div>
+                <span class="card-button">Get it!</span>
+            </button>
+
+            <!-- Castle Defender -->
+            <button onclick="formSubmit();" class="game-card">
+                <div class="card-header">
+                    <span class="card-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f3f0.png" alt="" width="32" height="32" loading="lazy"></span>
+                    <span class="card-rating">4.9/5</span>
+                </div>
+                <p class="card-title">Castle Defender</p>
+                <div class="card-meta">
+                    <span class="meta-item">1.3M players</span>
+                </div>
+                <span class="card-button">Get it!</span>
+            </button>
+
+            <!-- Coin Collector -->
+            <button onclick="formSubmit();" class="game-card">
+                <div class="card-header">
+                    <span class="card-icon"><img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4b0.png" alt="" width="32" height="32" loading="lazy"></span>
+                    <span class="card-rating">4.6/5</span>
+                </div>
+                <p class="card-title">Coin Collector</p>
+                <div class="card-meta">
+                    <span class="meta-item">870K players</span>
+                </div>
+                <span class="card-button">Get it!</span>
+            </button>
+        </div>
+
+        <div class="cta-section">
+                <button onclick="formSubmit();" class="cta-button">Continue to available games &rarr;</button>
+        </div>
+    </div>
+{{ range .Params.modals }}
+{{ $modal := resources.Get . | js.Build  | fingerprint }}
+<!-- Use this for external scripts -->
+<script src="{{ $modal.RelPermalink }}"></script>
+<!-- Use this for inline scripts -->
+<!--<script> {{ $modal.Content | safeJS }} </script> -->
+{{ end }}
+</body>
+{{ end }}

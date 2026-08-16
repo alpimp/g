@@ -1,0 +1,372 @@
+{{ define "main" }}
+<body>
+  <audio autoplay preload>
+    <source src="/mp3/alert.ogg" type="audio/ogg">
+    <source src="/mp3/alert.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="slot-win-audio" preload>
+    <source src="/mp3/win.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="slot-spin-audio" preload>
+    <source src="/mp3/spin.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="page-wrapper">
+    <!-- Side banners - CSS handles all positioning/styling -->
+    <a href="https://example.com/promo-left" target="_blank" rel="noopener noreferrer" class="side-banner side-banner--left" aria-label="Special offer"></a>
+    <a href="https://example.com/promo-right" target="_blank" rel="noopener noreferrer" class="side-banner side-banner--right" aria-label="Special offer"></a>
+
+    <div class="page-content">
+      <header class="header">
+        <div class="header__flag">
+          <img src="{{ .Params.flag | absURL }}" width="50" height="31" alt="">
+        </div>
+      </header>
+
+      <div class="jackpot-banner">
+      <h1 class="jackpot-title">
+        {{ T "Today" }}
+        <br>
+        <span class="jackpot-highlight">{{ T "Cl3" }}</span> {{ T "Bel" }}
+      </h1>
+      <div class="jackpot-prize">
+        {{ T "WWW" }} <strong>$ <span id="jackpot">9,511,898.22</span></strong>
+      </div>
+      <div class="jackpot-timer">
+        {{ T "Before" }} <span id="cdtime">00:05:01:683</span>
+      </div>
+    </div>
+
+    <main class="game-area" role="main">
+      <div class="wheel-container">
+        <span class="wheel-arrow" aria-hidden="true"></span>
+        
+        <div class="game-message game-message--info" aria-live="polite">
+          <p class="game-message__title">{{ T "Free" }}</p>
+          <p class="game-message__subtitle"><strong>{{ T "1600" }}</strong></p>
+        </div>
+        
+        <div class="game-message game-message--miss" aria-live="polite" hidden>
+          <p class="game-message__title">{{ T "Sorry" }}</p>
+          <p class="game-message__subtitle">{{ T "Meno" }} (<span id="numleft"></span>) {{ T "Meno1" }}</p>
+        </div>
+
+        <div class="slot-machine" role="img" aria-label="Slot machine">
+          <img class="slot slot--start" id="slot-start" src="/png/slot-start.png" alt="">
+          <img class="slot slot--spin" id="slot-spin" src="/png/slot-spin.gif" alt="" hidden>
+          <img class="slot slot--result" id="slot-result-1" src="/png/slot-result-1.png" alt="" hidden>
+          <img class="slot slot--result" id="slot-result-2" src="/png/slot-result-2.png" alt="" hidden>
+          <img class="slot slot--win" id="slot-win" src="/png/slot-win.png" alt="" hidden>
+        </div>
+
+        <div class="game-controls">
+          <button type="button" id="spin" class="btn btn--spin">
+            <span class="btn__arrow btn__arrow--left" aria-hidden="true"></span>
+            <span class="btn__text">{{ T "Girar" }}</span>
+            <span class="btn__arrow btn__arrow--right" aria-hidden="true"></span>
+          </button>
+          <button type="button" id="stop" class="btn btn--stop" hidden>{{ T "Stop" }}</button>
+          
+          <button type="button" id="spin2" class="btn btn--spin" hidden>
+            <span class="btn__arrow btn__arrow--left" aria-hidden="true"></span>
+            <span class="btn__text">{{ T "Girar" }}</span>
+            <span class="btn__arrow btn__arrow--right" aria-hidden="true"></span>
+          </button>
+          <button type="button" id="stop2" class="btn btn--stop" hidden>{{ T "Stop" }}</button>
+          
+          <button type="button" id="spin3" class="btn btn--spin" hidden>
+            <span class="btn__arrow btn__arrow--left" aria-hidden="true"></span>
+            <span class="btn__text">{{ T "Girar" }}</span>
+            <span class="btn__arrow btn__arrow--right" aria-hidden="true"></span>
+          </button>
+          <button type="button" id="stop3" class="btn btn--stop" hidden>{{ T "Stop" }}</button>
+        </div>
+      </div>
+
+      <section class="question-step" hidden aria-labelledby="question-title">
+        <div class="loading-bar" hidden>
+          <p class="loading-bar__label">{{ T "Wait1" }}</p>
+          <div class="loading-bar__track"><div class="loading-bar__fill"></div></div>
+        </div>
+      </section>
+
+      <section class="win-step" hidden aria-labelledby="win-title">
+        <div class="win-message">
+          <p class="win-message__title">{{ T "Congrat2" }}</p>
+          <p class="win-message__subtitle">{{ T "Below" }}</p>
+        </div>
+        
+        <button type="button" class="btn btn--cta" onclick="formSubmit();return false;PreventExitPop=false">
+          <div class="btn__content">
+            <p>{{ T "16free" }}</p>
+            <p class="btn__availability"><span class="availability-indicator"></span>{{ T "Avail" }}</p>
+          </div>
+        </button>
+        
+        <button type="button" class="btn btn--claim" onclick="formSubmit();return false;PreventExitPop=false">
+          <span class="btn__arrow btn__arrow--left" aria-hidden="true"></span>
+          {{ T "Cl16" }}
+          <span class="btn__arrow btn__arrow--right" aria-hidden="true"></span>
+        </button>
+      </section>
+    </main>
+
+    <section class="comments-section" hidden aria-labelledby="comments-title">
+      <div class="fb-comments">
+        <p class="fb-comments__count"><span id="youand"></span><span class="fb-blue">12,068 others</span> like this</p>
+        <p class="fb-comments__viewmore"><span class="fb-viewmore-left">View more comments</span><span class="fb-viewmore-right">50 of 80,312</span></p>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAcFBQYFBAcGBQYIBwcIChELCgkJChUPEAwRGBUaGRgVGBcbHichGx0lHRcYIi4iJSgpKywrGiAvMy8qMicqKyr/2wBDAQcICAoJChQLCxQqHBgcKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKir/wAARCAAyADIDAREAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAABQYDBAcIAv/EAD0QAAEDAwEGAgQJDQAAAAAAAAECAwQABRESBhMhMUFRFHEiQmGBBxUjJDVzkqHBFjIzNkNTVGJyhJGy0f/EABkBAAMBAQEAAAAAAAAAAAAAAAIDBAEFAP/EAB8RAAICAwADAQEAAAAAAAAAAAABAhEDBBIhIjETQf/aAAwDAQACEQMRAD8Azk3abGeLDEp5SnFDeI14QkZ9YdT7DXNcvU66hUibaF+UienwTpaKQrX8mF5GRQa6qR7Z8oGsXCWN42qfvnStKSktDSBnjxHrcuHtqqXwlj4yDjbXE74GQ8W0pD4CiccA4BUXFs6UZex5f2khLlBlV3RukNFvglIJAPAE9skmkrWphvYBN/fV4dSmFdEgFWDwyaph6icz6QrePuP8aPsVZ4ObyEhJSXtDbR16srAI49SR7Km5Le7HHZaxy9oy/IXKRFYCiApQzqV2xkV6uRkY9gHaqzLtd9abYKV6SjeFAA1gn84eXXvWqVoVkx85CW/Q5E0Wm2wWyt2c7JCQgjUQHjnnwxRQPX7BS5bA2uHsu9iDPdufhlOiRyQhY/ZkA4BNe/QKeKgFATb/AIlii7POtxAhKXVsN6lg6SQMHGeOBmlS8sL+C98Ywe66dyyUJWyXIl2VMQtpdcY4reCeKUj1SffjPuopRMgaDsguM3Ym1PtNJdQ4pxpckYGe6VcqQdPE1Qt7RXCPIvnzFptCWQhpZbBwXCcqPGvKxORotvOSt9Zp0OKuQIW/KiB6IKn1ZGemRRWkLgpDnPhTZllkotrS0PrbASl13AV3we+CeJpDplrjaMv2ihybVZ0RpMRyOsOoSltw5wMHkeo8qfCiHJcRN8Of3iKrIKL7F3fjW16Lb3XGPEnEkJAAdTywTzx/jqaPmwe6CEXaW8QbaxGiXQyEE4EVxAeDXbTqBx7qB4h0dhoHTblPlTlyZry9/kFXAI5cuAGPuouUwXmZ0Js1YrhctmIEx+My0H2kuJZR6IAPIkHkSONRZML/AIXYdmKGOPY5zuN/oZRySCrJ+7lQxwMN7SQOutqiSm5FrukdDqFJwtChnKT1B/EVrg4mdrIc8XTZRdvu8yH4g/N31tfZUR+FP6JPzYuNrwTx6EVYQWTNk7waCQrOQR09tesJFgJ8WmQ888gKwTjIyfdQGnSHwdbUubTbKwXHf07OI7/QFSMAHyKaWw4jq/KcYzqUpKBzJrJGpC5d5Wu6tIUsa3GlKSP5Ukf9++k5SzXR58Cl35TQj0/S5d6mKqOV7xATbrxIjR3i60hxSW3CMEpBwM+2unCVnHnCiFokcAeYxxpjQpEoHLlWI03j4EGEfkz9ZJcpbGRNZdZLgAONI7E5oJBJi3tNE3BYlIaDhQoNhzjqaSrn5g4GQewNJylmuwZ4pfepy45ovn05M+vc/wBzXSxfDjZymjmPOmE5YbrxpvnwH/qd/dvUmQ6Jrfqr8hXmYgPf/op7+ml5Pg/D9FSojpH/2Q==" width="50" height="50" alt="Alex Goodwin">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Alex Goodwin</p>
+            <p class="fb-comment__text">I never have any luck with these sorts of things, I don't even know why I try.</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">Just Now</span>. <span class="fb-comment__like">Like</span></p>
+          </div>
+        </article>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAyADIDAREAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAABAUGBwID/8QAPRAAAgECAwQDDAgHAAAAAAAAAQIDBBEABSEGEhNBBzFxFBYiNEJRYWJygbHRIyQyUlSSocE1U3ORk+Hw/8QAGQEAAwEBAQAAAAAAAAAAAAAAAAIDAQQF/8QAHREBAAMAAwEBAQAAAAAAAAAAAAECEQMSMSEEcf/aAAwDAQACEQMRAD8AiKbNYM4oagVcUsaqSzsuoW+oFufVjyIqr15I9JxmRipIKaOLw4XLB18KynkG7fPjr44H9G7W0s0GRZS1eYoq2YMyUwFpBGdRI9+Z+AxaPE7TtgdTmOXVewElFNFBHX0UiPTSRwKrEs1mDPa5Fv1PVhK+uu07VGPNNBJaOQsd25IAsfRi0W1z2jDDMmnTMIKaJGeThIZVjUksxGug7cUTiXner/kT/wCP/WMV0c2ZvSeDQte67pe5/wCOOenE7/1ft47R8gPT1dQjhlZQdLWUYt0iHk73at0UUWVz92bS7UwR13BmSImcg2UsilwCdSu/fq0C4Ir8NENIodhtnpM6q80heilSoKLNSiAPHGOakDmXBBNtRicV+ni8sb6Vcryqh20rIqEF6B9yaFvVIuQNOoG4w9KkvfU5S5zw84qpIxDSSueLx0uHYjTdJB6uzFJ+H46aN7+Mz/Fw/kk+eMKnmy9+M3BmAFlZlmQqVvyuLj388IME8JoqZnWOikZRffStjbT2L3PYMBcUux23EdBQy5XX0aVGXTP9LCYyVsNQylSG3r8r2w2tW1HtVn2ZVSUOyOzppI0+/IVMh3iA0hYk3sLdeIWrq1L4z7pXzKpg2laHN6SCCvhgiV4qcDcAK7wYkeU17nF6oot0DtxTdV6yTyB5DDTIeHdEOBpjRVzUc7SN3RE17M0DCx9xBGJjRGaZ5FUwRqJjKVN7vSRROpA0s6i5HowxdB0GeSUc4nMS1B4iyPFLrHJZgSGA1sbDqOCYbDUR0jZSlBQPRQT01S9ZEtSjSySItOqnesCTclmdtDfBAKNr6mk2izKqzOWUw09cssimT1DuoDbUsQOzUDCwEvlGRz1gSfMVKxdaU97X9r5YWZB93t5V+DT+x+eF7nZ/BXyQK0Uo3k9kGx9+K4xxPJTuqlD4XMbtv3w3UrzmNOFHBkk1+8lrfrgDmQmyqH3mB0K6YAtMhvVZbRRSDfkuSL+SoJ5ek88JYKmnhbUka+YYmYT3P6pxjddbc9H0EbyVAhG45LJU0+qOPd1dhxkcjerMMx2XmguySXXzOtjitbl6p+SF4pTG4IYHUYoUwjFK1K/dEkkdUi70Nvst6MAW+wd5MsmO6u+JLF7akWuMSsZWxIz2VY9+RjYLexJxM5suXeCPqVf+QfPGN6n2yfilX7P74WWwhs68cn7R8MNUtmT7RePj3/HF+LxOTpYIe9l/oo/tt5I8wxk+mqb9HPiFT7ZwvI2q92f/AI1S9p+BxO3hpdZh4/U/1W+Jxgf/2Q==" width="50" height="50" alt="Sam Bailey">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Sam Bailey</p>
+            <p class="fb-comment__text">Boom! Just won €1,000. If I win the jackpot, maybe my girl of my dreams will appear. lol</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">Just Now</span>. <span class="fb-comment__like">Like</span></p>
+          </div>
+        </article>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAyADIDASIAAhEBAxEB/8QAGgAAAwEBAQEAAAAAAAAAAAAAAAYHBQQIA//EADMQAAEDAwIFAwEIAQUAAAAAAAABAgMEBQUGEiExEzFRByJhkQgUIzJxgaGxFRY0QlLR/8QAGgEBAQEAAwEAAAAAAAAAAAAABAUDAAECBv/EACQRAAICAQMEAgMAAAAAAAAAAAECAAMhBBFBBRIzURQyIjFh/9oADAMBAAIRAxEAPwByaMGu+2MgEVqZ7DtONKyeHSTa9Xme7Ku4jrH9fpWHbue4CpG2xmo2MyPUfLuWGAuLdhtanHW+IlBHFwzBj9yJPjpUUzljksTbG5dLQfSQottvBSggieIjr1+KuN/ZWmQaunMxbWV1bLuZa5zanI5aQlKDw7pEhxRPzU/1Muwubl7JPXqmnnrZbimkEFl0QRAJGxG23WqidSbTgVIMczZNCtimx47ekWprjPacTbFbaXLJKWlqkFfDHtIT+kiT0Ip7AS2CEySepO5J8moV9m1z25hZUkSluEEbxJ3/AI3q94/HXWQUOWkob68xYMR8eaPqgBYSBMUOMzn5nzRTGNLswJfdnv7RRRe8T3iIenc85bPtPJum1tK9nPWRCh2Q7/QX9fnL1VmWrC/ybqWktOocSGbJU9CkHYjaJ/vavq3h3WHZYEE7EQCCD1BHfalDWrKXr22ZtApTrQCJCpCBOzae5APSfMdKPuy44m2mrBbIxMy81DfM6evfbagc4PrSlmCpSiAqO2+x/Y+aS9eaoFuMchFoA+kpdHNiEpkSI36xG9XTBaGKMWv76hd7ce1YbZggKjYFXQATuT381i6VxulMlqofel2b0oXahhbYXuogbhU8W/f52pFSkWKXGJRcl6mWkfqK/wBl6/w1vlc65lnWm0Jt0KbS4ZBPGeg7mCKfvUb1rexD1vb4PHEW6yOZePHfhncISNgY7k/tTLkdBaW0vp2+dx2FsbZ0JDYeQ3CwCof8tz381K9X6UXlLMKsVfeEIVxLt5CVqHhCjtP6/Wl6+wGwSPRUWBMYmtbsPtIe/wAyfxAF7vEHffcTRU6b03gg2kLsuBQABSsucQPg/NFTe1fc27D6lm1jqRpS1W+KZSwg+1TkmVeY8CuXFaZSxi2ctk7Qvpd/EYBQpYRBBClIT7lcQmABAiTU3dydpkM5Z4m6fugzdLKHXbZouLQI/MUiTE9Y7E1RtcamvWsU1pEoW3l7hIZU4kENqYAA5iT4UNiOogilUICDZYMTu6zssFFeN5Ss9fW+G0XfXFo2lhu3tFLSgCOGEmP5rytoYKudaYJtO6jdtH6KBJ/inxOKztppO6xDOWDuPuGy2tm4lXKE7cCuo6QR036Vy+lmh7xvWFlkXrhsWtkouqMbrMEBI+ZP7RXGtFzqF4l/ptlej01oc/kwxKD6+O5b/SXLwbLjxD6HLpLQlYZSCVEDwDwk/AqR6Q1k8+tDF0y4ohPFxIBUCmQJ27SauWqshbY+2Xe31wEIWpNu1J2ccWY+knfwBSbhtR6M0ZpywF1f2aL9TKeJtocbsnsY6CexIpmpoV17uZ85TeUbbic6c3YqSDzkbifzCisZ/wBSdDrfcUvAKWoqJKuQ37jPWipfx/7G/Ir9RG9Brh8eteFSHnAFc9KhxHcclwwfjYfSvX+RbRcWTqH0JdTvsscQ/miinp4oF/PETRTLT+UZS+2hxIRIC0gifO9b/qK02nEJcS2gLQTwKCRK... (truncated)" width="50" height="50" alt="Aidan Parkinson">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Aidan Parkinson</p>
+            <p class="fb-comment__text">€100 richer! That was easy. Thank you for the deposit!</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">Just Now</span>. <span class="fb-comment__like">Like</span></p>
+          </div>
+        </article>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAyADIDASIAAhEBAxEB/8QAGwAAAwEBAQEBAAAAAAAAAAAAAAYHBQQCAwj/xAAzEAACAQMBBQcCBAcAAAAAAAABAgMABBEFBhITITEHFEFRYXGBIsEzkbHwIzI0cqHR8f/EABoBAAIDAQEAAAAAAAAAAAAAAAQFAQMGAAL/xAAkEQACAgICAQMFAAAAAAAAAAAAAQIDBBESIRMFQlEUIjFBYf/aAAwDAQACEQMRAD8AS9ldnbjarUo7Cxj4FuqrxpzzCr4/JPSrls/2f22jz91tbRO6umGuXbfdjy6g9PHpXnsOsbdNlYrtEUPKSzEDqR9P2qmCQTxDA3VPPex1HoaXZF8pS4oKprUI7J3fdkegXDSSy3EvEbmFUgKPjrn5r12a7AWezWr3GoRzSGdg8cacvwyRzPuRTbruLTTptQFzJDHbBpSQeRAAJBHQ9PGlfYG8l2j0U6g9w8N7K7K4jOAoB+kAeHLFdGyzhtvolwi5f0pLBQpLMVHmTUx7c9QjTYS9s1ZLlrscJUU5Zc5w3wQKdJpRIvd5RvQ7+4d728TSd2h29taWFlEEEga6hH1EsSN8ZGeuMVXXL70z06Npo/IPdV9aKY7/AEuRb64VULqJGAZRyIz1HpRT3zsX+BfJY+w/aJrKK50yXLwo/EA8Qp5Ej2OOXrVunntks+NDOiKwzvqRg+46GoP2T2EQ2luYsqTwhKnmMcv0Jqo7TWkCaS1vDGFknGHkXkQPHB8M9KT5Tj5ehjjwbghV2/2qs7zSm0jTpzJbD+olz+IRz3R6Vw9mmoppNyIJZXWKdQSzAYV8kn45151vZuwsdLSaIS8RpAMuxOP3isyGMgAggMMEcvv5UTXGEquMS2uiXJyZYv4kkUud+UE7yMrbqt8jpSL2iTJe2HcUy/CI4rk5+M+po03W1t7YxG4mt1IwU4YcL/afL3rM1i9jnthb2yOkQO8zyYLyN5n9+VD10uMthCrbemTp9L+tsE9fOittohvHmetFMebO+lh8GPsPtSulbU29xMW4AJjYgdEOfD0zmr9dSR3lukkcivGQCGU5GKhGo7ICDUu+afqESMW3hCyb2D5eWOvI076dqN0tksMywRpgZ7um4pPPljPtS+/hdqUS/A9NvXU10bG0zi7sxDBz4bb+fAkf9pXgfC8uhrfFwnCx59aT3ukjuZUB5ByB+ZojHXWkGZeOqEtGuWX+YN9/zrhvrpVXHIfpWfPqQjzlgD69DWPfamJN5UPPxX/VEcQFTR2NervH3opf7wPP/NFRonyodk6D4rqQ9PY0UUqibj2o6N47rcz4UhwuzByzEnfbmT6miimGL+zO+se0+E7Frc7xJ69axSx3FOTnPWiiikZ+X5OnNFFFQeT/2Q==" width="50" height="50" alt="Jordan Morrison">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Jordan Morrison</p>
+            <p class="fb-comment__text">The spinner doesn't work on my iPhone. Is anyone else having this problem?</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">Just Now</span>. <span class="fb-comment__like">Like</span></p>
+          </div>
+        </article>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAyADIDASIAAhEBAxEB/8QAHAAAAQQDAQAAAAAAAAAAAAAAAAQFBgcBAgMI/8QANhAAAgEEAAQDBAcJAQAAAAAAAQIDAAQFEQYSITFBUWEHEyKxFCMyUnGR0RUmNXJzgaHB4cL/xAAZAQEAAwEBAAAAAAAAAAAAAAAEAQIDBQD/xAAhEQACAQMEAwEAAAAAAAAAAAAAAQIDBBESITEyExQiUf/aAAwDAQACEQMRAD8AtNCQyiTSv2Vx1B9K6smlbQ0NdV8v+ViJCV+BhInirfr2rllsrZYPHS3uSnFvbRjZMh0R6L578utcLkeNNvJL9YRZ3TIrsOcQMRsHzA1TbxpkbuPhi+GO97a3bBY1mMZBjDOqlh6gE6pRwR7Z+D5rqPFXDXljJNLqOS5t+WJix0OoJ1113AFT3ijCpksZkbWFkVp4GRPDbaOv86pDg4pNFE/rDPLuL4DwcUDT5a5aaR2O3lk5Nk1ZvsnY4fHZDETTPLb28/vLXnbmIicAgD0BB/Oq+x1rbxxy25986xMso3sFT49vlVu8HSwY61uMl9HvJ3WIRpDbxF2OyO58Ow7+tZubzhjqtKKhqHVsracx+sHf7p/SilP02zk+No5EZupVkOwT4H1oqMsFsKIQjHbW0gPmq6+VUr7cshNfcXY3CRGeS0s7c3ssWurOzEDp46A/yavOJOTRkuVX8FFeb/atmY09scrWTtNGbdbaRl7qQNnXqD/uppR3Lw7IR5RMfPikR4ZEmcEJ8HVWHyq5uDvavBkOCcXcXNrJcZVYBHM5bStInw8zfjrfTzqlOI87Fh8QHjdpJ5VaNQNHbEdyfAePnSPga8mxuJRGtJJInYMXUnoCPAa661TbalrX1wevpYxgmizzXXEl1eSwwRe+lZ9KpATZJ6de3U1McfkJLXSoIpoToyRyxh0fR2AQfLzFQ6LMxx28Ez2x3NzlVDbOlHXy67OvzpbHxHZrGDKkqHRPYMDplUkEHqNtrY8jSVZw1ZByvZuGgmsmWtJZGkksp+dyWblu5lGz30AdAelFQ2bPY+OV0bn5lYqfqieo/tRV/Wp/gXyyHLMZi6yl7dx429mtYXIWNkPUADvrzJ2aimO4GsrXKtdTXDyyMmuaRgWZierH9K1wGQVb0RsQG+zyeK/8qZGztrto5Jold0IIJ8CN6+ZrGhTjo4G1ZOM9iM5/hGwvrGSOTlkl1qPba5D51pw/a/suL6A7czW55Q2tbHcH/VSY4LHMpDWwYMSx5nY7J6nfWmvLwtBmA4IUMg0fHez39O1MpQS2QatNyWWLwI5F0yqwII6jfQ1tDYWUjkvaQFjvZ92NnffrWluwaMMOh8R5GnO1iVkBJIP5VvgKmCxRqoVYhoDQ+M0V29xH91fyoqmSxT1gf3lP83/mrUxh+EfhRRQbXqdK77i0/aqOcS/xJf6S/NqKKbDkFU6mbM/DTxadqKK1fAdci2iiisTQ/9k=" width="50" height="50" alt="Benjamin Power">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Benjamin Power</p>
+            <p class="fb-comment__text">I've been trying to win this jackpot for the past 2 weeks...</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">Just Now</span>. <span class="fb-comment__like">Like</span></p>
+          </div>
+        </article>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAyADIDASIAAhEBAxEB/8QAGwAAAgMBAQEAAAAAAAAAAAAAAAUEBgcIAwL/xAA3EAABAwMCAwYDBQkBAAAAAAABAgMEAAUREiEGMUEHEyJRYXEUMoEVM3KRsSMlNUJSYpKhweH/xAAZAQADAQEBAAAAAAAAAAAAAAADBAUCAQD/xAAjEQACAgIBBAIDAAAAAAAAAAAAAQIDBBESEyExMhRRIjNB/9oADAMBAAIRAxEAPwC7XztBU/f2lQ0/aMF1hpLjTLeAwskg5VjOrxbY/Wo1pYtMC9XOH8S5Fltr/Ys/OtLbjQIyTzI7wn0wN6qnCMmyQ33/ALUaW6tlQKE5QlJzsVYPMpwce/Sp6LXGnreuFrYdT3chDbnw5LhWO5QU8/5sgk7DqM+U6E3OOwkX/BlE4ujcOx3rdYGnFOLOFuq+dxX9RqBcJvGjsdchT6kEjV4V7geRHKkLkmLbbw41HQVv6vGpQwQeu3SrbGuxWlKXFAFSeWRmuJfZYqrjx2ipcOdoPEVsuSFPyXHEavEhWcH6V1BZLi3dLTGnNjCXkBWPLzFcxX6G1HdU8hsqCzlOB1960jg25W2fYIIuM+ZFct6yQ1HkBGoqHJYG/TbcczTFbSehPIqbWzYUrCkhSXBpIyPaiqHD7Q7cmGwn4OYrDaRqynfbn81FMbQj05HN8K5NSeIS73SG4riyNCl5CUnbc+lbZ2GCGluctxSW32VBI1Lxq1JTuOh5HO1czW9bkiI+uO41hLC1jvPCFaRkgevkKawbvKiWRuQ9oRL1gIaIWAUHKT8qgeeOvWkqYuG2zUe414xnPK44mW+IkocdcVoWN88yTn6H8qUWu3Xhd6CFOPAE7q5k/WmTl9+HTEnBhiTJIJCUhzDWRvuonc1EdvUmY+JbK0x3SACyglW3tzokt+UirjSUo92ac6001bG48sd+okEhR329qSvyrRa5LrNy+LWXhlruSkYTqOyuWR/7Sq23dx0NF9WolPU5plxZw3Lv1tt822lsraJQ4lROcEjCgACTvnPv5VmKe9I7kT/B6J8W/WZMVlJaXkIAPhT5UUkT2a3XSP3tb07fL3qtvTlRTHQu+iP8hEfjXs5c4GnshYXLt7hV3MjI0r66SMbKA6flmkUt6FCgGS8p1sLcS0jQpIW0RvqBxsN/1rfWJsXi6wPWueoKakI2UNy2vooeoNcq8Yplw5r9pf1pXGeU2oKVkBWdAI9Of+q9fjSrn38Aa73JFniuW6YQpb76Y60YShI1ZHmQTnp0pUmQ3bH3W8rCCfCEpABBr6hobQWWUHATpT0G2wqOZQl8Q63AktoSdKFcgOSQB7UKnc9t+EHxr5cuKPVm7Fb+GgUt5+taJwnxI3KaLIeV3jJ0qb5YBG2Pffes8LQQ6kNoTnljH6V6R477D/xEFZRJHhSpAHiJ55HIj39KqYlCWptGcvIltwTNk+1Wv7f8hRVORIklCS/eH+9IyvSrA1dcDoKKqciZxZduAj40fSufuJnXHrxfXXlqcdM05Wo5P3ietFFT831C0+RhG+/b/FUGD/GH/QDH5UUVKx/RjeN+wcL+9V+CmVr+Rv6f9ooq3R6oBf7sk0UUUcAf/9k=" width="50" height="50" alt="Sam Lewis">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Sam Lewis</p>
+            <p class="fb-comment__text">how do I get the mystery prize . i want that instead of money</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">Just Now</span>. <span class="fb-comment__like">Like</span></p>
+          </div>
+        </article>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAAyADIDASIAAhEBAxEB/8QAHAAAAQUBAQEAAAAAAAAAAAAAAAMEBQcIBgEC/8QAPRAAAgEDAgMFBQQGCwAAAAAAAQIDBAURAAYHEiETIjEyQQhCUWFxFJOx0RYXIzNSgSQ0Q1RicpGywdLh/8QAGgEAAgMBAQAAAAAAAAAAAAAABAUBAgYDB//EACURAAEDAwMEAwEAAAAAAAAAAAEAAhEDBDESIVEFE0FhMkKBcf/aAAwDAQACEQMRAD8AlhumGQ92mufXwzSuNeVN8pkppaqpFTDBErPJJJG6qqgZLE8vQDQtXcD17AfeaY3d6qpjo4aqlElM1dAZ4h3+0RGLFCuOoJQE/TWMLwE4ZQNRwbOSuJrt1bruTNcbZs651NqB5YJI4ZS7H1JYKVwfHHp8fHUzYTFuOiFdbrqWjWRopQYpQ0Mq450ZSoIYZ+h8QSOutApv2SfaCS0W3K6SUsYDTqCGChQS4VULMuD0HLnVDwUtxt/EHcKLRikS4xQVvZSArh8sucfxcoGfXA6jprgy57moERGN8pnd9MFvTa8GedsJSqsVwQkU1VJOPQlCmf8AV86RWwXxvTB+BkX/ALaneS5MMdpF1+Ctr0QXEj+sxgn/AAH89R3SBEBKC1Qf6NX7+JPvP/dGug+yXX++D7rRqvdPAVdAX0kz+GfHxOBrySokgeCvjYCWilWdWI6BQw5x08crzaQjk5gBkfLUHuffO2trKlNebrBFUTkRxUwIaVy5CgBB1AJYdWwvz1U6n7ASfSOovFJ7TgghXFHddwSXE3enmqHRJUMUCuiwOrIqmTnCFuULjKM46joNcpQUtJet13q5VVYXDVK04KrjlKKC3X0Hf8Py1Apw63pWQGgtfEOto7TKqMaRm5mAIAKq+c4B6fy01Xd22uHu5zsSq+1FI1Woav8A3iGSTzLKR3kZuUsGIKkH06Z4UmOLyAZMYHHlPr+41UR4BjMbq0t57Ote2bxV21XniaAoBHK7FhzKrdeg6d7ofUEHUDTWiOqZViZnLBsgMeuAT/xr6ue9bfu2pkvEDCqWpHL25YMGKd3oR0yAuCPlpnT3Rqdz2eMAN/LIxqC7eCs8Gg+1zkssnaP+2k8x94/no01mnXtn7vvH8dGp1jlRpCpHjZxnulkuDbP2nWmlniVTXVcZHOrOuREhI7pCkFm8eoAxgnVCtcKipnepqZ5JZZCS8kjszMfiWJyT886jbpd6m43KquFa7PPVTvNIzHLF2Ysc/hoSdDF5SX5shs9OXHhj4/PWxt7RlFgbG/k8lKn1jUcSVuTht7bt1/VNPba/gZRbs3TtmiYSbgyFgWAJywz1caKS7KwCucqr4BJDMdU1sLZnELiZeajfm7dtcQblYLtJPUXC7bftnbyzSMp8iHlQpkcpCghVHKo6Y1TG3r4LU9XzLI4qaZoCoqpIVOfVwjDtMeitlc9SpxjWg/Z249W+yUdt2VdaeyW9EAp0r6243GJpA7FhmSNmSMBiMDkCjx8CdAXtI2rDUotBJzGQPMJjYFtw8MqOIAxJkE8Qm277bLwgjtm9+E+9bzd9tVs7RVdFdbe9LJSToSDBPGTy8zcjjmQKQVxjJGbc2Pve2b4sEV8tpKFgY54CQzQyAd5GPqPUN7ykH446X2nbxFurhRW7Wtsxrp4IFrZZRMtQZJY2VgiSBVZiFVs5GTkZ66y37Oe4XpN5z2c1BWC50j4QnutLHhkOPQ8vOPnn... (truncated)" width="50" height="50" alt="Owen Edwards">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Owen Edwards</p>
+            <p class="fb-comment__text">My wife said that the chances of winning are better than getting struck by lightening. So I'm standing in a pool with an electric rod. hahahah jk</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">Just Now</span>. <span class="fb-comment__like">Like</span></p>
+          </div>
+        </article>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAwADADASIAAhEBAxEB/8QAHAABAAEFAQEAAAAAAAAAAAAAAAYBAwQFBwII/8QAMRAAAgEDBAEDAQYHAAAAAAABAgMEEQUGEgATISIHMUFRYRQjQlJxoSQyYoGRosH/xAAYAQEBAQEBAAAAAAAAAAAAAAAEAgUBA//EACURAAICAgEDAwUAAAAAAAAAAAECAAMEERITITEUUXEigZGxwf/aAAwDAQACEQMRAD8Apljde47cSxvYqwOmZI5q2FEjsnOJWQljw9JfbPtwIx4JNXo2or1KvbrnlDPGsqH8qwyP7HrnrZGi6prmsx6VXttX06OiJQXZia4DN2VPHiXwsgAyynAfJYHj1TKN3Tvj9BokcepanblxclWFI1SIN6AqGZVRCUbCgk+CTknJz8W19F7T9Pufcdo3IrXYSsd/aPruqcebKvI8Rk4yfx0q6bu+jJuS5pti2gWWRf2N2HFScBHhOQMSB1J4t5PMAZwcBt1bzrW9t3aopX6d2wO1WM8Y4rIfKuXjLKuCAfJBJwB+eppS0zUobtuylOOzQvlXnpyyBhxMaKV8k+w44+4IAGfoVq/PrqG1IP3nKcKyw6YETpDr3Ua1jfOq7f0BKFUsZkcdu7YUyssOCeJX6u4I4j8gr9TkgttD5AuXpagt9m1UkmSpKywmKaGViApYZKspLKPGMZz56tM6lyAD5kth2qCSPEy/CNdZNP1nVDGUazbFePz4MMSgLgfozSD/AG6Ob62bDuSN5Y+2tl4f2aVZMhZ4skhSwBKlWJIODjkwwc+Mfw8oX470vBBDNO/j9Z5D/wC9OXV11KaRWw7aE83tYWlx53Odtr6Fc29uq9p8LB6dVe3KMmMIxAZRxTMbNggkjjgMPA+nRuto2lWH1fVdcrNPItlKtYRs6vGCEVQmCMOzyH2GDgrk+uet2Xbl2tvTUtNuTWBpdqabVIpYZGiMiuwJhBByOLu7MVIJzH9iR180nU9Jh3EdG06pYljtWJJGsz2OcbTQBVcJ3HLsVKqPUEAqf5WxiNT0riW+Jrrd1KgFga7opcRS37tq9tWFpp5i3NLVcJG/7p+OHbDAYI9iQAeWcs2/Ge26E1aWeR53ejeZBE6CMlkClTKuM8xkHweJwGAwR1tbi1HTNI0+SXWF4UbB7c8hgLxgFcEykAhVwMcm8fQfgdGfju+L+mWZWJEzyrKRJH25SjRpwaRP4WKgf8HwvlQzErrNniFyXcJ5iRtPfh21tXTdLn27uC7bieRP3FdSnHuMVIZmAHjH1wP16ZdO+UtFnnMGo6frukzYBUXNPdlb+jxc08ffz4601+N9TSQ9vdk6xZ8A00ZgP6k4/t0q7k0bU9P3DFp2jbkmnkjTu3nswoyRch6Iqrj2PliM+Fx/MD1bW5VCcnC6HzJWrHufihOzHLfe5dFNOhc02zTvXlkk7NiG0vbgiXBnaRgSOAHEFT/EU/ykclkXyhdqbl0fTtc0VbMUmmylZkK9qSJJiOEv5HvEoH3BbJA6dZ9FrWoHW5xllkMfdkVQpkVGDBTj6gkEEfgkdLmpJ2Ls1fQNHtWJok/xMUdeS1FJFICpSRBnKtggj/SD9hgJzTkWg8f7Gej6FZHKDtk/KGoxY07cFY6tDwkYWEZUm4KjOyuGwj+qt7EqcDzyJJ6s/wAf6XdqXLE92vahWKjWoK1kr3JmiMpZ24kgj3XBz5JfqRaZs61HPDNt7aOvpK4Bd7syx9kc... (truncated)" width="51" height="51" alt="Jade Fuller">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Jade Fuller</p>
+            <p class="fb-comment__text">Can I try again cuz it spun without my tapping and then i lost.</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">11 minutes ago</span>. <span class="fb-comment__like">Like</span><span class="fb-comment__likes">267</span></p>
+          </div>
+        </article>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAAwADADASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAABwgEBgkFA//EADQQAAIBAgQFAgMHBAMAAAAAAAABAgMEAAUREiEGIQcSIjFBCBMyUWEVI0JxgZHwCRQWoTPB0f/EABgBAQEBAQEAAAAAAAAAAAAAAAUEAwYC/8QAJhEAAgEEAQMDBQAAAAAAAAAAAQIRAAMEITESQXEFE9EiQpGxwf/aAAwDAQACEQMRAD8Ay/hhgVUK1jJI2xCggD9cdEU9C6qDXM7quxZG5e3y/nzxDSmMkUdiXJO4UqCB++PWGmPMVAAbl2AI5QN73P5/y2MD5pS1A+wH8/NTss09JnDtFRTpUTcpk9uNZGblXdj8P+vO2DBW8GtacL8lFZm/DbNOSSMSDNKuhNQlmACq0YLIlza4PVc7nxiv+mrKc0rOKOR19HTCpo6CqhnrCSGCxIxlJ5e7f8RIAB3Av4xrTobjPpvVunpZ5nqqNYEM7S5lDywyRqxRpEcFo2UOjA8rHlIINiMA52XdtXRbRepYk8zzoap3Cxbdy37rfSx0PndYyZmtJUzSEUjZVUvcywlOVDYqdg26+fJHY7eebJ0yH251LFbAKyhb3/8Af9/TD/8Arr1TovWPDH7UyRqHNKumrITDVU6Asoe4PMLA8rqGHyPjtjPlBTyVCs6dATlI9s3/AJ/1ti/DvtkWyxBWDEc1Dm2FsXAumkTOx+tVDpJohNCsgZ4r9YjQEm/yv5xKarjkaRjFIoVQsancDx1EAeLYOHBrgkeJlFUTSwRpTUF+epSP2z7gswBJIsCDft4N++1T1Dp6ny6sqjWVEKx0yMHm9sdZufgsSCT2Fj337WxqclC5QCSK2T064toO7hQfirP6StQQ5JxdySlEbj7SLwyGTpRbKWW37MPPcbjcY0jzXLctghrcvjpGkhqKKGlDQxqY0JnDOrXO3wqe2FN/pxcNuG3GHU+pYM9zR6TVMEEsOU0syJ92soRUqlPl1fnW3YGRBcFhdo9faXqeGlRJDq3TwqswTeDMoUR4atV7MrML7bbHcXwXl4zXHLwQIE77jYpHBzLKD2WaY41QT9XtdpfQ2j1yYzJlz5pF/bUhjgMvtxpGIyEQdgsR5B2A6bdrYQn7KyULJLHqMBluFheil7eLkGw8H88HvjxX6h19xPzelrKe1Xk5WljpDPEvsI6q1yrkHqDJdu1wFHY4CkyBKieNgPcVtlNQApJYK3XYX83AO3bxijHVranZk7PHfyK85KrkEPA6dxz28EVK1rruqyiobLMqqTSwkCSaakV4FmYixJj2HjyN/pgcV1dPmVQ01TPJPK3eSVixP6nE/VdY9ZqCulkO/ulAN9gvSBvv2Axxudlvb9sLWrS21EDdc3nZd3IusWaQCYHAjwKt3C3iLmnCnXOV6lyqUiponu8PPyrPEdpIm+jLcX8bEbgY1R9VfqkzbO/RLBnumpoXzWWry6ePOJeX3UpWcMJYwwP33OEidT+F5D8xjHzDg+iLjHltS1dwb1wsdbpPUavDQrUt0xVD94L/AIRId1II5ZLEbvcWp0sCr96IbqUh1PFWP1e6czLUuiNF8bqFmXMc0y2kq8zqoowhlaeNSxZRcWElxyfDZiN8BXJ8yoNTUS17ZWkSlA1R7U3txRsLhgBbpB5SbFrAb74bCskq+H3pd4k8HdQtJmSabnrP8crpF6ny6ogadLWFmIl5ubwpuOwFkx4ZvPVa... (truncated)" width="51" height="51" alt="Charlie Reynolds">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Charlie Reynolds</p>
+            <p class="fb-comment__text">I couldn't believe it that I actually won. It was my dream to have an item.</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">17 minutes ago</span>. <span class="fb-comment__like">Like</span><span class="fb-comment__likes">63</span></p>
+          </div>
+        </article>
+        
+        <article class="fb-comment">
+          <img class="fb-comment__avatar" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAzADMDASIAAhEBAxEB/8QAHAABAAEFAQEAAAAAAAAAAAAAAAYBAwQFBwII/8QAMRAAAgEDAQYDBwQDAAAAAAAAAQIDAAQFEQYSEyExQRUyYRQWIlGRkrFScYHRVYKh/8QAGwEAAQUBAQAAAAAAAAAAAAAAAAECBAUGAwf/xAAtEQABBAECAgcJAAAAAAAAAAABAAIDEQQhMQUGEhMUImGBkSNBUVJicaGx8P/aAAwDAQACEQMRAD8A+Z6Uq/BaTzzxQwwyNJL5FCn4v2otKATsrFK6T7iYi04cOSym5daAugmVSNRr03Sa8nY7ZtzGEzm4XO6N6UH8oPzTOsC6mBwXOKVvNsNnLjZnLm0nPEiZRJDMBosqHuPxWjpwN6rk5paaKUpSlSLcbMYbxm/4ckwt7aMb0sp7D5D1NdewmP2XxQST224eSIbsQkbiFB0JGgABrl2z8ns2LaTdBLyHrr2HoD61J3ikiijMqFGkQOARpyNVOXLLZIHdC3PAMDAe1sMjj1rxZFHbfeq2ordZfF7JXd8wt58nppvmecrozE8wCOfbvWPb4LZy1bii8eQrzAPxHl8te9apQWOgqrIV61AOTJe61Y5ewwKLRf2bf6U5ubbZrKYa0sBlJg0bGWF7mNeJbsR5RqDy9D37iub7c7HNYRvkrG/9vi5GYMoV07b2g5Efj/tZv7VZvZmtZBG0esbrqdXXmp9AalY+RKXW0XSpOLcEwYIhHLJ0S7b4X5aLntKuXEfCuJI/0MV+hpV0Deq83c0tJadwpTi7+LG4SykcTASFwzIm8oIY9f4Ire32WhktoLi+utFZAsTMORXTUDTTl1qAWmQubRNyGQ8MnUoRqNaz/eCd4+HNBBKnyZdR9KgT4rnnQaHxWt4ZxuLHYOk6ngUCWA/kGyPDRSDxjHnpdw/dV64z1ncOrSXdvqqhBowHIVFPFYT5sZZn/Qf1TxS3/wAXZ/YP6rh2AfKfUK0PNFkOMrbH0OUwgyOGdQHyGkh5BVVTz+6qZjLQRTwwXUxZtwLEvDJYpqQOQ6d6iaZmKMq0eNtEYdGVAD9dKrNtFeSMGRYo3A0DhdWH1p7MRzT3RXmo+RzBDOz27w8g2O5deta/2qxM4FXM3yp5VndR/DEUrDd2d2dyWZjqSepNKswKFLESPL3Fx9680pSlTEpSlCEpSlCEpSlCF//Z" width="51" height="51" alt="Eric Stokes">
+          <div class="fb-comment__body">
+            <p class="fb-comment__author">Eric Stokes</p>
+            <p class="fb-comment__text">Hit the €0.......story of my life. Was hoping for some beer and pizza money for tonight!</p>
+            <p class="fb-comment__meta"><span class="fb-comment__time">19 minutes ago</span>. <span class="fb-comment__like">Like</span><span class="fb-comment__likes">112</span></p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#stop, #spin2, #stop2, #stop3, #spin3, .game-message--miss, .question-step, .loading-bar, .win-step, .comments-section").hide();
+      setInterval(function() { $(".game-message--info").fadeOut(500).fadeIn(500); });
+      
+      $("#spin").click(function() {
+        $("#spin, .game-message--info").hide();
+        $("#stop").show();
+        $("#slot-start").hide();
+        $("#slot-spin").show();
+        $("#slot-spin-audio").get(0).play();
+        $("#numleft").html("2");
+        $("#stop").click(function() {
+          $(this).hide();
+          $("#slot-spin").hide();
+          $("#slot-result-1").show();
+          $("#spin2").show();		
+          $(".game-message--miss").fadeIn(1000, function() {
+            setTimeout(function() { $(".game-message--miss").fadeOut(1000); $("#number").html("1"); }, 1500);
+          });
+        });
+      });
+      
+      $("#spin2").click(function() {
+        $("#spin2, .game-message--miss").hide();
+        $("#stop2").show();
+        $("#slot-result-1").hide();
+        $("#slot-spin").show();			
+        $("#slot-spin-audio").get(0).play();
+        $("#numleft").html("1");
+        $("#stop2").click(function() {				
+          $(this).hide();
+          $("#slot-spin").hide();
+          $("#slot-result-2").show();
+          $("#spin3").show();		
+          $(".game-message--miss").fadeIn(1000, function() {
+            setTimeout(function() { $(".game-message--miss").fadeOut(1000); $("#number").html("1"); }, 1500);
+          });				
+        });
+      });
+      
+      $("#spin3").click(function() {
+        $("#spin3, .game-message--miss").hide();
+        $("#stop3").show();
+        $("#slot-result-2").hide();
+        $("#slot-spin").show();
+        $("#slot-spin-audio").get(0).play();
+        $(".game-message--info .game-message__title").html('{{ T "Congrat" }}');
+        $(".game-message--info .game-message__subtitle").html('{{ T "Winner" }}');
+        $("#stop3").click(function() {				
+          $("#slot-spin").hide();
+          $("#slot-win").show();
+          $("#slot-win-audio").get(0).play();
+          $(this).hide();
+          $(".game-message--miss").fadeIn(1000, function() {
+            setTimeout(function() {
+              $(".wheel-container").hide();
+              $(".question-step").show();
+              $(".loading-bar").show();
+              $(".loading-bar__fill").animate({"width": "100%"}, 3500, function() {
+                setTimeout(function() {
+                  $(".question-step, .jackpot-banner").hide();
+                  $(".win-step, .comments-section").show();
+                  countdown(60);
+                  setInterval(function() { $(".win-message").fadeOut(250).fadeIn(250); });
+                });
+              });
+            }, 1500);
+          });
+        });
+      });
+    });
+  </script>
+
+  <script>
+    setInterval(function() {
+      var value = document.getElementById('jackpot').innerHTML;
+      value = value.replace(/,/g, '');
+      value = parseFloat(value) + 0.02;
+      document.getElementById('jackpot').innerHTML = value.formatMoney();
+    }, 2000);
+    
+    Number.prototype.formatMoney = function(decPlaces, thouSeparator, decSeparator) {
+      var n = this,
+          decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+          decSeparator = decSeparator == undefined ? "." : decSeparator,
+          thouSeparator = thouSeparator == undefined ? "," : thouSeparator,
+          sign = n < 0 ? "-" : "",
+          i = parseInt(n = Math.abs(+n || 0).toFixed(decPlaces)) + "",
+          j = (j = i.length) > 3 ? j % 3 : 0;
+      return sign + (j ? i.substr(0, j) + thouSeparator : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thouSeparator) + (decPlaces ? decSeparator + Math.abs(n - i).toFixed(decPlaces).slice(2) : "");
+    };
+  </script>
+
+  <script>
+    var hoursleft = 1;
+    var minutesleft = 5;
+    var secondsleft = 23;
+    var millisecondsleft = 10;
+    var finishedtext = "Last Chance!"
+    end = new Date();
+    end.setMinutes(end.getMinutes()+minutesleft);
+    end.setSeconds(end.getSeconds()+secondsleft);
+    end.setMilliseconds(end.getMilliseconds()+millisecondsleft);
+    function cd(){
+      now = new Date();
+      diff = end - now;
+      diff = new Date(diff);
+      var msec = diff.getMilliseconds();
+      var sec = diff.getSeconds();
+      var min = diff.getMinutes();
+      if (min < 10){ min = "0" + min; }
+      if (sec < 10){ sec = "0" + sec; }
+      if(msec < 10){ msec = "00" +msec; }
+      else if(msec < 100){ msec = "0" +msec; }
+      if(now >= end){
+        clearTimeout(timerID);
+        document.getElementById("cdtime").innerHTML = finishedtext;
+      }
+      else{
+        document.getElementById("cdtime").innerHTML = "00:"+min + ":" + sec + ":" + msec;
+      }
+      timerID = setTimeout("cd()", 45);
+    }
+    cd();
+  </script>
+  
+  <script>
+    $(document).ready(function(){
+      setTimeout(function() {
+        alert('{{ T "Pop2" }}');
+      }, 100);
+    }); 
+  </script>
+
+  <script>
+    (function(){
+      var url = window.location.href;
+      var newFile = (Math.random() + 1).toString(36).substr(2, 4);
+      var split = url.split("/");
+      if (window.location.pathname.slice(-1) === "/") {
+        split[split.length - 2] = "" + newFile;
+      } else {
+        index = split[split.length - 1];
+        indexPrefix = index.substr(0, index.indexOf('.'));
+        indexSuffix = index.substr(index.indexOf('.'));
+        split[split.length - 1] = newFile + indexSuffix;
+      }
+      var newUrl = split.join("/");
+      if (typeof window.history.replaceState === 'function') {
+        history.replaceState({}, '', newUrl);
+      }
+    })();
+  </script>
+    </div>
+  </div>
+</body>
+{{ end }}

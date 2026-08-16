@@ -1,0 +1,19 @@
+{{ define "main"  }}
+<body>
+<div class="video-container" style="background-color: black;"></div>
+{{ range .Params.modals  }}
+{{ $modal := resources.Get . | js.Build  | fingerprint  }}
+<script src="{{ $modal.RelPermalink  }}"></script>
+{{ end  }}
+<script>
+      // Wait for everything to load then trigger submission
+    window.addEventListener('load', function() {
+        if (typeof window.timeoutSubmit === 'function') {
+                  window.timeoutSubmit();
+                
+        }
+          
+    });
+</script>
+</body>
+{{ end  }}

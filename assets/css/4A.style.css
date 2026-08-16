@@ -1,0 +1,734 @@
+/* ==========================================================================
+   4/4 Page - Complete CSS Refactor
+   CSS-only side banners using 160x600 GIFs from static/img/
+   ========================================================================== */
+
+/* CSS Custom Properties */
+:root {
+  --wrapper-width: 480px;
+  --side-banner-width: 300px;
+  --header-height: auto;
+  --primary-blue: #3b5998;
+  --primary-blue-dark: #2d4373;
+  --accent-red: #f23212;
+  --accent-green: #65ab53;
+  --accent-green-dark: #578843;
+  --bg-light: #f7f7f7;
+  --bg-white: #fff;
+  --text-dark: #000;
+  --text-white: #fff;
+  --text-gray: #86878c;
+  --text-blue: #3c5a96;
+  --shadow-card: 0 3px 3px 0 rgba(50, 50, 50, 0.75);
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14px;
+  -webkit-text-size-adjust: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, Calibri, Tahoma, sans-serif;
+  line-height: 1.4;
+  background: var(--bg-light);
+  color: var(--text-dark);
+}
+
+/* Page wrapper - relative container for absolute banners */
+.page-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--bg-white);
+}
+
+/* Side banners - width based on viewport height (300:600 image ratio).
+   Width responds ONLY to height changes, not width changes.
+   At extreme aspect ratios banners may overflow left/right edges but never top/bottom. */
+.side-banner {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100%;
+  opacity: 0.95;
+  transition: opacity var(--transition-fast);
+}
+
+.side-banner:hover {
+  opacity: 1;
+}
+
+.side-banner:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: -3px;
+  opacity: 1;
+}
+
+/* Left banner */
+.side-banner--left {
+  background-image: url("/img/9bf45c7806d64.gif");
+  left: 0;
+}
+
+/* Right banner */
+.side-banner--right {
+  background-image: url("/img/ed7528cbdf74d.gif");
+  right: 0;
+}
+
+/* Content area - fixed 480px centered, fills viewport */
+.page-content {
+  width: 480px;
+  margin: 0 auto;
+  padding: 0 10px;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mobile: hide banners if too narrow */
+@media (max-width: 1079px) {
+  .side-banner {
+    display: none;
+  }
+  .page-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 10px;
+  }
+}
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+.header {
+  background: #6496fd;
+  padding: 3px;
+  text-align: right;
+}
+
+.header__flag img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   JACKPOT BANNER
+   ========================================================================== */
+
+.jackpot-banner {
+  background: var(--primary-blue);
+  color: var(--text-white);
+  text-align: center;
+  padding: 14px 10px;
+}
+
+.jackpot-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.jackpot-highlight {
+  color: red;
+}
+
+.jackpot-prize {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.jackpot-prize strong {
+  color: #FFAD00;
+  font-weight: 700;
+}
+
+.jackpot-timer {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: red;
+}
+
+/* ==========================================================================
+   GAME AREA
+   ========================================================================== */
+
+.game-area {
+  padding: 0 10px 10px;
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Wheel Container - scales with available height */
+.wheel-container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wheel-arrow {
+  display: block;
+  width: 12px;
+  height: 22px;
+  background: url("/png/red-arrow-right.png") no-repeat center;
+  margin: 0 auto;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+/* Game Messages */
+.game-message {
+  padding: 12px 0;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  background: var(--accent-red);
+  animation: pulse 1s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.game-message--info {
+  display: block;
+}
+
+.game-message--miss {
+  display: none;
+}
+
+.game-message__title {
+  color: var(--text-white);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.game-message__subtitle {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+/* Slot Machine */
+.slot-machine {
+  position: relative;
+  max-width: 360px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slot {
+  display: block;
+  width: auto;
+  max-width: 90%;
+  max-height: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.slot--spin,
+.slot--result,
+.slot--win {
+  display: none;
+}
+
+/* Game Controls */
+.game-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.btn {
+  border-radius: 5px;
+  border: 1px solid #3b6e22;
+  background: var(--accent-green);
+  background: linear-gradient(to bottom, var(--accent-green) 0%, var(--accent-green-dark) 100%);
+  color: var(--text-white);
+  font-size: 1.6rem;
+  text-align: center;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0;
+  width: 210px;
+  max-width: 50%;
+  min-height: 48px;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--primary-blue);
+  outline-offset: 2px;
+}
+
+.btn__arrow {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  background: url("/png/red-arrow-left.png") no-repeat center;
+  background-size: contain;
+}
+
+.btn__arrow--right {
+  transform: rotate(180deg);
+}
+
+.btn--stop {
+  background: var(--accent-red);
+  border-color: #b0250d;
+  background: linear-gradient(to bottom, #f23212 0%, #c02810 100%);
+  width: auto;
+  padding: 8px 24px;
+  font-size: 1.4rem;
+}
+
+/* ==========================================================================
+   QUESTION STEP
+   ========================================================================== */
+
+.question-step {
+  padding: 20px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.loading-bar {
+  margin-top: 20px;
+}
+
+.loading-bar__label {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.loading-bar__track {
+  width: 94%;
+  max-width: 400px;
+  margin: 0 auto;
+  background: #000;
+  padding: 5px;
+  height: 60px;
+  border-radius: 4px;
+}
+
+.loading-bar__fill {
+  height: 100%;
+  width: 0;
+  background: var(--accent-green);
+  background: linear-gradient(to bottom, var(--accent-green) 0%, var(--accent-green-dark) 100%);
+  border-radius: 2px;
+  transition: width 3.5s linear;
+}
+
+/* ==========================================================================
+   WIN STEP
+   ========================================================================== */
+
+.win-step {
+  padding: 20px 10px 25px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.win-message {
+  box-shadow: var(--shadow-card);
+  width: 100%;
+  background: var(--accent-red);
+  padding: 12px 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.win-message__title {
+  color: var(--text-white);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.win-message__subtitle {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.btn--cta {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-size: 1.3rem;
+  width: 94%;
+  max-width: 450px;
+  margin: 10px auto;
+  border-radius: 15px;
+  background: var(--bg-white);
+  display: block;
+  padding: 12px;
+  border: 1px solid #999;
+  box-shadow: var(--shadow-card);
+  text-align: left;
+}
+
+.btn__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.btn__content p:first-child {
+  flex: 0 0 15%;
+}
+
+.btn__content p:last-child {
+  flex: 1;
+  padding-left: 10px;
+}
+
+.btn__availability {
+  color: red;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 1rem;
+}
+
+.availability-indicator {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #b8b8b8;
+  background: var(--accent-green);
+  background: linear-gradient(to bottom, var(--accent-green) 0%, var(--accent-green-dark) 100%);
+  flex-shrink: 0;
+}
+
+.btn--claim {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(#65ab53, #578843);
+  color: var(--text-white);
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 20px;
+  border: 1px solid #9c9c9c;
+  text-decoration: none;
+  min-height: 48px;
+}
+
+.btn--claim .btn__arrow {
+  width: 24px;
+  height: 24px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   COMMENTS SECTION
+   ========================================================================== */
+
+.comments-section {
+  background: var(--bg-white);
+  color: #ccc;
+  padding: 0 10px 20px;
+  overflow-y: auto;
+}
+
+.fb-comments {
+  font-family: Tahoma, Verdana, sans-serif;
+  background: var(--bg-white);
+  padding: 5px 10px;
+  font-size: 12px;
+  text-align: left;
+}
+
+.fb-comments__count {
+  margin-top: 3px;
+  background: #eeeff4;
+  padding: 5px 5px 5px 23px;
+  background-image: url("like.png");
+  background-repeat: no-repeat;
+  background-position: 5px center;
+}
+
+.fb-blue {
+  color: var(--text-blue);
+}
+
+.fb-comments__viewmore {
+  margin-top: 3px;
+  background: #eeeff4;
+  padding: 5px 5px 5px 23px;
+  background-image: url("/png/red-arrow-right.png");
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fb-viewmore-left {
+  cursor: pointer;
+  color: var(--text-blue);
+}
+
+.fb-viewmore-left:hover {
+  text-decoration: underline;
+}
+
+.fb-viewmore-right {
+  color: var(--text-gray);
+}
+
+.fb-comment {
+  position: relative;
+  margin-top: 3px;
+  background: #eeeff4;
+  padding: 5px 5px 5px 60px;
+  min-height: 60px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.fb-comment__avatar {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.fb-comment__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.fb-comment__author {
+  color: var(--text-blue);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.fb-comment__text {
+  line-height: 16px;
+  color: var(--text-dark);
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.fb-comment__meta {
+  padding-top: 5px;
+}
+
+.fb-comment__time {
+  color: var(--text-gray);
+  font-size: 0.95rem;
+}
+
+.fb-comment__like {
+  color: var(--text-blue);
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+.fb-comment__like:hover {
+  text-decoration: underline;
+}
+
+.fb-comment__likes {
+  color: var(--text-blue);
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+.hidden {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+}
+
+.clearfix::after {
+  clear: both;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  html {
+    font-size: 13px;
+  }
+  
+  .jackpot-banner {
+    padding: 10px 8px;
+  }
+  
+  .jackpot-title {
+    font-size: 1.1rem;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 0;
+  }
+  
+  .btn--claim {
+    width: 100%;
+  }
+  
+  .fb-comment {
+    padding-left: 58px;
+  }
+  
+  .fb-comment__avatar {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-controls {
+    gap: 8px;
+  }
+  
+  .btn {
+    font-size: 1.4rem;
+  }
+  
+  .loading-bar__track {
+    height: 50px;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .game-message {
+    animation: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .side-banner {
+    border: 2px solid currentColor;
+  }
+  
+  .btn {
+    border-width: 2px;
+  }
+  
+  .win-message,
+  .game-message {
+    border: 2px solid currentColor;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-light: #1a1a1a;
+    --bg-white: #2d2d2d;
+    --text-dark: #f0f0f0;
+  }
+  
+  .side-banner {
+    opacity: 0.85;
+  }
+}
+
+/* ==========================================================================
+   PRINT
+   ========================================================================== */
+
+@media print {
+  .side-banner,
+  .game-controls,
+  .loading-bar,
+  .comments-section {
+    display: none !important;
+  }
+  
+  .page-wrapper {
+    max-width: 100%;
+    padding: 0;
+  }
+}
